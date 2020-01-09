@@ -22,9 +22,8 @@ import io.opencensus.stats.ViewManager;
 
 public class RpcViews {
 
-  static final ImmutableSet<View> SPANNER_CLIENT_VIEWS_SET = ImmutableSet.of(
-    RpcViewConstants.SPANNER_SESSION_POOL_VIEW
-  );
+  static final ImmutableSet<View> SPANNER_CLIENT_VIEWS_SET =
+      ImmutableSet.of(RpcViewConstants.SPANNER_SESSION_POOL_VIEW);
 
   /**
    * Registers all Spanner specific views.
@@ -33,7 +32,7 @@ public class RpcViews {
    */
   public static void registerSpannerClientViews() {
     ViewManager viewManager = Stats.getViewManager();
-    for(View view: SPANNER_CLIENT_VIEWS_SET) {
+    for (View view : SPANNER_CLIENT_VIEWS_SET) {
       viewManager.registerView(view);
     }
   }

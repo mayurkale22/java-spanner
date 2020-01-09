@@ -21,7 +21,8 @@ import io.opencensus.tags.TagKey;
 
 public class RpcMeasureConstants {
 
-  public static final TagKey NUM_SESSIONS_BEING_PREPARED = TagKey.create("numSessionsBeingPrepared");
+  public static final TagKey NUM_SESSIONS_BEING_PREPARED =
+      TagKey.create("numSessionsBeingPrepared");
 
   public static final TagKey NUM_SESSIONS_BEING_CREATED = TagKey.create("numSessionsBeingCreated");
 
@@ -32,7 +33,7 @@ public class RpcMeasureConstants {
   /** Unit to represent counts. */
   private static final String COUNT = "1";
 
-  static final MeasureLong SPANNER_SESSION = Measure.MeasureLong.create(
-    "cloud.google.com/java/spanner/session_pool",
-    "Number of pool of the sessions", COUNT);
+  static final MeasureLong SPANNER_SESSION =
+      Measure.MeasureLong.create(
+          "cloud.google.com/java/spanner/session_pool", "Number of pool of the sessions", COUNT);
 }
