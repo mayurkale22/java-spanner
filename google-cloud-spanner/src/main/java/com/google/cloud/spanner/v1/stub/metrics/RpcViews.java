@@ -15,14 +15,16 @@
  */
 package com.google.cloud.spanner.v1.stub.metrics;
 
+import com.google.api.core.BetaApi;
 import com.google.common.collect.ImmutableSet;
 import io.opencensus.stats.Stats;
 import io.opencensus.stats.View;
 import io.opencensus.stats.ViewManager;
 
+@BetaApi
 public class RpcViews {
 
-  static final ImmutableSet<View> SPANNER_CLIENT_VIEWS_SET =
+  private static final ImmutableSet<View> SPANNER_CLIENT_VIEWS_SET =
       ImmutableSet.of(RpcViewConstants.SPANNER_SESSION_POOL_VIEW);
 
   /**
@@ -31,7 +33,10 @@ public class RpcViews {
    * <p>It is recommended to call this method before doing any RPC call to avoid missing stats.
    */
   public static void registerSpannerClientViews() {
-    ViewManager viewManager = Stats.getViewManager();
+    registerSpannerClientViews(Stats.getViewManager());
+  }
+
+  private static void registerSpannerClientViews(ViewManager viewManager) {
     for (View view : SPANNER_CLIENT_VIEWS_SET) {
       viewManager.registerView(view);
     }
