@@ -33,7 +33,7 @@ public class RpcMeasureConstants {
   /** Unit to represent counts. */
   private static final String COUNT = "1";
 
-  static final MeasureLong SPANNER_SESSION =
+  public static final MeasureLong SPANNER_SESSION =
       Measure.MeasureLong.create(
           "cloud.google.com/java/spanner/session_pool", "Number of pool of the sessions", COUNT);
 }

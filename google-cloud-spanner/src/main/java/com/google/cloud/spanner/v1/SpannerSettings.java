@@ -179,6 +179,45 @@ public class SpannerSettings extends ClientSettings<SpannerSettings> {
     return SpannerStubSettings.getDefaultEndpoint();
   }
 
+  /**
+   * Enables OpenCensus metric aggregations.
+   *
+   * <p>This will register Spanner client relevant {@link io.opencensus.stats.View}s. When coupled
+   * with an exporter, it allows users to monitor client behavior.
+   *
+   * <p>Please note that in addition to calling this method, the application must:
+   * <ul>
+   *   <li>Include openensus-impl dependency on the classpath
+   *   <li>Configure an exporter like opencensus-exporter-stats-stackdriver
+   * </ul>
+   *
+   * <p>Example usage for maven:
+   * <pre>{@code
+   *   <dependency>
+   *     <groupId>io.opencensus</groupId>
+   *     <artifactId>opencensus-impl</artifactId>
+   *     <version>${opencensus.version}</version>
+   *     <scope>runtime</scope>
+   *   </dependency>
+   *
+   *   <dependency>
+   *     <groupId>io.opencensus</groupId>
+   *     <artifactId>opencensus-exporter-stats-stackdriver</artifactId>
+   *     <version>${opencensus.version}</version>
+   *   </dependency>
+   * </pre>
+   *
+   * Java:
+   * <pre>{@code
+   *   StackdriverStatsExporter.createAndRegister();
+   *   SpannerSettings.enableOpenCensusStats();
+   * }</pre>
+   */
+  @BetaApi
+  public static void enableOpenCensusStats() {
+    com.google.cloud.spanner.v1.stub.metrics.RpcViews.registerSpannerClientViews();
+  }
+
   /** Returns the default service scopes. */
   public static List<String> getDefaultServiceScopes() {
     return SpannerStubSettings.getDefaultServiceScopes();

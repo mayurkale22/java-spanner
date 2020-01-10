@@ -26,6 +26,7 @@ import com.google.cloud.grpc.GrpcTransportOptions.ExecutorFactory;
 import com.google.cloud.spanner.Options.QueryOption;
 import com.google.cloud.spanner.Options.ReadOption;
 import com.google.cloud.spanner.SessionClient.SessionConsumer;
+import com.google.cloud.spanner.v1.stub.metrics.RpcMeasureConstants;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Function;
 import com.google.common.base.MoreObjects;
@@ -39,6 +40,11 @@ import com.google.common.util.concurrent.SettableFuture;
 import com.google.common.util.concurrent.Uninterruptibles;
 import com.google.protobuf.Empty;
 import io.opencensus.common.Scope;
+import io.opencensus.stats.Stats;
+import io.opencensus.stats.StatsRecorder;
+import io.opencensus.tags.TagContext;
+import io.opencensus.tags.Tagger;
+import io.opencensus.tags.Tags;
 import io.opencensus.trace.Annotation;
 import io.opencensus.trace.AttributeValue;
 import io.opencensus.trace.Span;
@@ -957,6 +963,11 @@ final class SessionPool {
 
     // Does various pool maintenance activities.
     void maintainPool() {
+      StatsRecorder stats = Stats.getStatsRecorder();
+      Tagger tagger = Tags.getTagger();
+      TagContext ctx = tagger.getCurrentTagContext();
+      stats.newMeasureMap().put(RpcMeasureConstants.SPANNER_SESSION, numSessionsInUse).record(ctx);
+
       synchronized (lock) {
         if (isClosed()) {
           return;
