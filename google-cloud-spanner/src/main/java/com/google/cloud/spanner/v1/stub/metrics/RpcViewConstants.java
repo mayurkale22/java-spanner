@@ -15,14 +15,12 @@
  */
 package com.google.cloud.spanner.v1.stub.metrics;
 
-import static com.google.cloud.spanner.v1.stub.metrics.RpcMeasureConstants.MAX_SESSIONS_IN_USE;
-import static com.google.cloud.spanner.v1.stub.metrics.RpcMeasureConstants.NUM_SESSIONS_BEING_CREATED;
-import static com.google.cloud.spanner.v1.stub.metrics.RpcMeasureConstants.NUM_SESSIONS_BEING_PREPARED;
-import static com.google.cloud.spanner.v1.stub.metrics.RpcMeasureConstants.NUM_SESSIONS_IN_USE;
+import static com.google.cloud.spanner.v1.stub.metrics.RpcMeasureConstants.SESSION_TYPE;
 import static com.google.cloud.spanner.v1.stub.metrics.RpcMeasureConstants.SPANNER_SESSION;
 
 import io.opencensus.stats.Aggregation;
 import io.opencensus.stats.Aggregation.Count;
+import io.opencensus.stats.Aggregation.LastValue;
 import io.opencensus.stats.View;
 import java.util.Arrays;
 
@@ -33,13 +31,10 @@ public class RpcViewConstants {
   // Views
   public static final View SPANNER_SESSION_POOL_VIEW =
       View.create(
-          View.Name.create("cloud.google.com/java/spanner/session_pool"),
+          View.Name.create("cloud.google.com/java/spanner/session_pool_2"),
           "Number of pool of the sessions",
           SPANNER_SESSION,
-          COUNT,
+          LastValue.create(),
           Arrays.asList(
-              NUM_SESSIONS_BEING_CREATED,
-              NUM_SESSIONS_BEING_PREPARED,
-              NUM_SESSIONS_IN_USE,
-              MAX_SESSIONS_IN_USE));
+            SESSION_TYPE));
 }

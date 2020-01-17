@@ -17,6 +17,7 @@
 package com.google.cloud.spanner;
 
 import static com.google.cloud.spanner.SpannerExceptionFactory.newSpannerException;
+import static com.google.cloud.spanner.v1.stub.metrics.RpcMeasureConstants.SESSION_TYPE;
 
 import com.google.api.core.ApiFuture;
 import com.google.api.core.ApiFutures;
@@ -43,6 +44,8 @@ import io.opencensus.common.Scope;
 import io.opencensus.stats.Stats;
 import io.opencensus.stats.StatsRecorder;
 import io.opencensus.tags.TagContext;
+import io.opencensus.tags.TagKey;
+import io.opencensus.tags.TagValue;
 import io.opencensus.tags.Tagger;
 import io.opencensus.tags.Tags;
 import io.opencensus.trace.Annotation;
@@ -963,10 +966,33 @@ final class SessionPool {
 
     // Does various pool maintenance activities.
     void maintainPool() {
+      System.out.println("numSessionsInUse: " + numSessionsInUse + " maxSessionsInUse: " + maxSessionsInUse);
       StatsRecorder stats = Stats.getStatsRecorder();
       Tagger tagger = Tags.getTagger();
-      TagContext ctx = tagger.getCurrentTagContext();
-      stats.newMeasureMap().put(RpcMeasureConstants.SPANNER_SESSION, numSessionsInUse).record(ctx);
+
+      TagContext tctx = tagger.emptyBuilder().putLocal(SESSION_TYPE,
+        TagValue.create("numSessionsInUse")).build();
+      try (Scope ss = tagger.withTagContext(tctx)) {
+        stats.newMeasureMap().put(RpcMeasureConstants.SPANNER_SESSION, numSessionsInUse).record();
+      }
+
+      TagContext tctx1 = tagger.emptyBuilder().putLocal(SESSION_TYPE,
+        TagValue.create("maxSessionsInUse")).build();
+      try (Scope ss = tagger.withTagContext(tctx1)) {
+        stats.newMeasureMap().put(RpcMeasureConstants.SPANNER_SESSION, maxSessionsInUse).record();
+      }
+
+      TagContext tctx2 = tagger.emptyBuilder().putLocal(SESSION_TYPE,
+        TagValue.create("numSessionsBeingPrepared")).build();
+      try (Scope ss = tagger.withTagContext(tctx2)) {
+        stats.newMeasureMap().put(RpcMeasureConstants.SPANNER_SESSION, numSessionsBeingPrepared).record();
+      }
+
+      TagContext tctx3 = tagger.emptyBuilder().putLocal(SESSION_TYPE,
+        TagValue.create("numSessionsBeingCreated")).build();
+      try (Scope ss = tagger.withTagContext(tctx3)) {
+        stats.newMeasureMap().put(RpcMeasureConstants.SPANNER_SESSION, numSessionsBeingCreated).record();
+      }
 
       synchronized (lock) {
         if (isClosed()) {
@@ -1044,7 +1070,7 @@ final class SessionPool {
           break;
         }
         try {
-          logger.log(Level.FINE, "Keeping alive session " + sessionToKeepAlive.getName());
+          System.out.println( "Keeping alive session " + sessionToKeepAlive.getName());
           numSessionsToKeepAlive--;
           sessionToKeepAlive.keepAlive();
           releaseSession(sessionToKeepAlive, Position.FIRST);
@@ -1315,8 +1341,7 @@ final class SessionPool {
       }
     }
     if (waiter != null) {
-      logger.log(
-          Level.FINE,
+      System.out.println(
           "No session available in the pool. Blocking for one to become available/created");
       span.addAnnotation("Waiting for read only session to be available");
       sess = waiter.take();
@@ -1383,8 +1408,7 @@ final class SessionPool {
       }
     }
     if (waiter != null) {
-      logger.log(
-          Level.FINE,
+      System.out.println(
           "No session available in the pool. Blocking for one to become available/created");
       span.addAnnotation("Waiting for read write session to be available");
       sess = waiter.take();
@@ -1663,9 +1687,9 @@ final class SessionPool {
           @Override
           public void run() {
             try {
-              logger.log(Level.FINE, "Preparing session");
+              //System.out.println( "Preparing session");
               sess.prepareReadWriteTransaction();
-              logger.log(Level.FINE, "Session prepared");
+              //System.out.println( "Session prepared");
               synchronized (lock) {
                 numSessionsBeingPrepared--;
                 if (!isClosed()) {
@@ -1708,7 +1732,7 @@ final class SessionPool {
   }
 
   private void createSessions(final int sessionCount) {
-    logger.log(Level.FINE, String.format("Creating %d sessions", sessionCount));
+    System.out.println(String.format("Creating %d sessions", sessionCount));
     synchronized (lock) {
       numSessionsBeingCreated += sessionCount;
       try {
@@ -1717,7 +1741,7 @@ final class SessionPool {
         // The batchCreateSessions method automatically spreads the sessions evenly over all
         // available channels.
         sessionClient.asyncBatchCreateSessions(sessionCount, sessionConsumer);
-        logger.log(Level.FINE, "Sessions created");
+        System.out.println( "Sessions created");
       } catch (Throwable t) {
         // Expose this to customer via a metric.
         numSessionsBeingCreated -= sessionCount;

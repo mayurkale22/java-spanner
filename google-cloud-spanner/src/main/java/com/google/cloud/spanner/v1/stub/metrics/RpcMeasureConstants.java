@@ -24,7 +24,7 @@ public class RpcMeasureConstants {
   public static final TagKey NUM_SESSIONS_BEING_PREPARED =
       TagKey.create("numSessionsBeingPrepared");
 
-  public static final TagKey NUM_SESSIONS_BEING_CREATED = TagKey.create("numSessionsBeingCreated");
+  public static final TagKey SESSION_TYPE = TagKey.create("SessionType");
 
   public static final TagKey NUM_SESSIONS_IN_USE = TagKey.create("numSessionsInUse");
 
