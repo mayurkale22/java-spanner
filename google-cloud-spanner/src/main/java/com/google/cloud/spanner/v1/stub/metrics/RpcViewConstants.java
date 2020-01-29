@@ -16,24 +16,32 @@
 package com.google.cloud.spanner.v1.stub.metrics;
 
 import static com.google.cloud.spanner.v1.stub.metrics.RpcMeasureConstants.SESSION_TYPE;
-import static com.google.cloud.spanner.v1.stub.metrics.RpcMeasureConstants.SPANNER_SESSION;
+import static com.google.cloud.spanner.v1.stub.metrics.RpcMeasureConstants.SPANNER_ACTIVE_SESSIONS;
+import static com.google.cloud.spanner.v1.stub.metrics.RpcMeasureConstants.SPANNER_MAX_SESSIONS;
 
+import com.google.common.collect.ImmutableList;
 import io.opencensus.stats.Aggregation;
-import io.opencensus.stats.Aggregation.Count;
 import io.opencensus.stats.Aggregation.LastValue;
 import io.opencensus.stats.View;
-import java.util.Arrays;
 
 public class RpcViewConstants {
   // Aggregations
-  private static final Aggregation COUNT = Count.create();
+  private static final Aggregation LASTVALUE = LastValue.create();
 
   // Views
-  public static final View SPANNER_SESSION_POOL_VIEW =
+  public static final View SPANNER_ACTIVE_SESSIONS_VIEW =
       View.create(
-          View.Name.create("cloud.google.com/java/spanner/session_pool_2"),
-          "Number of pool of the sessions",
-          SPANNER_SESSION,
-          LastValue.create(),
-          Arrays.asList(SESSION_TYPE));
+          View.Name.create("cloud.google.com/java/spanner/active_sessions"),
+          "Number of active sessions",
+          SPANNER_ACTIVE_SESSIONS,
+          LASTVALUE,
+          ImmutableList.of((SESSION_TYPE)));
+
+  public static final View SPANNER_MAX_SESSIONS_VIEW =
+      View.create(
+          View.Name.create("cloud.google.com/java/spanner/active_sessions"),
+          "Number of max sessions",
+          SPANNER_MAX_SESSIONS,
+          LASTVALUE,
+          ImmutableList.of((SESSION_TYPE)));
 }

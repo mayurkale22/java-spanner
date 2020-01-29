@@ -21,19 +21,16 @@ import io.opencensus.tags.TagKey;
 
 public class RpcMeasureConstants {
 
-  public static final TagKey NUM_SESSIONS_BEING_PREPARED =
-      TagKey.create("numSessionsBeingPrepared");
-
   public static final TagKey SESSION_TYPE = TagKey.create("SessionType");
-
-  public static final TagKey NUM_SESSIONS_IN_USE = TagKey.create("numSessionsInUse");
-
-  public static final TagKey MAX_SESSIONS_IN_USE = TagKey.create("maxSessionsInUse");
 
   /** Unit to represent counts. */
   private static final String COUNT = "1";
 
-  public static final MeasureLong SPANNER_SESSION =
+  public static final MeasureLong SPANNER_ACTIVE_SESSIONS =
       Measure.MeasureLong.create(
-          "cloud.google.com/java/spanner/session_pool", "Number of pool of the sessions", COUNT);
+          "cloud.google.com/java/spanner/active_sessions", "Number of active sessions", COUNT);
+
+  public static final MeasureLong SPANNER_MAX_SESSIONS =
+      Measure.MeasureLong.create(
+          "cloud.google.com/java/spanner/max_sessions", "Number of max sessions", COUNT);
 }

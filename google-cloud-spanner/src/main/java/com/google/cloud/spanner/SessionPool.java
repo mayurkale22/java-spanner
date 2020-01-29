@@ -966,43 +966,22 @@ final class SessionPool {
     // Does various pool maintenance activities.
     void maintainPool() {
       System.out.println(
-          "numSessionsInUse: " + numSessionsInUse + " maxSessionsInUse: " + maxSessionsInUse);
+          "numSessionsInUse: "
+              + numSessionsInUse
+              + " maxSessionsInUse: "
+              + maxSessionsInUse
+              + " maxSessions: "
+              + options.getMaxSessions());
       StatsRecorder stats = Stats.getStatsRecorder();
       Tagger tagger = Tags.getTagger();
 
       TagContext tctx =
           tagger.emptyBuilder().putLocal(SESSION_TYPE, TagValue.create("numSessionsInUse")).build();
-      try (Scope ss = tagger.withTagContext(tctx)) {
-        stats.newMeasureMap().put(RpcMeasureConstants.SPANNER_SESSION, numSessionsInUse).record();
-      }
-
-      TagContext tctx1 =
-          tagger.emptyBuilder().putLocal(SESSION_TYPE, TagValue.create("maxSessionsInUse")).build();
-      try (Scope ss = tagger.withTagContext(tctx1)) {
-        stats.newMeasureMap().put(RpcMeasureConstants.SPANNER_SESSION, maxSessionsInUse).record();
-      }
-
-      TagContext tctx2 =
-          tagger
-              .emptyBuilder()
-              .putLocal(SESSION_TYPE, TagValue.create("numSessionsBeingPrepared"))
-              .build();
-      try (Scope ss = tagger.withTagContext(tctx2)) {
+      try (Scope scope = tagger.withTagContext(tctx)) {
         stats
             .newMeasureMap()
-            .put(RpcMeasureConstants.SPANNER_SESSION, numSessionsBeingPrepared)
-            .record();
-      }
-
-      TagContext tctx3 =
-          tagger
-              .emptyBuilder()
-              .putLocal(SESSION_TYPE, TagValue.create("numSessionsBeingCreated"))
-              .build();
-      try (Scope ss = tagger.withTagContext(tctx3)) {
-        stats
-            .newMeasureMap()
-            .put(RpcMeasureConstants.SPANNER_SESSION, numSessionsBeingCreated)
+            .put(RpcMeasureConstants.SPANNER_ACTIVE_SESSIONS, numSessionsInUse)
+            .put(RpcMeasureConstants.SPANNER_MAX_SESSIONS, options.getMaxSessions())
             .record();
       }
 
