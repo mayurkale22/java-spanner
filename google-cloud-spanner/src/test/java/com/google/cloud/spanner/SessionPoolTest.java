@@ -110,7 +110,7 @@ public class SessionPoolTest extends BaseSessionPoolTest {
     return SessionPool.createPool(options, new TestExecutorFactory(), client.getSessionClient(db));
   }
 
-  private SessionPool createPoolFakeStats(Clock clock, Tagger tagger, StatsRecorder stats) {
+  private SessionPool createPoolWithFakeStats(Clock clock, Tagger tagger, StatsRecorder stats) {
     return SessionPool.createPool(
         options, new TestExecutorFactory(), client.getSessionClient(db), clock, tagger, stats);
   }
@@ -866,7 +866,7 @@ public class SessionPoolTest extends BaseSessionPoolTest {
     clock.currentTimeMillis = System.currentTimeMillis();
     FakeTagger tagger = new FakeTagger();
     FakeStatsRecorder stats = new FakeStatsRecorder();
-    pool = createPoolFakeStats(clock, tagger, stats);
+    pool = createPoolWithFakeStats(clock, tagger, stats);
     runMaintainanceLoop(clock, pool, pool.poolMaintainer.numClosureCycles);
 
     MetricsRecord metricsRecord = stats.pollRecord();

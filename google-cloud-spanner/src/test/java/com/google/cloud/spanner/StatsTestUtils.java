@@ -15,8 +15,6 @@
  */
 package com.google.cloud.spanner;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Iterators;
@@ -30,8 +28,6 @@ import io.opencensus.tags.Tag;
 import io.opencensus.tags.TagContext;
 import io.opencensus.tags.TagContextBuilder;
 import io.opencensus.tags.TagKey;
-import io.opencensus.tags.TagMetadata;
-import io.opencensus.tags.TagMetadata.TagTtl;
 import io.opencensus.tags.TagValue;
 import io.opencensus.tags.Tagger;
 import io.opencensus.tags.unsafe.ContextUtils;
@@ -40,7 +36,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
 import javax.annotation.Nullable;
 
 class StatsTestUtils {
@@ -55,40 +50,11 @@ class StatsTestUtils {
       this.tags = tags;
       this.metrics = metrics;
     }
-
-    /** Returns the value of a metric, or {@code null} if not found. */
-    @Nullable
-    public Double getMetric(Measure measure) {
-      for (Entry<Measure, Number> m : metrics.entrySet()) {
-        if (m.getKey().equals(measure)) {
-          Number value = m.getValue();
-          if (value instanceof Double) {
-            return (Double) value;
-          } else if (value instanceof Long) {
-            return (double) (Long) value;
-          }
-          throw new AssertionError("Unexpected measure value type: " + value.getClass().getName());
-        }
-      }
-      return null;
-    }
-
-    /** Returns the value of a metric converted to long, or throw if not found. */
-    public long getMetricAsLongOrFail(Measure measure) {
-      Double doubleValue = getMetric(measure);
-      checkNotNull(doubleValue, "Measure not found: %s", measure.getName());
-      long longValue = (long) (Math.abs(doubleValue) + 0.0001);
-      if (doubleValue < 0) {
-        longValue = -longValue;
-      }
-      return longValue;
-    }
   }
 
   /**
    * A {@link Tagger} implementation that saves metrics records to be accessible from {@link
-   * #pollRecord()} and {@link #pollRecord(long, TimeUnit)}, until {@link #rolloverRecords} is
-   * called.
+   * #pollRecord()}, until {@link #rolloverRecords} is called.
    */
   public static final class FakeStatsRecorder extends StatsRecorder {
 
@@ -105,10 +71,6 @@ class StatsTestUtils {
 
     public MetricsRecord pollRecord() {
       return getCurrentRecordSink().poll();
-    }
-
-    public MetricsRecord pollRecord(long timeout, TimeUnit unit) throws InterruptedException {
-      return getCurrentRecordSink().poll(timeout, unit);
     }
 
     /**
@@ -194,9 +156,6 @@ class StatsTestUtils {
     private static final FakeTagContext EMPTY =
         new FakeTagContext(ImmutableMap.<TagKey, TagValue>of());
 
-    private static final TagMetadata METADATA_PROPAGATING =
-        TagMetadata.create(TagTtl.UNLIMITED_PROPAGATION);
-
     private final ImmutableMap<TagKey, TagValue> tags;
 
     private FakeTagContext(ImmutableMap<TagKey, TagValue> tags) {
@@ -219,7 +178,7 @@ class StatsTestUtils {
           new Function<Entry<TagKey, TagValue>, Tag>() {
             @Override
             public Tag apply(@Nullable Entry<TagKey, TagValue> entry) {
-              return Tag.create(entry.getKey(), entry.getValue(), METADATA_PROPAGATING);
+              return Tag.create(entry.getKey(), entry.getValue());
             }
           });
     }
@@ -248,8 +207,7 @@ class StatsTestUtils {
 
     @Override
     public TagContext build() {
-      FakeTagContext context = new FakeTagContext(ImmutableMap.copyOf(tagsBuilder));
-      return context;
+      return new FakeTagContext(ImmutableMap.copyOf(tagsBuilder));
     }
 
     @Override
