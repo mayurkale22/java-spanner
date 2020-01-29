@@ -18,10 +18,12 @@ package com.google.cloud.spanner.v1.stub.metrics;
 import io.opencensus.stats.Measure;
 import io.opencensus.stats.Measure.MeasureLong;
 import io.opencensus.tags.TagKey;
+import io.opencensus.tags.TagValue;
 
 public class RpcMeasureConstants {
 
   public static final TagKey SESSION_TYPE = TagKey.create("SessionType");
+  public static final TagValue SESSION_VALUE = TagValue.create("value");
 
   /** Unit to represent counts. */
   private static final String COUNT = "1";

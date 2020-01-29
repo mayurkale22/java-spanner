@@ -40,10 +40,14 @@ import com.google.cloud.spanner.SessionClient.SessionConsumer;
 import com.google.cloud.spanner.SessionPool.Clock;
 import com.google.cloud.spanner.SessionPool.PooledSession;
 import com.google.cloud.spanner.SessionPool.SessionConsumerImpl;
+import com.google.cloud.spanner.StatsTestUtils.FakeStatsRecorder;
+import com.google.cloud.spanner.StatsTestUtils.FakeTagger;
+import com.google.cloud.spanner.StatsTestUtils.MetricsRecord;
 import com.google.cloud.spanner.TransactionRunner.TransactionCallable;
 import com.google.cloud.spanner.TransactionRunnerImpl.TransactionContextImpl;
 import com.google.cloud.spanner.spi.v1.SpannerRpc;
 import com.google.cloud.spanner.spi.v1.SpannerRpc.ResultStreamConsumer;
+import com.google.cloud.spanner.v1.stub.metrics.RpcMeasureConstants;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.Uninterruptibles;
 import com.google.protobuf.ByteString;
@@ -53,6 +57,8 @@ import com.google.spanner.v1.ExecuteBatchDmlRequest;
 import com.google.spanner.v1.ExecuteSqlRequest;
 import com.google.spanner.v1.ResultSetStats;
 import com.google.spanner.v1.RollbackRequest;
+import io.opencensus.stats.StatsRecorder;
+import io.opencensus.tags.Tagger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -102,6 +108,11 @@ public class SessionPoolTest extends BaseSessionPoolTest {
 
   private SessionPool createPool() {
     return SessionPool.createPool(options, new TestExecutorFactory(), client.getSessionClient(db));
+  }
+
+  private SessionPool createPoolFakeStats(Clock clock, Tagger tagger, StatsRecorder stats) {
+    return SessionPool.createPool(
+        options, new TestExecutorFactory(), client.getSessionClient(db), clock, tagger, stats);
   }
 
   private SessionPool createPool(Clock clock) {
@@ -841,6 +852,29 @@ public class SessionPoolTest extends BaseSessionPoolTest {
         .asyncBatchCreateSessions(Mockito.eq(1), any(SessionConsumer.class));
     pool = createPool();
     assertThat(pool.getReadWriteSession().delegate).isEqualTo(mockSession2);
+  }
+
+  @Test
+  public void sessionMetrics() {
+    options =
+        SessionPoolOptions.newBuilder()
+            .setMinSessions(1)
+            .setMaxSessions(3)
+            .setMaxIdleSessions(0)
+            .build();
+    FakeClock clock = new FakeClock();
+    clock.currentTimeMillis = System.currentTimeMillis();
+    FakeTagger tagger = new FakeTagger();
+    FakeStatsRecorder stats = new FakeStatsRecorder();
+    pool = createPoolFakeStats(clock, tagger, stats);
+    runMaintainanceLoop(clock, pool, pool.poolMaintainer.numClosureCycles);
+
+    MetricsRecord metricsRecord = stats.pollRecord();
+    assertThat(metricsRecord.metrics)
+        .containsEntry(RpcMeasureConstants.SPANNER_ACTIVE_SESSIONS, 0L);
+    assertThat(metricsRecord.metrics).containsEntry(RpcMeasureConstants.SPANNER_MAX_SESSIONS, 3L);
+    assertThat(metricsRecord.tags)
+        .containsEntry(RpcMeasureConstants.SESSION_TYPE, RpcMeasureConstants.SESSION_VALUE);
   }
 
   @Test

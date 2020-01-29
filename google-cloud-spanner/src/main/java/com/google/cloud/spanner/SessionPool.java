@@ -18,6 +18,7 @@ package com.google.cloud.spanner;
 
 import static com.google.cloud.spanner.SpannerExceptionFactory.newSpannerException;
 import static com.google.cloud.spanner.v1.stub.metrics.RpcMeasureConstants.SESSION_TYPE;
+import static com.google.cloud.spanner.v1.stub.metrics.RpcMeasureConstants.SESSION_VALUE;
 
 import com.google.api.core.ApiFuture;
 import com.google.api.core.ApiFutures;
@@ -43,7 +44,6 @@ import com.google.protobuf.Empty;
 import io.opencensus.common.Scope;
 import io.opencensus.stats.Stats;
 import io.opencensus.stats.StatsRecorder;
-import io.opencensus.tags.TagValue;
 import io.opencensus.tags.Tagger;
 import io.opencensus.tags.Tags;
 import io.opencensus.trace.Annotation;
@@ -964,16 +964,6 @@ final class SessionPool {
 
     // Does various pool maintenance activities.
     void maintainPool() {
-      System.out.println(
-          "numSessionsInUse: "
-              + numSessionsInUse
-              + " maxSessionsInUse: "
-              + maxSessionsInUse
-              + " maxSessions: "
-              + options.getMaxSessions());
-      StatsRecorder stats = Stats.getStatsRecorder();
-      Tagger tagger = Tags.getTagger();
-
       stats
           .newMeasureMap()
           .put(RpcMeasureConstants.SPANNER_ACTIVE_SESSIONS, numSessionsInUse)
@@ -981,7 +971,7 @@ final class SessionPool {
           .record(
               tagger
                   .toBuilder(tagger.getCurrentTagContext())
-                  .putLocal(SESSION_TYPE, TagValue.create("demo"))
+                  .putLocal(SESSION_TYPE, SESSION_VALUE)
                   .build());
 
       synchronized (lock) {
@@ -1092,6 +1082,8 @@ final class SessionPool {
   private final ExecutorFactory<ScheduledExecutorService> executorFactory;
   final PoolMaintainer poolMaintainer;
   private final Clock clock;
+  private final Tagger tagger;
+  private final StatsRecorder stats;
   private final Object lock = new Object();
   private final Random random = new Random();
 
@@ -1159,9 +1151,41 @@ final class SessionPool {
       SessionPoolOptions poolOptions,
       ExecutorFactory<ScheduledExecutorService> executorFactory,
       SessionClient sessionClient,
+      Tagger tagger,
+      StatsRecorder stats) {
+    return createPool(poolOptions, executorFactory, sessionClient, new Clock(), tagger, stats);
+  }
+
+  static SessionPool createPool(
+      SessionPoolOptions poolOptions,
+      ExecutorFactory<ScheduledExecutorService> executorFactory,
+      SessionClient sessionClient,
       Clock clock) {
+    return createPool(
+        poolOptions,
+        executorFactory,
+        sessionClient,
+        clock,
+        Tags.getTagger(),
+        Stats.getStatsRecorder());
+  }
+
+  static SessionPool createPool(
+      SessionPoolOptions poolOptions,
+      ExecutorFactory<ScheduledExecutorService> executorFactory,
+      SessionClient sessionClient,
+      Clock clock,
+      Tagger tagger,
+      StatsRecorder stats) {
     SessionPool pool =
-        new SessionPool(poolOptions, executorFactory, executorFactory.get(), sessionClient, clock);
+        new SessionPool(
+            poolOptions,
+            executorFactory,
+            executorFactory.get(),
+            sessionClient,
+            clock,
+            tagger,
+            stats);
     pool.initPool();
     return pool;
   }
@@ -1171,12 +1195,16 @@ final class SessionPool {
       ExecutorFactory<ScheduledExecutorService> executorFactory,
       ScheduledExecutorService executor,
       SessionClient sessionClient,
-      Clock clock) {
+      Clock clock,
+      Tagger tagger,
+      StatsRecorder stats) {
     this.options = options;
     this.executorFactory = executorFactory;
     this.executor = executor;
     this.sessionClient = sessionClient;
     this.clock = clock;
+    this.tagger = tagger;
+    this.stats = stats;
     this.poolMaintainer = new PoolMaintainer();
   }
 
