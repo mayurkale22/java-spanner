@@ -43,7 +43,6 @@ import com.google.protobuf.Empty;
 import io.opencensus.common.Scope;
 import io.opencensus.stats.Stats;
 import io.opencensus.stats.StatsRecorder;
-import io.opencensus.tags.TagContext;
 import io.opencensus.tags.TagValue;
 import io.opencensus.tags.Tagger;
 import io.opencensus.tags.Tags;
@@ -975,15 +974,15 @@ final class SessionPool {
       StatsRecorder stats = Stats.getStatsRecorder();
       Tagger tagger = Tags.getTagger();
 
-      TagContext tctx =
-          tagger.emptyBuilder().putLocal(SESSION_TYPE, TagValue.create("numSessionsInUse")).build();
-      try (Scope scope = tagger.withTagContext(tctx)) {
-        stats
-            .newMeasureMap()
-            .put(RpcMeasureConstants.SPANNER_ACTIVE_SESSIONS, numSessionsInUse)
-            .put(RpcMeasureConstants.SPANNER_MAX_SESSIONS, options.getMaxSessions())
-            .record();
-      }
+      stats
+          .newMeasureMap()
+          .put(RpcMeasureConstants.SPANNER_ACTIVE_SESSIONS, numSessionsInUse)
+          .put(RpcMeasureConstants.SPANNER_MAX_SESSIONS, options.getMaxSessions())
+          .record(
+              tagger
+                  .toBuilder(tagger.getCurrentTagContext())
+                  .putLocal(SESSION_TYPE, TagValue.create("demo"))
+                  .build());
 
       synchronized (lock) {
         if (isClosed()) {
