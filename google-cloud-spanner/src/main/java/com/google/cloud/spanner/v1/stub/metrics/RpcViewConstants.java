@@ -26,7 +26,7 @@ import io.opencensus.stats.View;
 
 public class RpcViewConstants {
   // Aggregations
-  private static final Aggregation LASTVALUE = LastValue.create();
+  private static final Aggregation LAST_VALUE = LastValue.create();
 
   // Views
   public static final View SPANNER_ACTIVE_SESSIONS_VIEW =
@@ -34,14 +34,14 @@ public class RpcViewConstants {
           View.Name.create("cloud.google.com/java/spanner/active_sessions"),
           "Number of active sessions",
           SPANNER_ACTIVE_SESSIONS,
-          LASTVALUE,
+          LAST_VALUE,
           ImmutableList.of((SESSION_TYPE)));
 
   public static final View SPANNER_MAX_SESSIONS_VIEW =
       View.create(
-          View.Name.create("cloud.google.com/java/spanner/active_sessions"),
+          View.Name.create("cloud.google.com/java/spanner/max_sessions"),
           "Number of max sessions",
           SPANNER_MAX_SESSIONS,
-          LASTVALUE,
+          LAST_VALUE,
           ImmutableList.of((SESSION_TYPE)));
 }
