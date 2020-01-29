@@ -35,6 +35,5 @@ public class RpcViewConstants {
           "Number of pool of the sessions",
           SPANNER_SESSION,
           LastValue.create(),
-          Arrays.asList(
-            SESSION_TYPE));
+          Arrays.asList(SESSION_TYPE));
 }
