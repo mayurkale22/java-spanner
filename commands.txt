@@ -1,5 +1,0 @@
-mvn install -B -V -DskipTests=true
-
-mvn -Penable-samples com.coveo:fmt-maven-plugin:check
-
-mvn com.coveo:fmt-maven-plugin:format
