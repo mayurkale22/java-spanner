@@ -30,9 +30,9 @@ public class RpcMeasureConstants {
 
   public static final MeasureLong SPANNER_ACTIVE_SESSIONS =
       Measure.MeasureLong.create(
-          "cloud.google.com/java/spanner/active_sessions", "Number of active sessions", COUNT);
+          "cloud.google.com/java/spanner/active_sessions", "The number of active sessions", COUNT);
 
   public static final MeasureLong SPANNER_MAX_SESSIONS =
       Measure.MeasureLong.create(
-          "cloud.google.com/java/spanner/max_sessions", "Number of max sessions", COUNT);
+          "cloud.google.com/java/spanner/max_sessions", "The number of max sessions", COUNT);
 }

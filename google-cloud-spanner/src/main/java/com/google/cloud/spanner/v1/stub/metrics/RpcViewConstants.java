@@ -32,7 +32,7 @@ public class RpcViewConstants {
   public static final View SPANNER_ACTIVE_SESSIONS_VIEW =
       View.create(
           View.Name.create("cloud.google.com/java/spanner/active_sessions"),
-          "Number of active sessions",
+          "The number of active sessions",
           SPANNER_ACTIVE_SESSIONS,
           LAST_VALUE,
           ImmutableList.of((SESSION_TYPE)));
@@ -40,7 +40,7 @@ public class RpcViewConstants {
   public static final View SPANNER_MAX_SESSIONS_VIEW =
       View.create(
           View.Name.create("cloud.google.com/java/spanner/max_sessions"),
-          "Number of max sessions",
+          "The number of max sessions",
           SPANNER_MAX_SESSIONS,
           LAST_VALUE,
           ImmutableList.of((SESSION_TYPE)));
