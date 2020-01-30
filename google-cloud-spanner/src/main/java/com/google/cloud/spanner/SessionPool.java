@@ -1151,15 +1151,6 @@ final class SessionPool {
       SessionPoolOptions poolOptions,
       ExecutorFactory<ScheduledExecutorService> executorFactory,
       SessionClient sessionClient,
-      Tagger tagger,
-      StatsRecorder stats) {
-    return createPool(poolOptions, executorFactory, sessionClient, new Clock(), tagger, stats);
-  }
-
-  static SessionPool createPool(
-      SessionPoolOptions poolOptions,
-      ExecutorFactory<ScheduledExecutorService> executorFactory,
-      SessionClient sessionClient,
       Clock clock) {
     return createPool(
         poolOptions,
