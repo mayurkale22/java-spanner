@@ -47,6 +47,8 @@ import com.google.cloud.grpc.GrpcTransportOptions;
 import com.google.cloud.grpc.GrpcTransportOptions.ExecutorFactory;
 import com.google.cloud.spanner.Options.QueryOption;
 import com.google.cloud.spanner.Options.ReadOption;
+import com.google.cloud.spanner.Options.UpdateOption;
+import com.google.cloud.spanner.Options.WriteOption;
 import com.google.cloud.spanner.SessionClient.SessionConsumer;
 import com.google.cloud.spanner.SpannerException.ResourceNotFoundException;
 import com.google.cloud.spanner.SpannerImpl.ClosedException;
@@ -657,7 +659,7 @@ final class SessionPool {
       }
 
       @Override
-      public long executeUpdate(Statement statement) {
+      public long executeUpdate(Statement statement, UpdateOption... options) {
         try {
           return delegate.executeUpdate(statement);
         } catch (SessionNotFoundException e) {
@@ -666,7 +668,7 @@ final class SessionPool {
       }
 
       @Override
-      public ApiFuture<Long> executeUpdateAsync(Statement statement) {
+      public ApiFuture<Long> executeUpdateAsync(Statement statement, UpdateOption... options) {
         try {
           return delegate.executeUpdateAsync(statement);
         } catch (SessionNotFoundException e) {
@@ -675,7 +677,7 @@ final class SessionPool {
       }
 
       @Override
-      public long[] batchUpdate(Iterable<Statement> statements) {
+      public long[] batchUpdate(Iterable<Statement> statements, UpdateOption... options) {
         try {
           return delegate.batchUpdate(statements);
         } catch (SessionNotFoundException e) {
@@ -684,7 +686,8 @@ final class SessionPool {
       }
 
       @Override
-      public ApiFuture<long[]> batchUpdateAsync(Iterable<Statement> statements) {
+      public ApiFuture<long[]> batchUpdateAsync(
+          Iterable<Statement> statements, UpdateOption... options) {
         try {
           return delegate.batchUpdateAsync(statements);
         } catch (SessionNotFoundException e) {
@@ -1095,7 +1098,8 @@ final class SessionPool {
     }
 
     @Override
-    public Timestamp write(Iterable<Mutation> mutations) throws SpannerException {
+    public Timestamp write(Iterable<Mutation> mutations, WriteOption... writeOptions)
+        throws SpannerException {
       try {
         return get().write(mutations);
       } finally {
@@ -1104,7 +1108,8 @@ final class SessionPool {
     }
 
     @Override
-    public Timestamp writeAtLeastOnce(Iterable<Mutation> mutations) throws SpannerException {
+    public Timestamp writeAtLeastOnce(Iterable<Mutation> mutations, WriteOption... writeOptions)
+        throws SpannerException {
       try {
         return get().writeAtLeastOnce(mutations);
       } finally {
@@ -1231,7 +1236,7 @@ final class SessionPool {
     }
 
     @Override
-    public long executePartitionedUpdate(Statement stmt) {
+    public long executePartitionedUpdate(Statement stmt, UpdateOption... updateOptions) {
       try {
         return get().executePartitionedUpdate(stmt);
       } finally {
@@ -1338,7 +1343,8 @@ final class SessionPool {
     }
 
     @Override
-    public Timestamp write(Iterable<Mutation> mutations) throws SpannerException {
+    public Timestamp write(Iterable<Mutation> mutations, WriteOption... writeOptions)
+        throws SpannerException {
       try {
         markUsed();
         return delegate.write(mutations);
@@ -1347,8 +1353,9 @@ final class SessionPool {
       }
     }
 
-    @Override
-    public Timestamp writeAtLeastOnce(Iterable<Mutation> mutations) throws SpannerException {
+    // @Override
+    public Timestamp writeAtLeastOnce(Iterable<Mutation> mutations, WriteOption... writeOptions)
+        throws SpannerException {
       try {
         markUsed();
         return delegate.writeAtLeastOnce(mutations);
@@ -1358,7 +1365,8 @@ final class SessionPool {
     }
 
     @Override
-    public long executePartitionedUpdate(Statement stmt) throws SpannerException {
+    public long executePartitionedUpdate(Statement stmt, UpdateOption... updateOptions)
+        throws SpannerException {
       try {
         markUsed();
         return delegate.executePartitionedUpdate(stmt);

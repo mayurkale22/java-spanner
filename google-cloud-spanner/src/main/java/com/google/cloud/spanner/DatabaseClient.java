@@ -17,6 +17,8 @@
 package com.google.cloud.spanner;
 
 import com.google.cloud.Timestamp;
+import com.google.cloud.spanner.Options.UpdateOption;
+import com.google.cloud.spanner.Options.WriteOption;
 
 /**
  * Interface for all the APIs that are used to read/write data into a Cloud Spanner database. An
@@ -50,7 +52,7 @@ public interface DatabaseClient {
    *
    * @return the timestamp at which the write was committed
    */
-  Timestamp write(Iterable<Mutation> mutations) throws SpannerException;
+  Timestamp write(Iterable<Mutation> mutations, WriteOption... options) throws SpannerException;
 
   /**
    * Writes the given mutations atomically to the database without replay protection.
@@ -81,7 +83,8 @@ public interface DatabaseClient {
    *
    * @return the timestamp at which the write was committed
    */
-  Timestamp writeAtLeastOnce(Iterable<Mutation> mutations) throws SpannerException;
+  Timestamp writeAtLeastOnce(Iterable<Mutation> mutations, WriteOption... options)
+      throws SpannerException;
 
   /**
    * Returns a context in which a single read can be performed using {@link TimestampBound#strong()}
@@ -446,5 +449,5 @@ public interface DatabaseClient {
    * <p>Given the above, Partitioned DML is good fit for large, database-wide, operations that are
    * idempotent, such as deleting old rows from a very large table.
    */
-  long executePartitionedUpdate(Statement stmt);
+  long executePartitionedUpdate(Statement stmt, UpdateOption... options);
 }

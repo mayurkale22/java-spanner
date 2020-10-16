@@ -17,6 +17,8 @@
 package com.google.cloud.spanner;
 
 import com.google.cloud.Timestamp;
+import com.google.cloud.spanner.Options.UpdateOption;
+import com.google.cloud.spanner.Options.WriteOption;
 import com.google.cloud.spanner.SessionPool.PooledSessionFuture;
 import com.google.cloud.spanner.SpannerImpl.ClosedException;
 import com.google.common.annotations.VisibleForTesting;
@@ -62,7 +64,8 @@ class DatabaseClientImpl implements DatabaseClient {
   }
 
   @Override
-  public Timestamp write(final Iterable<Mutation> mutations) throws SpannerException {
+  public Timestamp write(final Iterable<Mutation> mutations, WriteOption... options)
+      throws SpannerException {
     Span span = tracer.spanBuilder(READ_WRITE_TRANSACTION).startSpan();
     try (Scope s = tracer.withSpan(span)) {
       return runWithSessionRetry(
@@ -82,7 +85,8 @@ class DatabaseClientImpl implements DatabaseClient {
   }
 
   @Override
-  public Timestamp writeAtLeastOnce(final Iterable<Mutation> mutations) throws SpannerException {
+  public Timestamp writeAtLeastOnce(final Iterable<Mutation> mutations, WriteOption... options)
+      throws SpannerException {
     Span span = tracer.spanBuilder(READ_WRITE_TRANSACTION).startSpan();
     try (Scope s = tracer.withSpan(span)) {
       return runWithSessionRetry(
@@ -214,7 +218,7 @@ class DatabaseClientImpl implements DatabaseClient {
   }
 
   @Override
-  public long executePartitionedUpdate(final Statement stmt) {
+  public long executePartitionedUpdate(final Statement stmt, UpdateOption... options) {
     Span span = tracer.spanBuilder(PARTITION_DML_TRANSACTION).startSpan();
     try (Scope s = tracer.withSpan(span)) {
       // A partitioned update transaction does not need a prepared write session, as the transaction

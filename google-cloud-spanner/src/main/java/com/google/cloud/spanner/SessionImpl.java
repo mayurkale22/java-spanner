@@ -25,6 +25,8 @@ import com.google.cloud.Timestamp;
 import com.google.cloud.spanner.AbstractReadContext.MultiUseReadOnlyTransaction;
 import com.google.cloud.spanner.AbstractReadContext.SingleReadContext;
 import com.google.cloud.spanner.AbstractReadContext.SingleUseReadOnlyTransaction;
+import com.google.cloud.spanner.Options.UpdateOption;
+import com.google.cloud.spanner.Options.WriteOption;
 import com.google.cloud.spanner.SessionClient.SessionId;
 import com.google.cloud.spanner.TransactionRunnerImpl.TransactionContextImpl;
 import com.google.cloud.spanner.spi.v1.SpannerRpc;
@@ -113,7 +115,7 @@ class SessionImpl implements Session {
   }
 
   @Override
-  public long executePartitionedUpdate(Statement stmt) {
+  public long executePartitionedUpdate(Statement stmt, UpdateOption... updateOptions) {
     setActive(null);
     PartitionedDmlTransaction txn =
         new PartitionedDmlTransaction(this, spanner.getRpc(), Ticker.systemTicker());
@@ -122,7 +124,8 @@ class SessionImpl implements Session {
   }
 
   @Override
-  public Timestamp write(Iterable<Mutation> mutations) throws SpannerException {
+  public Timestamp write(Iterable<Mutation> mutations, WriteOption... writeOptions)
+      throws SpannerException {
     TransactionRunner runner = readWriteTransaction();
     final Collection<Mutation> finalMutations =
         mutations instanceof java.util.Collection<?>
@@ -140,7 +143,8 @@ class SessionImpl implements Session {
   }
 
   @Override
-  public Timestamp writeAtLeastOnce(Iterable<Mutation> mutations) throws SpannerException {
+  public Timestamp writeAtLeastOnce(Iterable<Mutation> mutations, WriteOption... writeOptions)
+      throws SpannerException {
     setActive(null);
     List<com.google.spanner.v1.Mutation> mutationsProto = new ArrayList<>();
     Mutation.toProto(mutations, mutationsProto);

@@ -84,6 +84,7 @@ public class OptionsTest {
     assertThat(options.hasPrefetchChunks()).isFalse();
     assertThat(options.hasFilter()).isFalse();
     assertThat(options.hasPageToken()).isFalse();
+    assertThat(options.hasTag()).isFalse();
     assertThat(options.toString()).isEqualTo("");
     assertThat(options.equals(options)).isTrue();
     assertThat(options.equals(null)).isFalse();
@@ -163,10 +164,13 @@ public class OptionsTest {
   @Test
   public void readOptTest() {
     int limit = 3;
-    Options opts = Options.fromReadOptions(Options.limit(limit));
+    String tag = "read";
+    Options opts = Options.fromReadOptions(Options.limit(limit), Options.tag(tag));
 
-    assertThat(opts.toString()).isEqualTo("limit: " + Integer.toString(limit) + " ");
-    assertThat(opts.hashCode()).isEqualTo(964);
+    assertThat(opts.toString())
+        .isEqualTo("limit: " + Integer.toString(limit) + " " + "tag: " + tag + " ");
+    assertThat(opts.tag()).isEqualTo(tag);
+    assertThat(opts.hashCode()).isEqualTo(3526226);
   }
 
   @Test
@@ -193,10 +197,13 @@ public class OptionsTest {
   @Test
   public void queryOptTest() {
     int chunks = 3;
-    Options opts = Options.fromQueryOptions(Options.prefetchChunks(chunks));
-    assertThat(opts.toString()).isEqualTo("prefetchChunks: " + Integer.toString(chunks) + " ");
+    String tag = "query";
+    Options opts = Options.fromQueryOptions(Options.prefetchChunks(chunks), Options.tag(tag));
+    assertThat(opts.toString())
+        .isEqualTo("prefetchChunks: " + Integer.toString(chunks) + " " + "tag: " + tag + " ");
     assertThat(opts.prefetchChunks()).isEqualTo(chunks);
-    assertThat(opts.hashCode()).isEqualTo(964);
+    assertThat(opts.tag()).isEqualTo(tag);
+    assertThat(opts.hashCode()).isEqualTo(107974020);
   }
 
   @Test
@@ -217,6 +224,70 @@ public class OptionsTest {
     assertThat(o2.equals(o3)).isTrue();
 
     o3 = Options.fromReadOptions(Options.prefetchChunks(2));
+    assertThat(o2.equals(o3)).isFalse();
+  }
+
+  @Test
+  public void updateOptTest() {
+    String tag = "tag-1";
+    Options opts = Options.fromUpdateOptions(Options.tag(tag));
+
+    assertThat(opts.toString()).isEqualTo("tag: " + tag + " ");
+    assertThat(opts.hasTag()).isTrue();
+    assertThat(opts.tag()).isEqualTo(tag);
+    assertThat(opts.hashCode()).isEqualTo(110119551);
+  }
+
+  @Test
+  public void updateEquality() {
+    Options o1;
+    Options o2;
+    Options o3;
+
+    o1 = Options.fromUpdateOptions();
+    o2 = Options.fromUpdateOptions();
+    assertThat(o1.equals(o2)).isTrue();
+
+    o2 = Options.fromUpdateOptions(Options.tag("tag-1"));
+    assertThat(o1.equals(o2)).isFalse();
+    assertThat(o2.equals(o1)).isFalse();
+
+    o3 = Options.fromUpdateOptions(Options.tag("tag-1"));
+    assertThat(o2.equals(o3)).isTrue();
+
+    o3 = Options.fromUpdateOptions(Options.tag("tag-2"));
+    assertThat(o2.equals(o3)).isFalse();
+  }
+
+  @Test
+  public void writeOptTest() {
+    String tag = "tag-1";
+    Options opts = Options.fromWriteOptions(Options.tag(tag));
+
+    assertThat(opts.toString()).isEqualTo("tag: " + tag + " ");
+    assertThat(opts.hasTag()).isTrue();
+    assertThat(opts.tag()).isEqualTo(tag);
+    assertThat(opts.hashCode()).isEqualTo(110119551);
+  }
+
+  @Test
+  public void writeEquality() {
+    Options o1;
+    Options o2;
+    Options o3;
+
+    o1 = Options.fromWriteOptions();
+    o2 = Options.fromWriteOptions();
+    assertThat(o1.equals(o2)).isTrue();
+
+    o2 = Options.fromWriteOptions(Options.tag("tag-1"));
+    assertThat(o1.equals(o2)).isFalse();
+    assertThat(o2.equals(o1)).isFalse();
+
+    o3 = Options.fromWriteOptions(Options.tag("tag-1"));
+    assertThat(o2.equals(o3)).isTrue();
+
+    o3 = Options.fromWriteOptions(Options.tag("tag-2"));
     assertThat(o2.equals(o3)).isFalse();
   }
 }
