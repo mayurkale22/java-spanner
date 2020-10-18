@@ -827,6 +827,11 @@ final class SessionPool {
         return delegate == null ? null : delegate.getState();
       }
     }
+
+    @Override
+    public TransactionContext withTransactionTag(String tag) {
+      return null;
+    }
   }
 
   /**
