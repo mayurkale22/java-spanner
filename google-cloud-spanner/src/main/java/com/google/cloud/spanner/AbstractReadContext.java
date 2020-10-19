@@ -47,6 +47,7 @@ import com.google.spanner.v1.ExecuteSqlRequest.QueryMode;
 import com.google.spanner.v1.ExecuteSqlRequest.QueryOptions;
 import com.google.spanner.v1.PartialResultSet;
 import com.google.spanner.v1.ReadRequest;
+import com.google.spanner.v1.RequestOptions;
 import com.google.spanner.v1.Transaction;
 import com.google.spanner.v1.TransactionOptions;
 import com.google.spanner.v1.TransactionSelector;
@@ -535,8 +536,8 @@ abstract class AbstractReadContext
    *   <li>Specific {@link QueryOptions} passed in for this query.
    *   <li>Any value specified in a valid environment variable when the {@link SpannerOptions}
    *       instance was created.
-   *   <li>The default {@link SpannerOptions#getDefaultQueryOptions()} specified for the database
-   *       where the query is executed.
+   *   <li>The default {@link SpannerOptions#getDefaultQueryOptions(DatabaseId)} specified for the
+   *       database where the query is executed.
    * </ol>
    */
   @VisibleForTesting
@@ -616,6 +617,10 @@ abstract class AbstractReadContext
     if (partitionToken != null) {
       request.setPartitionToken(partitionToken);
     }
+    if (options.hasTag()) {
+      request.setRequestOptions(RequestOptions.newBuilder().setRequestTag(options.tag()).build());
+    }
+
     final int prefetchChunks =
         options.hasPrefetchChunks() ? options.prefetchChunks() : defaultPrefetchChunks;
     ResumableStreamIterator stream =
@@ -723,6 +728,12 @@ abstract class AbstractReadContext
     if (partitionToken != null) {
       builder.setPartitionToken(partitionToken);
     }
+
+    if (readOptions.hasTag()) {
+      builder.setRequestOptions(
+          RequestOptions.newBuilder().setRequestTag(readOptions.tag()).build());
+    }
+
     final int prefetchChunks =
         readOptions.hasPrefetchChunks() ? readOptions.prefetchChunks() : defaultPrefetchChunks;
     ResumableStreamIterator stream =

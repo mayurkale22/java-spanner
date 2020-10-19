@@ -41,13 +41,13 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
     session_ = "";
   }
 
-  @java.lang.Override
+  @Override
   @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(UnusedPrivateParameter unused) {
+  protected Object newInstance(UnusedPrivateParameter unused) {
     return new BeginTransactionRequest();
   }
 
-  @java.lang.Override
+  @Override
   public final com.google.protobuf.UnknownFieldSet getUnknownFields() {
     return this.unknownFields;
   }
@@ -58,7 +58,7 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
+      throw new NullPointerException();
     }
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
         com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -72,23 +72,35 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
             break;
           case 10:
             {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               session_ = s;
               break;
             }
           case 18:
             {
-              com.google.spanner.v1.TransactionOptions.Builder subBuilder = null;
+              TransactionOptions.Builder subBuilder = null;
               if (options_ != null) {
                 subBuilder = options_.toBuilder();
               }
-              options_ =
-                  input.readMessage(
-                      com.google.spanner.v1.TransactionOptions.parser(), extensionRegistry);
+              options_ = input.readMessage(TransactionOptions.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(options_);
                 options_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+          case 26:
+            {
+              RequestOptions.Builder subBuilder = null;
+              if (requestOptions_ != null) {
+                subBuilder = requestOptions_.toBuilder();
+              }
+              requestOptions_ = input.readMessage(RequestOptions.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(requestOptions_);
+                requestOptions_ = subBuilder.buildPartial();
               }
 
               break;
@@ -113,22 +125,17 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
-    return com.google.spanner.v1.SpannerProto
-        .internal_static_google_spanner_v1_BeginTransactionRequest_descriptor;
+    return SpannerProto.internal_static_google_spanner_v1_BeginTransactionRequest_descriptor;
   }
 
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-    return com.google.spanner.v1.SpannerProto
-        .internal_static_google_spanner_v1_BeginTransactionRequest_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            com.google.spanner.v1.BeginTransactionRequest.class,
-            com.google.spanner.v1.BeginTransactionRequest.Builder.class);
+  @Override
+  protected FieldAccessorTable internalGetFieldAccessorTable() {
+    return SpannerProto.internal_static_google_spanner_v1_BeginTransactionRequest_fieldAccessorTable
+        .ensureFieldAccessorsInitialized(BeginTransactionRequest.class, Builder.class);
   }
 
   public static final int SESSION_FIELD_NUMBER = 1;
-  private volatile java.lang.Object session_;
+  private volatile Object session_;
   /**
    *
    *
@@ -142,14 +149,14 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
    *
    * @return The session.
    */
-  @java.lang.Override
-  public java.lang.String getSession() {
-    java.lang.Object ref = session_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
+  @Override
+  public String getSession() {
+    Object ref = session_;
+    if (ref instanceof String) {
+      return (String) ref;
     } else {
       com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
+      String s = bs.toStringUtf8();
       session_ = s;
       return s;
     }
@@ -167,12 +174,11 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
    *
    * @return The bytes for session.
    */
-  @java.lang.Override
+  @Override
   public com.google.protobuf.ByteString getSessionBytes() {
-    java.lang.Object ref = session_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
+    Object ref = session_;
+    if (ref instanceof String) {
+      com.google.protobuf.ByteString b = com.google.protobuf.ByteString.copyFromUtf8((String) ref);
       session_ = b;
       return b;
     } else {
@@ -181,7 +187,7 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
   }
 
   public static final int OPTIONS_FIELD_NUMBER = 2;
-  private com.google.spanner.v1.TransactionOptions options_;
+  private TransactionOptions options_;
   /**
    *
    *
@@ -195,7 +201,7 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
    *
    * @return Whether the options field is set.
    */
-  @java.lang.Override
+  @Override
   public boolean hasOptions() {
     return options_ != null;
   }
@@ -212,11 +218,9 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
    *
    * @return The options.
    */
-  @java.lang.Override
-  public com.google.spanner.v1.TransactionOptions getOptions() {
-    return options_ == null
-        ? com.google.spanner.v1.TransactionOptions.getDefaultInstance()
-        : options_;
+  @Override
+  public TransactionOptions getOptions() {
+    return options_ == null ? TransactionOptions.getDefaultInstance() : options_;
   }
   /**
    *
@@ -229,14 +233,72 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
    * .google.spanner.v1.TransactionOptions options = 2 [(.google.api.field_behavior) = REQUIRED];
    * </code>
    */
-  @java.lang.Override
-  public com.google.spanner.v1.TransactionOptionsOrBuilder getOptionsOrBuilder() {
+  @Override
+  public TransactionOptionsOrBuilder getOptionsOrBuilder() {
     return getOptions();
+  }
+
+  public static final int REQUEST_OPTIONS_FIELD_NUMBER = 3;
+  private RequestOptions requestOptions_;
+  /**
+   *
+   *
+   * <pre>
+   * Common options for this request.
+   * Priority is ignored for this request. Setting the priority in this
+   * request_options struct will not do anything. To set the priority for a
+   * transaction, set it on the reads and writes that are part of this
+   * transaction instead.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
+   *
+   * @return Whether the requestOptions field is set.
+   */
+  @Override
+  public boolean hasRequestOptions() {
+    return requestOptions_ != null;
+  }
+  /**
+   *
+   *
+   * <pre>
+   * Common options for this request.
+   * Priority is ignored for this request. Setting the priority in this
+   * request_options struct will not do anything. To set the priority for a
+   * transaction, set it on the reads and writes that are part of this
+   * transaction instead.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
+   *
+   * @return The requestOptions.
+   */
+  @Override
+  public RequestOptions getRequestOptions() {
+    return requestOptions_ == null ? RequestOptions.getDefaultInstance() : requestOptions_;
+  }
+  /**
+   *
+   *
+   * <pre>
+   * Common options for this request.
+   * Priority is ignored for this request. Setting the priority in this
+   * request_options struct will not do anything. To set the priority for a
+   * transaction, set it on the reads and writes that are part of this
+   * transaction instead.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
+   */
+  @Override
+  public RequestOptionsOrBuilder getRequestOptionsOrBuilder() {
+    return getRequestOptions();
   }
 
   private byte memoizedIsInitialized = -1;
 
-  @java.lang.Override
+  @Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
     if (isInitialized == 1) return true;
@@ -246,7 +308,7 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
     return true;
   }
 
-  @java.lang.Override
+  @Override
   public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
     if (!getSessionBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, session_);
@@ -254,10 +316,13 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
     if (options_ != null) {
       output.writeMessage(2, getOptions());
     }
+    if (requestOptions_ != null) {
+      output.writeMessage(3, getRequestOptions());
+    }
     unknownFields.writeTo(output);
   }
 
-  @java.lang.Override
+  @Override
   public int getSerializedSize() {
     int size = memoizedSize;
     if (size != -1) return size;
@@ -269,32 +334,38 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
     if (options_ != null) {
       size += com.google.protobuf.CodedOutputStream.computeMessageSize(2, getOptions());
     }
+    if (requestOptions_ != null) {
+      size += com.google.protobuf.CodedOutputStream.computeMessageSize(3, getRequestOptions());
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
+  @Override
+  public boolean equals(final Object obj) {
     if (obj == this) {
       return true;
     }
-    if (!(obj instanceof com.google.spanner.v1.BeginTransactionRequest)) {
+    if (!(obj instanceof BeginTransactionRequest)) {
       return super.equals(obj);
     }
-    com.google.spanner.v1.BeginTransactionRequest other =
-        (com.google.spanner.v1.BeginTransactionRequest) obj;
+    BeginTransactionRequest other = (BeginTransactionRequest) obj;
 
     if (!getSession().equals(other.getSession())) return false;
     if (hasOptions() != other.hasOptions()) return false;
     if (hasOptions()) {
       if (!getOptions().equals(other.getOptions())) return false;
     }
+    if (hasRequestOptions() != other.hasRequestOptions()) return false;
+    if (hasRequestOptions()) {
+      if (!getRequestOptions().equals(other.getRequestOptions())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
 
-  @java.lang.Override
+  @Override
   public int hashCode() {
     if (memoizedHashCode != 0) {
       return memoizedHashCode;
@@ -307,76 +378,79 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
       hash = (37 * hash) + OPTIONS_FIELD_NUMBER;
       hash = (53 * hash) + getOptions().hashCode();
     }
+    if (hasRequestOptions()) {
+      hash = (37 * hash) + REQUEST_OPTIONS_FIELD_NUMBER;
+      hash = (53 * hash) + getRequestOptions().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.google.spanner.v1.BeginTransactionRequest parseFrom(java.nio.ByteBuffer data)
+  public static BeginTransactionRequest parseFrom(java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
 
-  public static com.google.spanner.v1.BeginTransactionRequest parseFrom(
+  public static BeginTransactionRequest parseFrom(
       java.nio.ByteBuffer data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.BeginTransactionRequest parseFrom(
-      com.google.protobuf.ByteString data)
+  public static BeginTransactionRequest parseFrom(com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
 
-  public static com.google.spanner.v1.BeginTransactionRequest parseFrom(
+  public static BeginTransactionRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.BeginTransactionRequest parseFrom(byte[] data)
+  public static BeginTransactionRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
 
-  public static com.google.spanner.v1.BeginTransactionRequest parseFrom(
+  public static BeginTransactionRequest parseFrom(
       byte[] data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.BeginTransactionRequest parseFrom(java.io.InputStream input)
+  public static BeginTransactionRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseWithIOException(PARSER, input);
   }
 
-  public static com.google.spanner.v1.BeginTransactionRequest parseFrom(
+  public static BeginTransactionRequest parseFrom(
       java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseWithIOException(
         PARSER, input, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.BeginTransactionRequest parseDelimitedFrom(
-      java.io.InputStream input) throws java.io.IOException {
+  public static BeginTransactionRequest parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static com.google.spanner.v1.BeginTransactionRequest parseDelimitedFrom(
+  public static BeginTransactionRequest parseDelimitedFrom(
       java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseDelimitedWithIOException(
         PARSER, input, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.BeginTransactionRequest parseFrom(
-      com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+  public static BeginTransactionRequest parseFrom(com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseWithIOException(PARSER, input);
   }
 
-  public static com.google.spanner.v1.BeginTransactionRequest parseFrom(
+  public static BeginTransactionRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -384,7 +458,7 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
         PARSER, input, extensionRegistry);
   }
 
-  @java.lang.Override
+  @Override
   public Builder newBuilderForType() {
     return newBuilder();
   }
@@ -393,17 +467,17 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
     return DEFAULT_INSTANCE.toBuilder();
   }
 
-  public static Builder newBuilder(com.google.spanner.v1.BeginTransactionRequest prototype) {
+  public static Builder newBuilder(BeginTransactionRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
 
-  @java.lang.Override
+  @Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
   }
 
-  @java.lang.Override
-  protected Builder newBuilderForType(com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+  @Override
+  protected Builder newBuilderForType(BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
   }
@@ -419,20 +493,16 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
   public static final class Builder extends com.google.protobuf.GeneratedMessageV3.Builder<Builder>
       implements
       // @@protoc_insertion_point(builder_implements:google.spanner.v1.BeginTransactionRequest)
-      com.google.spanner.v1.BeginTransactionRequestOrBuilder {
+      BeginTransactionRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
-      return com.google.spanner.v1.SpannerProto
-          .internal_static_google_spanner_v1_BeginTransactionRequest_descriptor;
+      return SpannerProto.internal_static_google_spanner_v1_BeginTransactionRequest_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.google.spanner.v1.SpannerProto
+    @Override
+    protected FieldAccessorTable internalGetFieldAccessorTable() {
+      return SpannerProto
           .internal_static_google_spanner_v1_BeginTransactionRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.google.spanner.v1.BeginTransactionRequest.class,
-              com.google.spanner.v1.BeginTransactionRequest.Builder.class);
+          .ensureFieldAccessorsInitialized(BeginTransactionRequest.class, Builder.class);
     }
 
     // Construct using com.google.spanner.v1.BeginTransactionRequest.newBuilder()
@@ -440,7 +510,7 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
       maybeForceBuilderInitialization();
     }
 
-    private Builder(com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    private Builder(BuilderParent parent) {
       super(parent);
       maybeForceBuilderInitialization();
     }
@@ -449,7 +519,7 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
       if (com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders) {}
     }
 
-    @java.lang.Override
+    @Override
     public Builder clear() {
       super.clear();
       session_ = "";
@@ -460,88 +530,96 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
         options_ = null;
         optionsBuilder_ = null;
       }
+      if (requestOptionsBuilder_ == null) {
+        requestOptions_ = null;
+      } else {
+        requestOptions_ = null;
+        requestOptionsBuilder_ = null;
+      }
       return this;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
-      return com.google.spanner.v1.SpannerProto
-          .internal_static_google_spanner_v1_BeginTransactionRequest_descriptor;
+      return SpannerProto.internal_static_google_spanner_v1_BeginTransactionRequest_descriptor;
     }
 
-    @java.lang.Override
-    public com.google.spanner.v1.BeginTransactionRequest getDefaultInstanceForType() {
-      return com.google.spanner.v1.BeginTransactionRequest.getDefaultInstance();
+    @Override
+    public BeginTransactionRequest getDefaultInstanceForType() {
+      return BeginTransactionRequest.getDefaultInstance();
     }
 
-    @java.lang.Override
-    public com.google.spanner.v1.BeginTransactionRequest build() {
-      com.google.spanner.v1.BeginTransactionRequest result = buildPartial();
+    @Override
+    public BeginTransactionRequest build() {
+      BeginTransactionRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    @java.lang.Override
-    public com.google.spanner.v1.BeginTransactionRequest buildPartial() {
-      com.google.spanner.v1.BeginTransactionRequest result =
-          new com.google.spanner.v1.BeginTransactionRequest(this);
+    @Override
+    public BeginTransactionRequest buildPartial() {
+      BeginTransactionRequest result = new BeginTransactionRequest(this);
       result.session_ = session_;
       if (optionsBuilder_ == null) {
         result.options_ = options_;
       } else {
         result.options_ = optionsBuilder_.build();
       }
+      if (requestOptionsBuilder_ == null) {
+        result.requestOptions_ = requestOptions_;
+      } else {
+        result.requestOptions_ = requestOptionsBuilder_.build();
+      }
       onBuilt();
       return result;
     }
 
-    @java.lang.Override
+    @Override
     public Builder clone() {
       return super.clone();
     }
 
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field, java.lang.Object value) {
+    @Override
+    public Builder setField(com.google.protobuf.Descriptors.FieldDescriptor field, Object value) {
       return super.setField(field, value);
     }
 
-    @java.lang.Override
+    @Override
     public Builder clearField(com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
 
-    @java.lang.Override
+    @Override
     public Builder clearOneof(com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
 
-    @java.lang.Override
+    @Override
     public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field, int index, java.lang.Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field, int index, Object value) {
       return super.setRepeatedField(field, index, value);
     }
 
-    @java.lang.Override
+    @Override
     public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field, java.lang.Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field, Object value) {
       return super.addRepeatedField(field, value);
     }
 
-    @java.lang.Override
+    @Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.google.spanner.v1.BeginTransactionRequest) {
-        return mergeFrom((com.google.spanner.v1.BeginTransactionRequest) other);
+      if (other instanceof BeginTransactionRequest) {
+        return mergeFrom((BeginTransactionRequest) other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.google.spanner.v1.BeginTransactionRequest other) {
-      if (other == com.google.spanner.v1.BeginTransactionRequest.getDefaultInstance()) return this;
+    public Builder mergeFrom(BeginTransactionRequest other) {
+      if (other == BeginTransactionRequest.getDefaultInstance()) return this;
       if (!other.getSession().isEmpty()) {
         session_ = other.session_;
         onChanged();
@@ -549,26 +627,29 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
       if (other.hasOptions()) {
         mergeOptions(other.getOptions());
       }
+      if (other.hasRequestOptions()) {
+        mergeRequestOptions(other.getRequestOptions());
+      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
 
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public Builder mergeFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.google.spanner.v1.BeginTransactionRequest parsedMessage = null;
+      BeginTransactionRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.google.spanner.v1.BeginTransactionRequest) e.getUnfinishedMessage();
+        parsedMessage = (BeginTransactionRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -578,7 +659,7 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
       return this;
     }
 
-    private java.lang.Object session_ = "";
+    private Object session_ = "";
     /**
      *
      *
@@ -592,15 +673,15 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
      *
      * @return The session.
      */
-    public java.lang.String getSession() {
-      java.lang.Object ref = session_;
-      if (!(ref instanceof java.lang.String)) {
+    public String getSession() {
+      Object ref = session_;
+      if (!(ref instanceof String)) {
         com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         session_ = s;
         return s;
       } else {
-        return (java.lang.String) ref;
+        return (String) ref;
       }
     }
     /**
@@ -617,10 +698,10 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
      * @return The bytes for session.
      */
     public com.google.protobuf.ByteString getSessionBytes() {
-      java.lang.Object ref = session_;
+      Object ref = session_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
         session_ = b;
         return b;
       } else {
@@ -641,7 +722,7 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
      * @param value The session to set.
      * @return This builder for chaining.
      */
-    public Builder setSession(java.lang.String value) {
+    public Builder setSession(String value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -694,11 +775,9 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
       return this;
     }
 
-    private com.google.spanner.v1.TransactionOptions options_;
+    private TransactionOptions options_;
     private com.google.protobuf.SingleFieldBuilderV3<
-            com.google.spanner.v1.TransactionOptions,
-            com.google.spanner.v1.TransactionOptions.Builder,
-            com.google.spanner.v1.TransactionOptionsOrBuilder>
+            TransactionOptions, TransactionOptions.Builder, TransactionOptionsOrBuilder>
         optionsBuilder_;
     /**
      *
@@ -729,11 +808,9 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
      *
      * @return The options.
      */
-    public com.google.spanner.v1.TransactionOptions getOptions() {
+    public TransactionOptions getOptions() {
       if (optionsBuilder_ == null) {
-        return options_ == null
-            ? com.google.spanner.v1.TransactionOptions.getDefaultInstance()
-            : options_;
+        return options_ == null ? TransactionOptions.getDefaultInstance() : options_;
       } else {
         return optionsBuilder_.getMessage();
       }
@@ -749,7 +826,7 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
      * .google.spanner.v1.TransactionOptions options = 2 [(.google.api.field_behavior) = REQUIRED];
      * </code>
      */
-    public Builder setOptions(com.google.spanner.v1.TransactionOptions value) {
+    public Builder setOptions(TransactionOptions value) {
       if (optionsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -773,7 +850,7 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
      * .google.spanner.v1.TransactionOptions options = 2 [(.google.api.field_behavior) = REQUIRED];
      * </code>
      */
-    public Builder setOptions(com.google.spanner.v1.TransactionOptions.Builder builderForValue) {
+    public Builder setOptions(TransactionOptions.Builder builderForValue) {
       if (optionsBuilder_ == null) {
         options_ = builderForValue.build();
         onChanged();
@@ -794,13 +871,10 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
      * .google.spanner.v1.TransactionOptions options = 2 [(.google.api.field_behavior) = REQUIRED];
      * </code>
      */
-    public Builder mergeOptions(com.google.spanner.v1.TransactionOptions value) {
+    public Builder mergeOptions(TransactionOptions value) {
       if (optionsBuilder_ == null) {
         if (options_ != null) {
-          options_ =
-              com.google.spanner.v1.TransactionOptions.newBuilder(options_)
-                  .mergeFrom(value)
-                  .buildPartial();
+          options_ = TransactionOptions.newBuilder(options_).mergeFrom(value).buildPartial();
         } else {
           options_ = value;
         }
@@ -844,7 +918,7 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
      * .google.spanner.v1.TransactionOptions options = 2 [(.google.api.field_behavior) = REQUIRED];
      * </code>
      */
-    public com.google.spanner.v1.TransactionOptions.Builder getOptionsBuilder() {
+    public TransactionOptions.Builder getOptionsBuilder() {
 
       onChanged();
       return getOptionsFieldBuilder().getBuilder();
@@ -860,13 +934,11 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
      * .google.spanner.v1.TransactionOptions options = 2 [(.google.api.field_behavior) = REQUIRED];
      * </code>
      */
-    public com.google.spanner.v1.TransactionOptionsOrBuilder getOptionsOrBuilder() {
+    public TransactionOptionsOrBuilder getOptionsOrBuilder() {
       if (optionsBuilder_ != null) {
         return optionsBuilder_.getMessageOrBuilder();
       } else {
-        return options_ == null
-            ? com.google.spanner.v1.TransactionOptions.getDefaultInstance()
-            : options_;
+        return options_ == null ? TransactionOptions.getDefaultInstance() : options_;
       }
     }
     /**
@@ -881,28 +953,233 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
      * </code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-            com.google.spanner.v1.TransactionOptions,
-            com.google.spanner.v1.TransactionOptions.Builder,
-            com.google.spanner.v1.TransactionOptionsOrBuilder>
+            TransactionOptions, TransactionOptions.Builder, TransactionOptionsOrBuilder>
         getOptionsFieldBuilder() {
       if (optionsBuilder_ == null) {
         optionsBuilder_ =
             new com.google.protobuf.SingleFieldBuilderV3<
-                com.google.spanner.v1.TransactionOptions,
-                com.google.spanner.v1.TransactionOptions.Builder,
-                com.google.spanner.v1.TransactionOptionsOrBuilder>(
+                TransactionOptions, TransactionOptions.Builder, TransactionOptionsOrBuilder>(
                 getOptions(), getParentForChildren(), isClean());
         options_ = null;
       }
       return optionsBuilder_;
     }
 
-    @java.lang.Override
+    private RequestOptions requestOptions_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+            RequestOptions, RequestOptions.Builder, RequestOptionsOrBuilder>
+        requestOptionsBuilder_;
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * Priority is ignored for this request. Setting the priority in this
+     * request_options struct will not do anything. To set the priority for a
+     * transaction, set it on the reads and writes that are part of this
+     * transaction instead.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
+     *
+     * @return Whether the requestOptions field is set.
+     */
+    public boolean hasRequestOptions() {
+      return requestOptionsBuilder_ != null || requestOptions_ != null;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * Priority is ignored for this request. Setting the priority in this
+     * request_options struct will not do anything. To set the priority for a
+     * transaction, set it on the reads and writes that are part of this
+     * transaction instead.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
+     *
+     * @return The requestOptions.
+     */
+    public RequestOptions getRequestOptions() {
+      if (requestOptionsBuilder_ == null) {
+        return requestOptions_ == null ? RequestOptions.getDefaultInstance() : requestOptions_;
+      } else {
+        return requestOptionsBuilder_.getMessage();
+      }
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * Priority is ignored for this request. Setting the priority in this
+     * request_options struct will not do anything. To set the priority for a
+     * transaction, set it on the reads and writes that are part of this
+     * transaction instead.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
+     */
+    public Builder setRequestOptions(RequestOptions value) {
+      if (requestOptionsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        requestOptions_ = value;
+        onChanged();
+      } else {
+        requestOptionsBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * Priority is ignored for this request. Setting the priority in this
+     * request_options struct will not do anything. To set the priority for a
+     * transaction, set it on the reads and writes that are part of this
+     * transaction instead.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
+     */
+    public Builder setRequestOptions(RequestOptions.Builder builderForValue) {
+      if (requestOptionsBuilder_ == null) {
+        requestOptions_ = builderForValue.build();
+        onChanged();
+      } else {
+        requestOptionsBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * Priority is ignored for this request. Setting the priority in this
+     * request_options struct will not do anything. To set the priority for a
+     * transaction, set it on the reads and writes that are part of this
+     * transaction instead.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
+     */
+    public Builder mergeRequestOptions(RequestOptions value) {
+      if (requestOptionsBuilder_ == null) {
+        if (requestOptions_ != null) {
+          requestOptions_ =
+              RequestOptions.newBuilder(requestOptions_).mergeFrom(value).buildPartial();
+        } else {
+          requestOptions_ = value;
+        }
+        onChanged();
+      } else {
+        requestOptionsBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * Priority is ignored for this request. Setting the priority in this
+     * request_options struct will not do anything. To set the priority for a
+     * transaction, set it on the reads and writes that are part of this
+     * transaction instead.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
+     */
+    public Builder clearRequestOptions() {
+      if (requestOptionsBuilder_ == null) {
+        requestOptions_ = null;
+        onChanged();
+      } else {
+        requestOptions_ = null;
+        requestOptionsBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * Priority is ignored for this request. Setting the priority in this
+     * request_options struct will not do anything. To set the priority for a
+     * transaction, set it on the reads and writes that are part of this
+     * transaction instead.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
+     */
+    public RequestOptions.Builder getRequestOptionsBuilder() {
+
+      onChanged();
+      return getRequestOptionsFieldBuilder().getBuilder();
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * Priority is ignored for this request. Setting the priority in this
+     * request_options struct will not do anything. To set the priority for a
+     * transaction, set it on the reads and writes that are part of this
+     * transaction instead.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
+     */
+    public RequestOptionsOrBuilder getRequestOptionsOrBuilder() {
+      if (requestOptionsBuilder_ != null) {
+        return requestOptionsBuilder_.getMessageOrBuilder();
+      } else {
+        return requestOptions_ == null ? RequestOptions.getDefaultInstance() : requestOptions_;
+      }
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * Priority is ignored for this request. Setting the priority in this
+     * request_options struct will not do anything. To set the priority for a
+     * transaction, set it on the reads and writes that are part of this
+     * transaction instead.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+            RequestOptions, RequestOptions.Builder, RequestOptionsOrBuilder>
+        getRequestOptionsFieldBuilder() {
+      if (requestOptionsBuilder_ == null) {
+        requestOptionsBuilder_ =
+            new com.google.protobuf.SingleFieldBuilderV3<
+                RequestOptions, RequestOptions.Builder, RequestOptionsOrBuilder>(
+                getRequestOptions(), getParentForChildren(), isClean());
+        requestOptions_ = null;
+      }
+      return requestOptionsBuilder_;
+    }
+
+    @Override
     public final Builder setUnknownFields(final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.setUnknownFields(unknownFields);
     }
 
-    @java.lang.Override
+    @Override
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.mergeUnknownFields(unknownFields);
@@ -912,19 +1189,19 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
   }
 
   // @@protoc_insertion_point(class_scope:google.spanner.v1.BeginTransactionRequest)
-  private static final com.google.spanner.v1.BeginTransactionRequest DEFAULT_INSTANCE;
+  private static final BeginTransactionRequest DEFAULT_INSTANCE;
 
   static {
-    DEFAULT_INSTANCE = new com.google.spanner.v1.BeginTransactionRequest();
+    DEFAULT_INSTANCE = new BeginTransactionRequest();
   }
 
-  public static com.google.spanner.v1.BeginTransactionRequest getDefaultInstance() {
+  public static BeginTransactionRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
   private static final com.google.protobuf.Parser<BeginTransactionRequest> PARSER =
       new com.google.protobuf.AbstractParser<BeginTransactionRequest>() {
-        @java.lang.Override
+        @Override
         public BeginTransactionRequest parsePartialFrom(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -937,13 +1214,13 @@ public final class BeginTransactionRequest extends com.google.protobuf.Generated
     return PARSER;
   }
 
-  @java.lang.Override
+  @Override
   public com.google.protobuf.Parser<BeginTransactionRequest> getParserForType() {
     return PARSER;
   }
 
-  @java.lang.Override
-  public com.google.spanner.v1.BeginTransactionRequest getDefaultInstanceForType() {
+  @Override
+  public BeginTransactionRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 }

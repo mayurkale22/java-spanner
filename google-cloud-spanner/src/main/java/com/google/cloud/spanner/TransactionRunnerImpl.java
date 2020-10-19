@@ -44,6 +44,7 @@ import com.google.spanner.v1.ExecuteBatchDmlRequest;
 import com.google.spanner.v1.ExecuteBatchDmlResponse;
 import com.google.spanner.v1.ExecuteSqlRequest;
 import com.google.spanner.v1.ExecuteSqlRequest.QueryMode;
+import com.google.spanner.v1.RequestOptions;
 import com.google.spanner.v1.ResultSet;
 import com.google.spanner.v1.RollbackRequest;
 import com.google.spanner.v1.TransactionSelector;
@@ -431,6 +432,11 @@ class TransactionRunnerImpl implements SessionTransaction, TransactionRunner {
       beforeReadOrQuery();
       final ExecuteSqlRequest.Builder builder =
           getExecuteSqlRequestBuilder(statement, QueryMode.NORMAL);
+      Options updateOption = Options.fromUpdateOptions(options);
+      if (updateOption.hasTag()) {
+        builder.setRequestOptions(
+            RequestOptions.newBuilder().setRequestTag(updateOption.tag()).build());
+      }
       try {
         com.google.spanner.v1.ResultSet resultSet =
             rpc.executeQuery(builder.build(), session.getOptions());
@@ -451,6 +457,11 @@ class TransactionRunnerImpl implements SessionTransaction, TransactionRunner {
       beforeReadOrQuery();
       final ExecuteSqlRequest.Builder builder =
           getExecuteSqlRequestBuilder(statement, QueryMode.NORMAL);
+      Options updateOption = Options.fromUpdateOptions(options);
+      if (updateOption.hasTag()) {
+        builder.setRequestOptions(
+            RequestOptions.newBuilder().setRequestTag(updateOption.tag()).build());
+      }
       ApiFuture<com.google.spanner.v1.ResultSet> resultSet;
       try {
         // Register the update as an async operation that must finish before the transaction may

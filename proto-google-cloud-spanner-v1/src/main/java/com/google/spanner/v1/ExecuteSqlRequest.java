@@ -46,13 +46,13 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
     partitionToken_ = com.google.protobuf.ByteString.EMPTY;
   }
 
-  @java.lang.Override
+  @Override
   @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(UnusedPrivateParameter unused) {
+  protected Object newInstance(UnusedPrivateParameter unused) {
     return new ExecuteSqlRequest();
   }
 
-  @java.lang.Override
+  @Override
   public final com.google.protobuf.UnknownFieldSet getUnknownFields() {
     return this.unknownFields;
   }
@@ -63,7 +63,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
+      throw new NullPointerException();
     }
     int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -78,20 +78,18 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
             break;
           case 10:
             {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               session_ = s;
               break;
             }
           case 18:
             {
-              com.google.spanner.v1.TransactionSelector.Builder subBuilder = null;
+              TransactionSelector.Builder subBuilder = null;
               if (transaction_ != null) {
                 subBuilder = transaction_.toBuilder();
               }
-              transaction_ =
-                  input.readMessage(
-                      com.google.spanner.v1.TransactionSelector.parser(), extensionRegistry);
+              transaction_ = input.readMessage(TransactionSelector.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(transaction_);
                 transaction_ = subBuilder.buildPartial();
@@ -101,7 +99,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
             }
           case 26:
             {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               sql_ = s;
               break;
@@ -128,11 +126,10 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
                         ParamTypesDefaultEntryHolder.defaultEntry);
                 mutable_bitField0_ |= 0x00000001;
               }
-              com.google.protobuf.MapEntry<java.lang.String, com.google.spanner.v1.Type>
-                  paramTypes__ =
-                      input.readMessage(
-                          ParamTypesDefaultEntryHolder.defaultEntry.getParserForType(),
-                          extensionRegistry);
+              com.google.protobuf.MapEntry<String, Type> paramTypes__ =
+                  input.readMessage(
+                      ParamTypesDefaultEntryHolder.defaultEntry.getParserForType(),
+                      extensionRegistry);
               paramTypes_.getMutableMap().put(paramTypes__.getKey(), paramTypes__.getValue());
               break;
             }
@@ -160,17 +157,28 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
             }
           case 82:
             {
-              com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.Builder subBuilder = null;
+              QueryOptions.Builder subBuilder = null;
               if (queryOptions_ != null) {
                 subBuilder = queryOptions_.toBuilder();
               }
-              queryOptions_ =
-                  input.readMessage(
-                      com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.parser(),
-                      extensionRegistry);
+              queryOptions_ = input.readMessage(QueryOptions.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(queryOptions_);
                 queryOptions_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+          case 90:
+            {
+              RequestOptions.Builder subBuilder = null;
+              if (requestOptions_ != null) {
+                subBuilder = requestOptions_.toBuilder();
+              }
+              requestOptions_ = input.readMessage(RequestOptions.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(requestOptions_);
+                requestOptions_ = subBuilder.buildPartial();
               }
 
               break;
@@ -195,12 +203,11 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
-    return com.google.spanner.v1.SpannerProto
-        .internal_static_google_spanner_v1_ExecuteSqlRequest_descriptor;
+    return SpannerProto.internal_static_google_spanner_v1_ExecuteSqlRequest_descriptor;
   }
 
   @SuppressWarnings({"rawtypes"})
-  @java.lang.Override
+  @Override
   protected com.google.protobuf.MapField internalGetMapField(int number) {
     switch (number) {
       case 5:
@@ -210,14 +217,10 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
     }
   }
 
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-    return com.google.spanner.v1.SpannerProto
-        .internal_static_google_spanner_v1_ExecuteSqlRequest_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            com.google.spanner.v1.ExecuteSqlRequest.class,
-            com.google.spanner.v1.ExecuteSqlRequest.Builder.class);
+  @Override
+  protected FieldAccessorTable internalGetFieldAccessorTable() {
+    return SpannerProto.internal_static_google_spanner_v1_ExecuteSqlRequest_fieldAccessorTable
+        .ensureFieldAccessorsInitialized(ExecuteSqlRequest.class, Builder.class);
   }
 
   /**
@@ -300,8 +303,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-            "Can't get the number of an unknown enum value.");
+        throw new IllegalArgumentException("Can't get the number of an unknown enum value.");
       }
       return value;
     }
@@ -311,7 +313,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      * @return The enum associated with the given numeric wire value.
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static QueryMode valueOf(int value) {
       return forNumber(value);
     }
@@ -346,8 +348,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor getValueDescriptor() {
       if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalStateException(
-            "Can't get the descriptor of an unrecognized enum value.");
+        throw new IllegalStateException("Can't get the descriptor of an unrecognized enum value.");
       }
       return getDescriptor().getValues().get(ordinal());
     }
@@ -357,14 +358,14 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
     }
 
     public static final com.google.protobuf.Descriptors.EnumDescriptor getDescriptor() {
-      return com.google.spanner.v1.ExecuteSqlRequest.getDescriptor().getEnumTypes().get(0);
+      return ExecuteSqlRequest.getDescriptor().getEnumTypes().get(0);
     }
 
     private static final QueryMode[] VALUES = values();
 
     public static QueryMode valueOf(com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException("EnumValueDescriptor is not for this type.");
+        throw new IllegalArgumentException("EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
         return UNRECOGNIZED;
@@ -409,7 +410,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * @return The optimizerVersion.
      */
-    java.lang.String getOptimizerVersion();
+    String getOptimizerVersion();
     /**
      *
      *
@@ -458,13 +459,13 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       optimizerVersion_ = "";
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(UnusedPrivateParameter unused) {
+    protected Object newInstance(UnusedPrivateParameter unused) {
       return new QueryOptions();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet getUnknownFields() {
       return this.unknownFields;
     }
@@ -475,7 +476,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -489,7 +490,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
               break;
             case 10:
               {
-                java.lang.String s = input.readStringRequireUtf8();
+                String s = input.readStringRequireUtf8();
 
                 optimizerVersion_ = s;
                 break;
@@ -514,22 +515,19 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
-      return com.google.spanner.v1.SpannerProto
+      return SpannerProto
           .internal_static_google_spanner_v1_ExecuteSqlRequest_QueryOptions_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.google.spanner.v1.SpannerProto
+    @Override
+    protected FieldAccessorTable internalGetFieldAccessorTable() {
+      return SpannerProto
           .internal_static_google_spanner_v1_ExecuteSqlRequest_QueryOptions_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.class,
-              com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.Builder.class);
+          .ensureFieldAccessorsInitialized(QueryOptions.class, Builder.class);
     }
 
     public static final int OPTIMIZER_VERSION_FIELD_NUMBER = 1;
-    private volatile java.lang.Object optimizerVersion_;
+    private volatile Object optimizerVersion_;
     /**
      *
      *
@@ -553,14 +551,14 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * @return The optimizerVersion.
      */
-    @java.lang.Override
-    public java.lang.String getOptimizerVersion() {
-      java.lang.Object ref = optimizerVersion_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    @Override
+    public String getOptimizerVersion() {
+      Object ref = optimizerVersion_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         optimizerVersion_ = s;
         return s;
       }
@@ -588,12 +586,12 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * @return The bytes for optimizerVersion.
      */
-    @java.lang.Override
+    @Override
     public com.google.protobuf.ByteString getOptimizerVersionBytes() {
-      java.lang.Object ref = optimizerVersion_;
-      if (ref instanceof java.lang.String) {
+      Object ref = optimizerVersion_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
         optimizerVersion_ = b;
         return b;
       } else {
@@ -603,7 +601,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
 
     private byte memoizedIsInitialized = -1;
 
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -613,7 +611,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
       if (!getOptimizerVersionBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, optimizerVersion_);
@@ -621,7 +619,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -635,23 +633,22 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
         return true;
       }
-      if (!(obj instanceof com.google.spanner.v1.ExecuteSqlRequest.QueryOptions)) {
+      if (!(obj instanceof QueryOptions)) {
         return super.equals(obj);
       }
-      com.google.spanner.v1.ExecuteSqlRequest.QueryOptions other =
-          (com.google.spanner.v1.ExecuteSqlRequest.QueryOptions) obj;
+      QueryOptions other = (QueryOptions) obj;
 
       if (!getOptimizerVersion().equals(other.getOptimizerVersion())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -665,71 +662,69 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       return hash;
     }
 
-    public static com.google.spanner.v1.ExecuteSqlRequest.QueryOptions parseFrom(
-        java.nio.ByteBuffer data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static QueryOptions parseFrom(java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
 
-    public static com.google.spanner.v1.ExecuteSqlRequest.QueryOptions parseFrom(
+    public static QueryOptions parseFrom(
         java.nio.ByteBuffer data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
 
-    public static com.google.spanner.v1.ExecuteSqlRequest.QueryOptions parseFrom(
-        com.google.protobuf.ByteString data)
+    public static QueryOptions parseFrom(com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
 
-    public static com.google.spanner.v1.ExecuteSqlRequest.QueryOptions parseFrom(
+    public static QueryOptions parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
 
-    public static com.google.spanner.v1.ExecuteSqlRequest.QueryOptions parseFrom(byte[] data)
+    public static QueryOptions parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
 
-    public static com.google.spanner.v1.ExecuteSqlRequest.QueryOptions parseFrom(
+    public static QueryOptions parseFrom(
         byte[] data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
 
-    public static com.google.spanner.v1.ExecuteSqlRequest.QueryOptions parseFrom(
-        java.io.InputStream input) throws java.io.IOException {
+    public static QueryOptions parseFrom(java.io.InputStream input) throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
 
-    public static com.google.spanner.v1.ExecuteSqlRequest.QueryOptions parseFrom(
+    public static QueryOptions parseFrom(
         java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3.parseWithIOException(
           PARSER, input, extensionRegistry);
     }
 
-    public static com.google.spanner.v1.ExecuteSqlRequest.QueryOptions parseDelimitedFrom(
-        java.io.InputStream input) throws java.io.IOException {
+    public static QueryOptions parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
     }
 
-    public static com.google.spanner.v1.ExecuteSqlRequest.QueryOptions parseDelimitedFrom(
+    public static QueryOptions parseDelimitedFrom(
         java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3.parseDelimitedWithIOException(
           PARSER, input, extensionRegistry);
     }
 
-    public static com.google.spanner.v1.ExecuteSqlRequest.QueryOptions parseFrom(
-        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+    public static QueryOptions parseFrom(com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
 
-    public static com.google.spanner.v1.ExecuteSqlRequest.QueryOptions parseFrom(
+    public static QueryOptions parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -737,7 +732,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
           PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() {
       return newBuilder();
     }
@@ -746,19 +741,17 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       return DEFAULT_INSTANCE.toBuilder();
     }
 
-    public static Builder newBuilder(
-        com.google.spanner.v1.ExecuteSqlRequest.QueryOptions prototype) {
+    public static Builder newBuilder(QueryOptions prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    @Override
+    protected Builder newBuilderForType(BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -775,20 +768,17 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
         extends com.google.protobuf.GeneratedMessageV3.Builder<Builder>
         implements
         // @@protoc_insertion_point(builder_implements:google.spanner.v1.ExecuteSqlRequest.QueryOptions)
-        com.google.spanner.v1.ExecuteSqlRequest.QueryOptionsOrBuilder {
+        QueryOptionsOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
-        return com.google.spanner.v1.SpannerProto
+        return SpannerProto
             .internal_static_google_spanner_v1_ExecuteSqlRequest_QueryOptions_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.google.spanner.v1.SpannerProto
+      @Override
+      protected FieldAccessorTable internalGetFieldAccessorTable() {
+        return SpannerProto
             .internal_static_google_spanner_v1_ExecuteSqlRequest_QueryOptions_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.class,
-                com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.Builder.class);
+            .ensureFieldAccessorsInitialized(QueryOptions.class, Builder.class);
       }
 
       // Construct using com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.newBuilder()
@@ -796,7 +786,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
         maybeForceBuilderInitialization();
       }
 
-      private Builder(com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      private Builder(BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -805,7 +795,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
         if (com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders) {}
       }
 
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         optimizerVersion_ = "";
@@ -813,83 +803,78 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
-        return com.google.spanner.v1.SpannerProto
+        return SpannerProto
             .internal_static_google_spanner_v1_ExecuteSqlRequest_QueryOptions_descriptor;
       }
 
-      @java.lang.Override
-      public com.google.spanner.v1.ExecuteSqlRequest.QueryOptions getDefaultInstanceForType() {
-        return com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.getDefaultInstance();
+      @Override
+      public QueryOptions getDefaultInstanceForType() {
+        return QueryOptions.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.google.spanner.v1.ExecuteSqlRequest.QueryOptions build() {
-        com.google.spanner.v1.ExecuteSqlRequest.QueryOptions result = buildPartial();
+      @Override
+      public QueryOptions build() {
+        QueryOptions result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.google.spanner.v1.ExecuteSqlRequest.QueryOptions buildPartial() {
-        com.google.spanner.v1.ExecuteSqlRequest.QueryOptions result =
-            new com.google.spanner.v1.ExecuteSqlRequest.QueryOptions(this);
+      @Override
+      public QueryOptions buildPartial() {
+        QueryOptions result = new QueryOptions(this);
         result.optimizerVersion_ = optimizerVersion_;
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
 
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field, java.lang.Object value) {
+      @Override
+      public Builder setField(com.google.protobuf.Descriptors.FieldDescriptor field, Object value) {
         return super.setField(field, value);
       }
 
-      @java.lang.Override
+      @Override
       public Builder clearField(com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
 
-      @java.lang.Override
+      @Override
       public Builder clearOneof(com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
 
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index,
-          java.lang.Object value) {
+          com.google.protobuf.Descriptors.FieldDescriptor field, int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
 
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field, java.lang.Object value) {
+          com.google.protobuf.Descriptors.FieldDescriptor field, Object value) {
         return super.addRepeatedField(field, value);
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.google.spanner.v1.ExecuteSqlRequest.QueryOptions) {
-          return mergeFrom((com.google.spanner.v1.ExecuteSqlRequest.QueryOptions) other);
+        if (other instanceof QueryOptions) {
+          return mergeFrom((QueryOptions) other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.google.spanner.v1.ExecuteSqlRequest.QueryOptions other) {
-        if (other == com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.getDefaultInstance())
-          return this;
+      public Builder mergeFrom(QueryOptions other) {
+        if (other == QueryOptions.getDefaultInstance()) return this;
         if (!other.getOptimizerVersion().isEmpty()) {
           optimizerVersion_ = other.optimizerVersion_;
           onChanged();
@@ -899,22 +884,21 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.google.spanner.v1.ExecuteSqlRequest.QueryOptions parsedMessage = null;
+        QueryOptions parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage =
-              (com.google.spanner.v1.ExecuteSqlRequest.QueryOptions) e.getUnfinishedMessage();
+          parsedMessage = (QueryOptions) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -924,7 +908,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
         return this;
       }
 
-      private java.lang.Object optimizerVersion_ = "";
+      private Object optimizerVersion_ = "";
       /**
        *
        *
@@ -948,15 +932,15 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
        *
        * @return The optimizerVersion.
        */
-      public java.lang.String getOptimizerVersion() {
-        java.lang.Object ref = optimizerVersion_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getOptimizerVersion() {
+        Object ref = optimizerVersion_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           optimizerVersion_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -983,10 +967,10 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
        * @return The bytes for optimizerVersion.
        */
       public com.google.protobuf.ByteString getOptimizerVersionBytes() {
-        java.lang.Object ref = optimizerVersion_;
+        Object ref = optimizerVersion_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b =
-              com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
+              com.google.protobuf.ByteString.copyFromUtf8((String) ref);
           optimizerVersion_ = b;
           return b;
         } else {
@@ -1017,7 +1001,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
        * @param value The optimizerVersion to set.
        * @return This builder for chaining.
        */
-      public Builder setOptimizerVersion(java.lang.String value) {
+      public Builder setOptimizerVersion(String value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -1090,13 +1074,13 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -1106,19 +1090,19 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
     }
 
     // @@protoc_insertion_point(class_scope:google.spanner.v1.ExecuteSqlRequest.QueryOptions)
-    private static final com.google.spanner.v1.ExecuteSqlRequest.QueryOptions DEFAULT_INSTANCE;
+    private static final QueryOptions DEFAULT_INSTANCE;
 
     static {
-      DEFAULT_INSTANCE = new com.google.spanner.v1.ExecuteSqlRequest.QueryOptions();
+      DEFAULT_INSTANCE = new QueryOptions();
     }
 
-    public static com.google.spanner.v1.ExecuteSqlRequest.QueryOptions getDefaultInstance() {
+    public static QueryOptions getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<QueryOptions> PARSER =
         new com.google.protobuf.AbstractParser<QueryOptions>() {
-          @java.lang.Override
+          @Override
           public QueryOptions parsePartialFrom(
               com.google.protobuf.CodedInputStream input,
               com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1131,19 +1115,19 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<QueryOptions> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.google.spanner.v1.ExecuteSqlRequest.QueryOptions getDefaultInstanceForType() {
+    @Override
+    public QueryOptions getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
   }
 
   public static final int SESSION_FIELD_NUMBER = 1;
-  private volatile java.lang.Object session_;
+  private volatile Object session_;
   /**
    *
    *
@@ -1157,14 +1141,14 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * @return The session.
    */
-  @java.lang.Override
-  public java.lang.String getSession() {
-    java.lang.Object ref = session_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
+  @Override
+  public String getSession() {
+    Object ref = session_;
+    if (ref instanceof String) {
+      return (String) ref;
     } else {
       com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
+      String s = bs.toStringUtf8();
       session_ = s;
       return s;
     }
@@ -1182,12 +1166,11 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * @return The bytes for session.
    */
-  @java.lang.Override
+  @Override
   public com.google.protobuf.ByteString getSessionBytes() {
-    java.lang.Object ref = session_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
+    Object ref = session_;
+    if (ref instanceof String) {
+      com.google.protobuf.ByteString b = com.google.protobuf.ByteString.copyFromUtf8((String) ref);
       session_ = b;
       return b;
     } else {
@@ -1196,7 +1179,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
   }
 
   public static final int TRANSACTION_FIELD_NUMBER = 2;
-  private com.google.spanner.v1.TransactionSelector transaction_;
+  private TransactionSelector transaction_;
   /**
    *
    *
@@ -1214,7 +1197,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * @return Whether the transaction field is set.
    */
-  @java.lang.Override
+  @Override
   public boolean hasTransaction() {
     return transaction_ != null;
   }
@@ -1235,11 +1218,9 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * @return The transaction.
    */
-  @java.lang.Override
-  public com.google.spanner.v1.TransactionSelector getTransaction() {
-    return transaction_ == null
-        ? com.google.spanner.v1.TransactionSelector.getDefaultInstance()
-        : transaction_;
+  @Override
+  public TransactionSelector getTransaction() {
+    return transaction_ == null ? TransactionSelector.getDefaultInstance() : transaction_;
   }
   /**
    *
@@ -1256,13 +1237,13 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
    */
-  @java.lang.Override
-  public com.google.spanner.v1.TransactionSelectorOrBuilder getTransactionOrBuilder() {
+  @Override
+  public TransactionSelectorOrBuilder getTransactionOrBuilder() {
     return getTransaction();
   }
 
   public static final int SQL_FIELD_NUMBER = 3;
-  private volatile java.lang.Object sql_;
+  private volatile Object sql_;
   /**
    *
    *
@@ -1274,14 +1255,14 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * @return The sql.
    */
-  @java.lang.Override
-  public java.lang.String getSql() {
-    java.lang.Object ref = sql_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
+  @Override
+  public String getSql() {
+    Object ref = sql_;
+    if (ref instanceof String) {
+      return (String) ref;
     } else {
       com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
+      String s = bs.toStringUtf8();
       sql_ = s;
       return s;
     }
@@ -1297,12 +1278,11 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * @return The bytes for sql.
    */
-  @java.lang.Override
+  @Override
   public com.google.protobuf.ByteString getSqlBytes() {
-    java.lang.Object ref = sql_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
+    Object ref = sql_;
+    if (ref instanceof String) {
+      com.google.protobuf.ByteString b = com.google.protobuf.ByteString.copyFromUtf8((String) ref);
       sql_ = b;
       return b;
     } else {
@@ -1330,7 +1310,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * @return Whether the params field is set.
    */
-  @java.lang.Override
+  @Override
   public boolean hasParams() {
     return params_ != null;
   }
@@ -1352,7 +1332,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * @return The params.
    */
-  @java.lang.Override
+  @Override
   public com.google.protobuf.Struct getParams() {
     return params_ == null ? com.google.protobuf.Struct.getDefaultInstance() : params_;
   }
@@ -1372,7 +1352,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * <code>.google.protobuf.Struct params = 4;</code>
    */
-  @java.lang.Override
+  @Override
   public com.google.protobuf.StructOrBuilder getParamsOrBuilder() {
     return getParams();
   }
@@ -1380,22 +1360,19 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
   public static final int PARAM_TYPES_FIELD_NUMBER = 5;
 
   private static final class ParamTypesDefaultEntryHolder {
-    static final com.google.protobuf.MapEntry<java.lang.String, com.google.spanner.v1.Type>
-        defaultEntry =
-            com.google.protobuf.MapEntry
-                .<java.lang.String, com.google.spanner.v1.Type>newDefaultInstance(
-                    com.google.spanner.v1.SpannerProto
-                        .internal_static_google_spanner_v1_ExecuteSqlRequest_ParamTypesEntry_descriptor,
-                    com.google.protobuf.WireFormat.FieldType.STRING,
-                    "",
-                    com.google.protobuf.WireFormat.FieldType.MESSAGE,
-                    com.google.spanner.v1.Type.getDefaultInstance());
+    static final com.google.protobuf.MapEntry<String, Type> defaultEntry =
+        com.google.protobuf.MapEntry.<String, Type>newDefaultInstance(
+            SpannerProto
+                .internal_static_google_spanner_v1_ExecuteSqlRequest_ParamTypesEntry_descriptor,
+            com.google.protobuf.WireFormat.FieldType.STRING,
+            "",
+            com.google.protobuf.WireFormat.FieldType.MESSAGE,
+            Type.getDefaultInstance());
   }
 
-  private com.google.protobuf.MapField<java.lang.String, com.google.spanner.v1.Type> paramTypes_;
+  private com.google.protobuf.MapField<String, Type> paramTypes_;
 
-  private com.google.protobuf.MapField<java.lang.String, com.google.spanner.v1.Type>
-      internalGetParamTypes() {
+  private com.google.protobuf.MapField<String, Type> internalGetParamTypes() {
     if (paramTypes_ == null) {
       return com.google.protobuf.MapField.emptyMapField(ParamTypesDefaultEntryHolder.defaultEntry);
     }
@@ -1420,17 +1397,17 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * <code>map&lt;string, .google.spanner.v1.Type&gt; param_types = 5;</code>
    */
-  @java.lang.Override
-  public boolean containsParamTypes(java.lang.String key) {
+  @Override
+  public boolean containsParamTypes(String key) {
     if (key == null) {
-      throw new java.lang.NullPointerException();
+      throw new NullPointerException();
     }
     return internalGetParamTypes().getMap().containsKey(key);
   }
   /** Use {@link #getParamTypesMap()} instead. */
-  @java.lang.Override
-  @java.lang.Deprecated
-  public java.util.Map<java.lang.String, com.google.spanner.v1.Type> getParamTypes() {
+  @Override
+  @Deprecated
+  public java.util.Map<String, Type> getParamTypes() {
     return getParamTypesMap();
   }
   /**
@@ -1448,8 +1425,8 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * <code>map&lt;string, .google.spanner.v1.Type&gt; param_types = 5;</code>
    */
-  @java.lang.Override
-  public java.util.Map<java.lang.String, com.google.spanner.v1.Type> getParamTypesMap() {
+  @Override
+  public java.util.Map<String, Type> getParamTypesMap() {
     return internalGetParamTypes().getMap();
   }
   /**
@@ -1467,14 +1444,12 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * <code>map&lt;string, .google.spanner.v1.Type&gt; param_types = 5;</code>
    */
-  @java.lang.Override
-  public com.google.spanner.v1.Type getParamTypesOrDefault(
-      java.lang.String key, com.google.spanner.v1.Type defaultValue) {
+  @Override
+  public Type getParamTypesOrDefault(String key, Type defaultValue) {
     if (key == null) {
-      throw new java.lang.NullPointerException();
+      throw new NullPointerException();
     }
-    java.util.Map<java.lang.String, com.google.spanner.v1.Type> map =
-        internalGetParamTypes().getMap();
+    java.util.Map<String, Type> map = internalGetParamTypes().getMap();
     return map.containsKey(key) ? map.get(key) : defaultValue;
   }
   /**
@@ -1492,15 +1467,14 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * <code>map&lt;string, .google.spanner.v1.Type&gt; param_types = 5;</code>
    */
-  @java.lang.Override
-  public com.google.spanner.v1.Type getParamTypesOrThrow(java.lang.String key) {
+  @Override
+  public Type getParamTypesOrThrow(String key) {
     if (key == null) {
-      throw new java.lang.NullPointerException();
+      throw new NullPointerException();
     }
-    java.util.Map<java.lang.String, com.google.spanner.v1.Type> map =
-        internalGetParamTypes().getMap();
+    java.util.Map<String, Type> map = internalGetParamTypes().getMap();
     if (!map.containsKey(key)) {
-      throw new java.lang.IllegalArgumentException();
+      throw new IllegalArgumentException();
     }
     return map.get(key);
   }
@@ -1523,7 +1497,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * @return The resumeToken.
    */
-  @java.lang.Override
+  @Override
   public com.google.protobuf.ByteString getResumeToken() {
     return resumeToken_;
   }
@@ -1543,7 +1517,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * @return The enum numeric value on the wire for queryMode.
    */
-  @java.lang.Override
+  @Override
   public int getQueryModeValue() {
     return queryMode_;
   }
@@ -1560,12 +1534,11 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * @return The queryMode.
    */
-  @java.lang.Override
-  public com.google.spanner.v1.ExecuteSqlRequest.QueryMode getQueryMode() {
+  @Override
+  public QueryMode getQueryMode() {
     @SuppressWarnings("deprecation")
-    com.google.spanner.v1.ExecuteSqlRequest.QueryMode result =
-        com.google.spanner.v1.ExecuteSqlRequest.QueryMode.valueOf(queryMode_);
-    return result == null ? com.google.spanner.v1.ExecuteSqlRequest.QueryMode.UNRECOGNIZED : result;
+    QueryMode result = QueryMode.valueOf(queryMode_);
+    return result == null ? QueryMode.UNRECOGNIZED : result;
   }
 
   public static final int PARTITION_TOKEN_FIELD_NUMBER = 8;
@@ -1584,7 +1557,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * @return The partitionToken.
    */
-  @java.lang.Override
+  @Override
   public com.google.protobuf.ByteString getPartitionToken() {
     return partitionToken_;
   }
@@ -1609,13 +1582,13 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * @return The seqno.
    */
-  @java.lang.Override
+  @Override
   public long getSeqno() {
     return seqno_;
   }
 
   public static final int QUERY_OPTIONS_FIELD_NUMBER = 10;
-  private com.google.spanner.v1.ExecuteSqlRequest.QueryOptions queryOptions_;
+  private QueryOptions queryOptions_;
   /**
    *
    *
@@ -1627,7 +1600,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * @return Whether the queryOptions field is set.
    */
-  @java.lang.Override
+  @Override
   public boolean hasQueryOptions() {
     return queryOptions_ != null;
   }
@@ -1642,11 +1615,9 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * @return The queryOptions.
    */
-  @java.lang.Override
-  public com.google.spanner.v1.ExecuteSqlRequest.QueryOptions getQueryOptions() {
-    return queryOptions_ == null
-        ? com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.getDefaultInstance()
-        : queryOptions_;
+  @Override
+  public QueryOptions getQueryOptions() {
+    return queryOptions_ == null ? QueryOptions.getDefaultInstance() : queryOptions_;
   }
   /**
    *
@@ -1657,14 +1628,60 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
    *
    * <code>.google.spanner.v1.ExecuteSqlRequest.QueryOptions query_options = 10;</code>
    */
-  @java.lang.Override
-  public com.google.spanner.v1.ExecuteSqlRequest.QueryOptionsOrBuilder getQueryOptionsOrBuilder() {
+  @Override
+  public QueryOptionsOrBuilder getQueryOptionsOrBuilder() {
     return getQueryOptions();
+  }
+
+  public static final int REQUEST_OPTIONS_FIELD_NUMBER = 11;
+  private RequestOptions requestOptions_;
+  /**
+   *
+   *
+   * <pre>
+   * Common options for this request.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+   *
+   * @return Whether the requestOptions field is set.
+   */
+  @Override
+  public boolean hasRequestOptions() {
+    return requestOptions_ != null;
+  }
+  /**
+   *
+   *
+   * <pre>
+   * Common options for this request.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+   *
+   * @return The requestOptions.
+   */
+  @Override
+  public RequestOptions getRequestOptions() {
+    return requestOptions_ == null ? RequestOptions.getDefaultInstance() : requestOptions_;
+  }
+  /**
+   *
+   *
+   * <pre>
+   * Common options for this request.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+   */
+  @Override
+  public RequestOptionsOrBuilder getRequestOptionsOrBuilder() {
+    return getRequestOptions();
   }
 
   private byte memoizedIsInitialized = -1;
 
-  @java.lang.Override
+  @Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
     if (isInitialized == 1) return true;
@@ -1674,7 +1691,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
     return true;
   }
 
-  @java.lang.Override
+  @Override
   public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
     if (!getSessionBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, session_);
@@ -1693,7 +1710,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
     if (!resumeToken_.isEmpty()) {
       output.writeBytes(6, resumeToken_);
     }
-    if (queryMode_ != com.google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL.getNumber()) {
+    if (queryMode_ != QueryMode.NORMAL.getNumber()) {
       output.writeEnum(7, queryMode_);
     }
     if (!partitionToken_.isEmpty()) {
@@ -1705,10 +1722,13 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
     if (queryOptions_ != null) {
       output.writeMessage(10, getQueryOptions());
     }
+    if (requestOptions_ != null) {
+      output.writeMessage(11, getRequestOptions());
+    }
     unknownFields.writeTo(output);
   }
 
-  @java.lang.Override
+  @Override
   public int getSerializedSize() {
     int size = memoizedSize;
     if (size != -1) return size;
@@ -1726,9 +1746,8 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
     if (params_ != null) {
       size += com.google.protobuf.CodedOutputStream.computeMessageSize(4, getParams());
     }
-    for (java.util.Map.Entry<java.lang.String, com.google.spanner.v1.Type> entry :
-        internalGetParamTypes().getMap().entrySet()) {
-      com.google.protobuf.MapEntry<java.lang.String, com.google.spanner.v1.Type> paramTypes__ =
+    for (java.util.Map.Entry<String, Type> entry : internalGetParamTypes().getMap().entrySet()) {
+      com.google.protobuf.MapEntry<String, Type> paramTypes__ =
           ParamTypesDefaultEntryHolder.defaultEntry
               .newBuilderForType()
               .setKey(entry.getKey())
@@ -1739,7 +1758,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
     if (!resumeToken_.isEmpty()) {
       size += com.google.protobuf.CodedOutputStream.computeBytesSize(6, resumeToken_);
     }
-    if (queryMode_ != com.google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL.getNumber()) {
+    if (queryMode_ != QueryMode.NORMAL.getNumber()) {
       size += com.google.protobuf.CodedOutputStream.computeEnumSize(7, queryMode_);
     }
     if (!partitionToken_.isEmpty()) {
@@ -1751,20 +1770,23 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
     if (queryOptions_ != null) {
       size += com.google.protobuf.CodedOutputStream.computeMessageSize(10, getQueryOptions());
     }
+    if (requestOptions_ != null) {
+      size += com.google.protobuf.CodedOutputStream.computeMessageSize(11, getRequestOptions());
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
+  @Override
+  public boolean equals(final Object obj) {
     if (obj == this) {
       return true;
     }
-    if (!(obj instanceof com.google.spanner.v1.ExecuteSqlRequest)) {
+    if (!(obj instanceof ExecuteSqlRequest)) {
       return super.equals(obj);
     }
-    com.google.spanner.v1.ExecuteSqlRequest other = (com.google.spanner.v1.ExecuteSqlRequest) obj;
+    ExecuteSqlRequest other = (ExecuteSqlRequest) obj;
 
     if (!getSession().equals(other.getSession())) return false;
     if (hasTransaction() != other.hasTransaction()) return false;
@@ -1785,11 +1807,15 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
     if (hasQueryOptions()) {
       if (!getQueryOptions().equals(other.getQueryOptions())) return false;
     }
+    if (hasRequestOptions() != other.hasRequestOptions()) return false;
+    if (hasRequestOptions()) {
+      if (!getRequestOptions().equals(other.getRequestOptions())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
 
-  @java.lang.Override
+  @Override
   public int hashCode() {
     if (memoizedHashCode != 0) {
       return memoizedHashCode;
@@ -1824,76 +1850,78 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       hash = (37 * hash) + QUERY_OPTIONS_FIELD_NUMBER;
       hash = (53 * hash) + getQueryOptions().hashCode();
     }
+    if (hasRequestOptions()) {
+      hash = (37 * hash) + REQUEST_OPTIONS_FIELD_NUMBER;
+      hash = (53 * hash) + getRequestOptions().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.google.spanner.v1.ExecuteSqlRequest parseFrom(java.nio.ByteBuffer data)
+  public static ExecuteSqlRequest parseFrom(java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
 
-  public static com.google.spanner.v1.ExecuteSqlRequest parseFrom(
+  public static ExecuteSqlRequest parseFrom(
       java.nio.ByteBuffer data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.ExecuteSqlRequest parseFrom(
-      com.google.protobuf.ByteString data)
+  public static ExecuteSqlRequest parseFrom(com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
 
-  public static com.google.spanner.v1.ExecuteSqlRequest parseFrom(
+  public static ExecuteSqlRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.ExecuteSqlRequest parseFrom(byte[] data)
+  public static ExecuteSqlRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
 
-  public static com.google.spanner.v1.ExecuteSqlRequest parseFrom(
+  public static ExecuteSqlRequest parseFrom(
       byte[] data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.ExecuteSqlRequest parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
+  public static ExecuteSqlRequest parseFrom(java.io.InputStream input) throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseWithIOException(PARSER, input);
   }
 
-  public static com.google.spanner.v1.ExecuteSqlRequest parseFrom(
+  public static ExecuteSqlRequest parseFrom(
       java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseWithIOException(
         PARSER, input, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.ExecuteSqlRequest parseDelimitedFrom(
-      java.io.InputStream input) throws java.io.IOException {
+  public static ExecuteSqlRequest parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static com.google.spanner.v1.ExecuteSqlRequest parseDelimitedFrom(
+  public static ExecuteSqlRequest parseDelimitedFrom(
       java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseDelimitedWithIOException(
         PARSER, input, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.ExecuteSqlRequest parseFrom(
-      com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+  public static ExecuteSqlRequest parseFrom(com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseWithIOException(PARSER, input);
   }
 
-  public static com.google.spanner.v1.ExecuteSqlRequest parseFrom(
+  public static ExecuteSqlRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -1901,7 +1929,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
         PARSER, input, extensionRegistry);
   }
 
-  @java.lang.Override
+  @Override
   public Builder newBuilderForType() {
     return newBuilder();
   }
@@ -1910,17 +1938,17 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
     return DEFAULT_INSTANCE.toBuilder();
   }
 
-  public static Builder newBuilder(com.google.spanner.v1.ExecuteSqlRequest prototype) {
+  public static Builder newBuilder(ExecuteSqlRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
 
-  @java.lang.Override
+  @Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
   }
 
-  @java.lang.Override
-  protected Builder newBuilderForType(com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+  @Override
+  protected Builder newBuilderForType(BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
   }
@@ -1937,10 +1965,9 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
   public static final class Builder extends com.google.protobuf.GeneratedMessageV3.Builder<Builder>
       implements
       // @@protoc_insertion_point(builder_implements:google.spanner.v1.ExecuteSqlRequest)
-      com.google.spanner.v1.ExecuteSqlRequestOrBuilder {
+      ExecuteSqlRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
-      return com.google.spanner.v1.SpannerProto
-          .internal_static_google_spanner_v1_ExecuteSqlRequest_descriptor;
+      return SpannerProto.internal_static_google_spanner_v1_ExecuteSqlRequest_descriptor;
     }
 
     @SuppressWarnings({"rawtypes"})
@@ -1963,14 +1990,10 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       }
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.google.spanner.v1.SpannerProto
-          .internal_static_google_spanner_v1_ExecuteSqlRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.google.spanner.v1.ExecuteSqlRequest.class,
-              com.google.spanner.v1.ExecuteSqlRequest.Builder.class);
+    @Override
+    protected FieldAccessorTable internalGetFieldAccessorTable() {
+      return SpannerProto.internal_static_google_spanner_v1_ExecuteSqlRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(ExecuteSqlRequest.class, Builder.class);
     }
 
     // Construct using com.google.spanner.v1.ExecuteSqlRequest.newBuilder()
@@ -1978,7 +2001,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       maybeForceBuilderInitialization();
     }
 
-    private Builder(com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    private Builder(BuilderParent parent) {
       super(parent);
       maybeForceBuilderInitialization();
     }
@@ -1987,7 +2010,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       if (com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders) {}
     }
 
-    @java.lang.Override
+    @Override
     public Builder clear() {
       super.clear();
       session_ = "";
@@ -2021,33 +2044,37 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
         queryOptions_ = null;
         queryOptionsBuilder_ = null;
       }
+      if (requestOptionsBuilder_ == null) {
+        requestOptions_ = null;
+      } else {
+        requestOptions_ = null;
+        requestOptionsBuilder_ = null;
+      }
       return this;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
-      return com.google.spanner.v1.SpannerProto
-          .internal_static_google_spanner_v1_ExecuteSqlRequest_descriptor;
+      return SpannerProto.internal_static_google_spanner_v1_ExecuteSqlRequest_descriptor;
     }
 
-    @java.lang.Override
-    public com.google.spanner.v1.ExecuteSqlRequest getDefaultInstanceForType() {
-      return com.google.spanner.v1.ExecuteSqlRequest.getDefaultInstance();
+    @Override
+    public ExecuteSqlRequest getDefaultInstanceForType() {
+      return ExecuteSqlRequest.getDefaultInstance();
     }
 
-    @java.lang.Override
-    public com.google.spanner.v1.ExecuteSqlRequest build() {
-      com.google.spanner.v1.ExecuteSqlRequest result = buildPartial();
+    @Override
+    public ExecuteSqlRequest build() {
+      ExecuteSqlRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    @java.lang.Override
-    public com.google.spanner.v1.ExecuteSqlRequest buildPartial() {
-      com.google.spanner.v1.ExecuteSqlRequest result =
-          new com.google.spanner.v1.ExecuteSqlRequest(this);
+    @Override
+    public ExecuteSqlRequest buildPartial() {
+      ExecuteSqlRequest result = new ExecuteSqlRequest(this);
       int from_bitField0_ = bitField0_;
       result.session_ = session_;
       if (transactionBuilder_ == null) {
@@ -2072,55 +2099,59 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       } else {
         result.queryOptions_ = queryOptionsBuilder_.build();
       }
+      if (requestOptionsBuilder_ == null) {
+        result.requestOptions_ = requestOptions_;
+      } else {
+        result.requestOptions_ = requestOptionsBuilder_.build();
+      }
       onBuilt();
       return result;
     }
 
-    @java.lang.Override
+    @Override
     public Builder clone() {
       return super.clone();
     }
 
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field, java.lang.Object value) {
+    @Override
+    public Builder setField(com.google.protobuf.Descriptors.FieldDescriptor field, Object value) {
       return super.setField(field, value);
     }
 
-    @java.lang.Override
+    @Override
     public Builder clearField(com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
 
-    @java.lang.Override
+    @Override
     public Builder clearOneof(com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
 
-    @java.lang.Override
+    @Override
     public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field, int index, java.lang.Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field, int index, Object value) {
       return super.setRepeatedField(field, index, value);
     }
 
-    @java.lang.Override
+    @Override
     public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field, java.lang.Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field, Object value) {
       return super.addRepeatedField(field, value);
     }
 
-    @java.lang.Override
+    @Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.google.spanner.v1.ExecuteSqlRequest) {
-        return mergeFrom((com.google.spanner.v1.ExecuteSqlRequest) other);
+      if (other instanceof ExecuteSqlRequest) {
+        return mergeFrom((ExecuteSqlRequest) other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.google.spanner.v1.ExecuteSqlRequest other) {
-      if (other == com.google.spanner.v1.ExecuteSqlRequest.getDefaultInstance()) return this;
+    public Builder mergeFrom(ExecuteSqlRequest other) {
+      if (other == ExecuteSqlRequest.getDefaultInstance()) return this;
       if (!other.getSession().isEmpty()) {
         session_ = other.session_;
         onChanged();
@@ -2151,26 +2182,29 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       if (other.hasQueryOptions()) {
         mergeQueryOptions(other.getQueryOptions());
       }
+      if (other.hasRequestOptions()) {
+        mergeRequestOptions(other.getRequestOptions());
+      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
 
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public Builder mergeFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.google.spanner.v1.ExecuteSqlRequest parsedMessage = null;
+      ExecuteSqlRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.google.spanner.v1.ExecuteSqlRequest) e.getUnfinishedMessage();
+        parsedMessage = (ExecuteSqlRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -2182,7 +2216,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
 
     private int bitField0_;
 
-    private java.lang.Object session_ = "";
+    private Object session_ = "";
     /**
      *
      *
@@ -2196,15 +2230,15 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * @return The session.
      */
-    public java.lang.String getSession() {
-      java.lang.Object ref = session_;
-      if (!(ref instanceof java.lang.String)) {
+    public String getSession() {
+      Object ref = session_;
+      if (!(ref instanceof String)) {
         com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         session_ = s;
         return s;
       } else {
-        return (java.lang.String) ref;
+        return (String) ref;
       }
     }
     /**
@@ -2221,10 +2255,10 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      * @return The bytes for session.
      */
     public com.google.protobuf.ByteString getSessionBytes() {
-      java.lang.Object ref = session_;
+      Object ref = session_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
         session_ = b;
         return b;
       } else {
@@ -2245,7 +2279,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      * @param value The session to set.
      * @return This builder for chaining.
      */
-    public Builder setSession(java.lang.String value) {
+    public Builder setSession(String value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2298,11 +2332,9 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       return this;
     }
 
-    private com.google.spanner.v1.TransactionSelector transaction_;
+    private TransactionSelector transaction_;
     private com.google.protobuf.SingleFieldBuilderV3<
-            com.google.spanner.v1.TransactionSelector,
-            com.google.spanner.v1.TransactionSelector.Builder,
-            com.google.spanner.v1.TransactionSelectorOrBuilder>
+            TransactionSelector, TransactionSelector.Builder, TransactionSelectorOrBuilder>
         transactionBuilder_;
     /**
      *
@@ -2341,11 +2373,9 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * @return The transaction.
      */
-    public com.google.spanner.v1.TransactionSelector getTransaction() {
+    public TransactionSelector getTransaction() {
       if (transactionBuilder_ == null) {
-        return transaction_ == null
-            ? com.google.spanner.v1.TransactionSelector.getDefaultInstance()
-            : transaction_;
+        return transaction_ == null ? TransactionSelector.getDefaultInstance() : transaction_;
       } else {
         return transactionBuilder_.getMessage();
       }
@@ -2365,7 +2395,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
-    public Builder setTransaction(com.google.spanner.v1.TransactionSelector value) {
+    public Builder setTransaction(TransactionSelector value) {
       if (transactionBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -2393,8 +2423,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
-    public Builder setTransaction(
-        com.google.spanner.v1.TransactionSelector.Builder builderForValue) {
+    public Builder setTransaction(TransactionSelector.Builder builderForValue) {
       if (transactionBuilder_ == null) {
         transaction_ = builderForValue.build();
         onChanged();
@@ -2419,13 +2448,11 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
-    public Builder mergeTransaction(com.google.spanner.v1.TransactionSelector value) {
+    public Builder mergeTransaction(TransactionSelector value) {
       if (transactionBuilder_ == null) {
         if (transaction_ != null) {
           transaction_ =
-              com.google.spanner.v1.TransactionSelector.newBuilder(transaction_)
-                  .mergeFrom(value)
-                  .buildPartial();
+              TransactionSelector.newBuilder(transaction_).mergeFrom(value).buildPartial();
         } else {
           transaction_ = value;
         }
@@ -2477,7 +2504,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
-    public com.google.spanner.v1.TransactionSelector.Builder getTransactionBuilder() {
+    public TransactionSelector.Builder getTransactionBuilder() {
 
       onChanged();
       return getTransactionFieldBuilder().getBuilder();
@@ -2497,13 +2524,11 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
-    public com.google.spanner.v1.TransactionSelectorOrBuilder getTransactionOrBuilder() {
+    public TransactionSelectorOrBuilder getTransactionOrBuilder() {
       if (transactionBuilder_ != null) {
         return transactionBuilder_.getMessageOrBuilder();
       } else {
-        return transaction_ == null
-            ? com.google.spanner.v1.TransactionSelector.getDefaultInstance()
-            : transaction_;
+        return transaction_ == null ? TransactionSelector.getDefaultInstance() : transaction_;
       }
     }
     /**
@@ -2522,23 +2547,19 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-            com.google.spanner.v1.TransactionSelector,
-            com.google.spanner.v1.TransactionSelector.Builder,
-            com.google.spanner.v1.TransactionSelectorOrBuilder>
+            TransactionSelector, TransactionSelector.Builder, TransactionSelectorOrBuilder>
         getTransactionFieldBuilder() {
       if (transactionBuilder_ == null) {
         transactionBuilder_ =
             new com.google.protobuf.SingleFieldBuilderV3<
-                com.google.spanner.v1.TransactionSelector,
-                com.google.spanner.v1.TransactionSelector.Builder,
-                com.google.spanner.v1.TransactionSelectorOrBuilder>(
+                TransactionSelector, TransactionSelector.Builder, TransactionSelectorOrBuilder>(
                 getTransaction(), getParentForChildren(), isClean());
         transaction_ = null;
       }
       return transactionBuilder_;
     }
 
-    private java.lang.Object sql_ = "";
+    private Object sql_ = "";
     /**
      *
      *
@@ -2550,15 +2571,15 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * @return The sql.
      */
-    public java.lang.String getSql() {
-      java.lang.Object ref = sql_;
-      if (!(ref instanceof java.lang.String)) {
+    public String getSql() {
+      Object ref = sql_;
+      if (!(ref instanceof String)) {
         com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         sql_ = s;
         return s;
       } else {
-        return (java.lang.String) ref;
+        return (String) ref;
       }
     }
     /**
@@ -2573,10 +2594,10 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      * @return The bytes for sql.
      */
     public com.google.protobuf.ByteString getSqlBytes() {
-      java.lang.Object ref = sql_;
+      Object ref = sql_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
         sql_ = b;
         return b;
       } else {
@@ -2595,7 +2616,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      * @param value The sql to set.
      * @return This builder for chaining.
      */
-    public Builder setSql(java.lang.String value) {
+    public Builder setSql(String value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2885,10 +2906,9 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       return paramsBuilder_;
     }
 
-    private com.google.protobuf.MapField<java.lang.String, com.google.spanner.v1.Type> paramTypes_;
+    private com.google.protobuf.MapField<String, Type> paramTypes_;
 
-    private com.google.protobuf.MapField<java.lang.String, com.google.spanner.v1.Type>
-        internalGetParamTypes() {
+    private com.google.protobuf.MapField<String, Type> internalGetParamTypes() {
       if (paramTypes_ == null) {
         return com.google.protobuf.MapField.emptyMapField(
             ParamTypesDefaultEntryHolder.defaultEntry);
@@ -2896,8 +2916,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       return paramTypes_;
     }
 
-    private com.google.protobuf.MapField<java.lang.String, com.google.spanner.v1.Type>
-        internalGetMutableParamTypes() {
+    private com.google.protobuf.MapField<String, Type> internalGetMutableParamTypes() {
       onChanged();
       ;
       if (paramTypes_ == null) {
@@ -2928,17 +2947,17 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * <code>map&lt;string, .google.spanner.v1.Type&gt; param_types = 5;</code>
      */
-    @java.lang.Override
-    public boolean containsParamTypes(java.lang.String key) {
+    @Override
+    public boolean containsParamTypes(String key) {
       if (key == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       return internalGetParamTypes().getMap().containsKey(key);
     }
     /** Use {@link #getParamTypesMap()} instead. */
-    @java.lang.Override
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, com.google.spanner.v1.Type> getParamTypes() {
+    @Override
+    @Deprecated
+    public java.util.Map<String, Type> getParamTypes() {
       return getParamTypesMap();
     }
     /**
@@ -2956,8 +2975,8 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * <code>map&lt;string, .google.spanner.v1.Type&gt; param_types = 5;</code>
      */
-    @java.lang.Override
-    public java.util.Map<java.lang.String, com.google.spanner.v1.Type> getParamTypesMap() {
+    @Override
+    public java.util.Map<String, Type> getParamTypesMap() {
       return internalGetParamTypes().getMap();
     }
     /**
@@ -2975,14 +2994,12 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * <code>map&lt;string, .google.spanner.v1.Type&gt; param_types = 5;</code>
      */
-    @java.lang.Override
-    public com.google.spanner.v1.Type getParamTypesOrDefault(
-        java.lang.String key, com.google.spanner.v1.Type defaultValue) {
+    @Override
+    public Type getParamTypesOrDefault(String key, Type defaultValue) {
       if (key == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
-      java.util.Map<java.lang.String, com.google.spanner.v1.Type> map =
-          internalGetParamTypes().getMap();
+      java.util.Map<String, Type> map = internalGetParamTypes().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
@@ -3000,15 +3017,14 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * <code>map&lt;string, .google.spanner.v1.Type&gt; param_types = 5;</code>
      */
-    @java.lang.Override
-    public com.google.spanner.v1.Type getParamTypesOrThrow(java.lang.String key) {
+    @Override
+    public Type getParamTypesOrThrow(String key) {
       if (key == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
-      java.util.Map<java.lang.String, com.google.spanner.v1.Type> map =
-          internalGetParamTypes().getMap();
+      java.util.Map<String, Type> map = internalGetParamTypes().getMap();
       if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
       return map.get(key);
     }
@@ -3032,16 +3048,16 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * <code>map&lt;string, .google.spanner.v1.Type&gt; param_types = 5;</code>
      */
-    public Builder removeParamTypes(java.lang.String key) {
+    public Builder removeParamTypes(String key) {
       if (key == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       internalGetMutableParamTypes().getMutableMap().remove(key);
       return this;
     }
     /** Use alternate mutation accessors instead. */
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, com.google.spanner.v1.Type> getMutableParamTypes() {
+    @Deprecated
+    public java.util.Map<String, Type> getMutableParamTypes() {
       return internalGetMutableParamTypes().getMutableMap();
     }
     /**
@@ -3059,12 +3075,12 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * <code>map&lt;string, .google.spanner.v1.Type&gt; param_types = 5;</code>
      */
-    public Builder putParamTypes(java.lang.String key, com.google.spanner.v1.Type value) {
+    public Builder putParamTypes(String key, Type value) {
       if (key == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       if (value == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       internalGetMutableParamTypes().getMutableMap().put(key, value);
       return this;
@@ -3084,8 +3100,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * <code>map&lt;string, .google.spanner.v1.Type&gt; param_types = 5;</code>
      */
-    public Builder putAllParamTypes(
-        java.util.Map<java.lang.String, com.google.spanner.v1.Type> values) {
+    public Builder putAllParamTypes(java.util.Map<String, Type> values) {
       internalGetMutableParamTypes().getMutableMap().putAll(values);
       return this;
     }
@@ -3107,7 +3122,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * @return The resumeToken.
      */
-    @java.lang.Override
+    @Override
     public com.google.protobuf.ByteString getResumeToken() {
       return resumeToken_;
     }
@@ -3174,7 +3189,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * @return The enum numeric value on the wire for queryMode.
      */
-    @java.lang.Override
+    @Override
     public int getQueryModeValue() {
       return queryMode_;
     }
@@ -3211,14 +3226,11 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * @return The queryMode.
      */
-    @java.lang.Override
-    public com.google.spanner.v1.ExecuteSqlRequest.QueryMode getQueryMode() {
+    @Override
+    public QueryMode getQueryMode() {
       @SuppressWarnings("deprecation")
-      com.google.spanner.v1.ExecuteSqlRequest.QueryMode result =
-          com.google.spanner.v1.ExecuteSqlRequest.QueryMode.valueOf(queryMode_);
-      return result == null
-          ? com.google.spanner.v1.ExecuteSqlRequest.QueryMode.UNRECOGNIZED
-          : result;
+      QueryMode result = QueryMode.valueOf(queryMode_);
+      return result == null ? QueryMode.UNRECOGNIZED : result;
     }
     /**
      *
@@ -3234,7 +3246,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      * @param value The queryMode to set.
      * @return This builder for chaining.
      */
-    public Builder setQueryMode(com.google.spanner.v1.ExecuteSqlRequest.QueryMode value) {
+    public Builder setQueryMode(QueryMode value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -3278,7 +3290,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * @return The partitionToken.
      */
-    @java.lang.Override
+    @Override
     public com.google.protobuf.ByteString getPartitionToken() {
       return partitionToken_;
     }
@@ -3346,7 +3358,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * @return The seqno.
      */
-    @java.lang.Override
+    @Override
     public long getSeqno() {
       return seqno_;
     }
@@ -3400,11 +3412,9 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
       return this;
     }
 
-    private com.google.spanner.v1.ExecuteSqlRequest.QueryOptions queryOptions_;
+    private QueryOptions queryOptions_;
     private com.google.protobuf.SingleFieldBuilderV3<
-            com.google.spanner.v1.ExecuteSqlRequest.QueryOptions,
-            com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.Builder,
-            com.google.spanner.v1.ExecuteSqlRequest.QueryOptionsOrBuilder>
+            QueryOptions, QueryOptions.Builder, QueryOptionsOrBuilder>
         queryOptionsBuilder_;
     /**
      *
@@ -3431,11 +3441,9 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * @return The queryOptions.
      */
-    public com.google.spanner.v1.ExecuteSqlRequest.QueryOptions getQueryOptions() {
+    public QueryOptions getQueryOptions() {
       if (queryOptionsBuilder_ == null) {
-        return queryOptions_ == null
-            ? com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.getDefaultInstance()
-            : queryOptions_;
+        return queryOptions_ == null ? QueryOptions.getDefaultInstance() : queryOptions_;
       } else {
         return queryOptionsBuilder_.getMessage();
       }
@@ -3449,7 +3457,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * <code>.google.spanner.v1.ExecuteSqlRequest.QueryOptions query_options = 10;</code>
      */
-    public Builder setQueryOptions(com.google.spanner.v1.ExecuteSqlRequest.QueryOptions value) {
+    public Builder setQueryOptions(QueryOptions value) {
       if (queryOptionsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -3471,8 +3479,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * <code>.google.spanner.v1.ExecuteSqlRequest.QueryOptions query_options = 10;</code>
      */
-    public Builder setQueryOptions(
-        com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.Builder builderForValue) {
+    public Builder setQueryOptions(QueryOptions.Builder builderForValue) {
       if (queryOptionsBuilder_ == null) {
         queryOptions_ = builderForValue.build();
         onChanged();
@@ -3491,13 +3498,10 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * <code>.google.spanner.v1.ExecuteSqlRequest.QueryOptions query_options = 10;</code>
      */
-    public Builder mergeQueryOptions(com.google.spanner.v1.ExecuteSqlRequest.QueryOptions value) {
+    public Builder mergeQueryOptions(QueryOptions value) {
       if (queryOptionsBuilder_ == null) {
         if (queryOptions_ != null) {
-          queryOptions_ =
-              com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.newBuilder(queryOptions_)
-                  .mergeFrom(value)
-                  .buildPartial();
+          queryOptions_ = QueryOptions.newBuilder(queryOptions_).mergeFrom(value).buildPartial();
         } else {
           queryOptions_ = value;
         }
@@ -3537,7 +3541,7 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * <code>.google.spanner.v1.ExecuteSqlRequest.QueryOptions query_options = 10;</code>
      */
-    public com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.Builder getQueryOptionsBuilder() {
+    public QueryOptions.Builder getQueryOptionsBuilder() {
 
       onChanged();
       return getQueryOptionsFieldBuilder().getBuilder();
@@ -3551,14 +3555,11 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      *
      * <code>.google.spanner.v1.ExecuteSqlRequest.QueryOptions query_options = 10;</code>
      */
-    public com.google.spanner.v1.ExecuteSqlRequest.QueryOptionsOrBuilder
-        getQueryOptionsOrBuilder() {
+    public QueryOptionsOrBuilder getQueryOptionsOrBuilder() {
       if (queryOptionsBuilder_ != null) {
         return queryOptionsBuilder_.getMessageOrBuilder();
       } else {
-        return queryOptions_ == null
-            ? com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.getDefaultInstance()
-            : queryOptions_;
+        return queryOptions_ == null ? QueryOptions.getDefaultInstance() : queryOptions_;
       }
     }
     /**
@@ -3571,28 +3572,197 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
      * <code>.google.spanner.v1.ExecuteSqlRequest.QueryOptions query_options = 10;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-            com.google.spanner.v1.ExecuteSqlRequest.QueryOptions,
-            com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.Builder,
-            com.google.spanner.v1.ExecuteSqlRequest.QueryOptionsOrBuilder>
+            QueryOptions, QueryOptions.Builder, QueryOptionsOrBuilder>
         getQueryOptionsFieldBuilder() {
       if (queryOptionsBuilder_ == null) {
         queryOptionsBuilder_ =
             new com.google.protobuf.SingleFieldBuilderV3<
-                com.google.spanner.v1.ExecuteSqlRequest.QueryOptions,
-                com.google.spanner.v1.ExecuteSqlRequest.QueryOptions.Builder,
-                com.google.spanner.v1.ExecuteSqlRequest.QueryOptionsOrBuilder>(
+                QueryOptions, QueryOptions.Builder, QueryOptionsOrBuilder>(
                 getQueryOptions(), getParentForChildren(), isClean());
         queryOptions_ = null;
       }
       return queryOptionsBuilder_;
     }
 
-    @java.lang.Override
+    private RequestOptions requestOptions_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+            RequestOptions, RequestOptions.Builder, RequestOptionsOrBuilder>
+        requestOptionsBuilder_;
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     *
+     * @return Whether the requestOptions field is set.
+     */
+    public boolean hasRequestOptions() {
+      return requestOptionsBuilder_ != null || requestOptions_ != null;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     *
+     * @return The requestOptions.
+     */
+    public RequestOptions getRequestOptions() {
+      if (requestOptionsBuilder_ == null) {
+        return requestOptions_ == null ? RequestOptions.getDefaultInstance() : requestOptions_;
+      } else {
+        return requestOptionsBuilder_.getMessage();
+      }
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     */
+    public Builder setRequestOptions(RequestOptions value) {
+      if (requestOptionsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        requestOptions_ = value;
+        onChanged();
+      } else {
+        requestOptionsBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     */
+    public Builder setRequestOptions(RequestOptions.Builder builderForValue) {
+      if (requestOptionsBuilder_ == null) {
+        requestOptions_ = builderForValue.build();
+        onChanged();
+      } else {
+        requestOptionsBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     */
+    public Builder mergeRequestOptions(RequestOptions value) {
+      if (requestOptionsBuilder_ == null) {
+        if (requestOptions_ != null) {
+          requestOptions_ =
+              RequestOptions.newBuilder(requestOptions_).mergeFrom(value).buildPartial();
+        } else {
+          requestOptions_ = value;
+        }
+        onChanged();
+      } else {
+        requestOptionsBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     */
+    public Builder clearRequestOptions() {
+      if (requestOptionsBuilder_ == null) {
+        requestOptions_ = null;
+        onChanged();
+      } else {
+        requestOptions_ = null;
+        requestOptionsBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     */
+    public RequestOptions.Builder getRequestOptionsBuilder() {
+
+      onChanged();
+      return getRequestOptionsFieldBuilder().getBuilder();
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     */
+    public RequestOptionsOrBuilder getRequestOptionsOrBuilder() {
+      if (requestOptionsBuilder_ != null) {
+        return requestOptionsBuilder_.getMessageOrBuilder();
+      } else {
+        return requestOptions_ == null ? RequestOptions.getDefaultInstance() : requestOptions_;
+      }
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+            RequestOptions, RequestOptions.Builder, RequestOptionsOrBuilder>
+        getRequestOptionsFieldBuilder() {
+      if (requestOptionsBuilder_ == null) {
+        requestOptionsBuilder_ =
+            new com.google.protobuf.SingleFieldBuilderV3<
+                RequestOptions, RequestOptions.Builder, RequestOptionsOrBuilder>(
+                getRequestOptions(), getParentForChildren(), isClean());
+        requestOptions_ = null;
+      }
+      return requestOptionsBuilder_;
+    }
+
+    @Override
     public final Builder setUnknownFields(final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.setUnknownFields(unknownFields);
     }
 
-    @java.lang.Override
+    @Override
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.mergeUnknownFields(unknownFields);
@@ -3602,19 +3772,19 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
   }
 
   // @@protoc_insertion_point(class_scope:google.spanner.v1.ExecuteSqlRequest)
-  private static final com.google.spanner.v1.ExecuteSqlRequest DEFAULT_INSTANCE;
+  private static final ExecuteSqlRequest DEFAULT_INSTANCE;
 
   static {
-    DEFAULT_INSTANCE = new com.google.spanner.v1.ExecuteSqlRequest();
+    DEFAULT_INSTANCE = new ExecuteSqlRequest();
   }
 
-  public static com.google.spanner.v1.ExecuteSqlRequest getDefaultInstance() {
+  public static ExecuteSqlRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
   private static final com.google.protobuf.Parser<ExecuteSqlRequest> PARSER =
       new com.google.protobuf.AbstractParser<ExecuteSqlRequest>() {
-        @java.lang.Override
+        @Override
         public ExecuteSqlRequest parsePartialFrom(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3627,13 +3797,13 @@ public final class ExecuteSqlRequest extends com.google.protobuf.GeneratedMessag
     return PARSER;
   }
 
-  @java.lang.Override
+  @Override
   public com.google.protobuf.Parser<ExecuteSqlRequest> getParserForType() {
     return PARSER;
   }
 
-  @java.lang.Override
-  public com.google.spanner.v1.ExecuteSqlRequest getDefaultInstanceForType() {
+  @Override
+  public ExecuteSqlRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 }

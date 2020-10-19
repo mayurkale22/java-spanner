@@ -61,10 +61,10 @@ public interface DatabaseClient {
    * mutations} more than once; if the mutations are not idempotent, this may lead to a failure
    * being reported when the mutation was applied once. For example, an insert may fail with {@link
    * ErrorCode#ALREADY_EXISTS} even though the row did not exist before this method was called. For
-   * this reason, most users of the library will prefer to use {@link #write(Iterable)} instead.
-   * However, {@code writeAtLeastOnce()} requires only a single RPC, whereas {@code write()}
-   * requires two RPCs (one of which may be performed in advance), and so this method may be
-   * appropriate for latency sensitive and/or high throughput blind writing.
+   * this reason, most users of the library will prefer to use {@link #write(Iterable,
+   * WriteOption...)} instead. However, {@code writeAtLeastOnce()} requires only a single RPC,
+   * whereas {@code write()} requires two RPCs (one of which may be performed in advance), and so
+   * this method may be appropriate for latency sensitive and/or high throughput blind writing.
    *
    * <p>Example of unprotected blind write.
    *
@@ -418,7 +418,8 @@ public interface DatabaseClient {
    * execution strategy that provides different, and often better, scalability properties for large,
    * table-wide operations than DML in a {@link #readWriteTransaction()} transaction. Smaller scoped
    * statements, such as an OLTP workload, should prefer using {@link
-   * TransactionContext#executeUpdate(Statement)} with {@link #readWriteTransaction()}.
+   * TransactionContext#executeUpdate(Statement, UpdateOption...)} with {@link
+   * #readWriteTransaction()}.
    *
    * <p>That said, Partitioned DML is not a drop-in replacement for standard DML used in {@link
    * #readWriteTransaction()}.

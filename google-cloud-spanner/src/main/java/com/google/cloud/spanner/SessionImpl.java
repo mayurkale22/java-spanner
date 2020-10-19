@@ -38,6 +38,7 @@ import com.google.protobuf.Empty;
 import com.google.spanner.v1.BeginTransactionRequest;
 import com.google.spanner.v1.CommitRequest;
 import com.google.spanner.v1.CommitResponse;
+import com.google.spanner.v1.RequestOptions;
 import com.google.spanner.v1.Transaction;
 import com.google.spanner.v1.TransactionOptions;
 import io.opencensus.common.Scope;
@@ -148,17 +149,22 @@ class SessionImpl implements Session {
     setActive(null);
     List<com.google.spanner.v1.Mutation> mutationsProto = new ArrayList<>();
     Mutation.toProto(mutations, mutationsProto);
-    final CommitRequest request =
+    final CommitRequest.Builder builder =
         CommitRequest.newBuilder()
             .setSession(name)
             .addAllMutations(mutationsProto)
             .setSingleUseTransaction(
                 TransactionOptions.newBuilder()
-                    .setReadWrite(TransactionOptions.ReadWrite.getDefaultInstance()))
-            .build();
+                    .setReadWrite(TransactionOptions.ReadWrite.getDefaultInstance()));
+
+    Options opts = Options.fromWriteOptions(writeOptions);
+    if (opts.hasTag()) {
+      builder.setRequestOptions(RequestOptions.newBuilder().setTransactionTag(opts.tag()).build());
+    }
+
     Span span = tracer.spanBuilder(SpannerImpl.COMMIT).startSpan();
     try (Scope s = tracer.withSpan(span)) {
-      CommitResponse response = spanner.getRpc().commit(request, options);
+      CommitResponse response = spanner.getRpc().commit(builder.build(), options);
       Timestamp t = Timestamp.fromProto(response.getCommitTimestamp());
       return t;
     } catch (IllegalArgumentException e) {

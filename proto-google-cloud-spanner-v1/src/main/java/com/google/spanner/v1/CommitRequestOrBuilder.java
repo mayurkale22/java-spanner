@@ -36,7 +36,7 @@ public interface CommitRequestOrBuilder
    *
    * @return The session.
    */
-  java.lang.String getSession();
+  String getSession();
   /**
    *
    *
@@ -104,7 +104,7 @@ public interface CommitRequestOrBuilder
    *
    * @return The singleUseTransaction.
    */
-  com.google.spanner.v1.TransactionOptions getSingleUseTransaction();
+  TransactionOptions getSingleUseTransaction();
   /**
    *
    *
@@ -122,7 +122,7 @@ public interface CommitRequestOrBuilder
    *
    * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
    */
-  com.google.spanner.v1.TransactionOptionsOrBuilder getSingleUseTransactionOrBuilder();
+  TransactionOptionsOrBuilder getSingleUseTransactionOrBuilder();
 
   /**
    *
@@ -135,7 +135,7 @@ public interface CommitRequestOrBuilder
    *
    * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
    */
-  java.util.List<com.google.spanner.v1.Mutation> getMutationsList();
+  java.util.List<Mutation> getMutationsList();
   /**
    *
    *
@@ -147,7 +147,7 @@ public interface CommitRequestOrBuilder
    *
    * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
    */
-  com.google.spanner.v1.Mutation getMutations(int index);
+  Mutation getMutations(int index);
   /**
    *
    *
@@ -171,7 +171,7 @@ public interface CommitRequestOrBuilder
    *
    * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
    */
-  java.util.List<? extends com.google.spanner.v1.MutationOrBuilder> getMutationsOrBuilderList();
+  java.util.List<? extends MutationOrBuilder> getMutationsOrBuilderList();
   /**
    *
    *
@@ -183,7 +183,42 @@ public interface CommitRequestOrBuilder
    *
    * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
    */
-  com.google.spanner.v1.MutationOrBuilder getMutationsOrBuilder(int index);
+  MutationOrBuilder getMutationsOrBuilder(int index);
 
-  public com.google.spanner.v1.CommitRequest.TransactionCase getTransactionCase();
+  /**
+   *
+   *
+   * <pre>
+   * Common options for this request.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
+   *
+   * @return Whether the requestOptions field is set.
+   */
+  boolean hasRequestOptions();
+  /**
+   *
+   *
+   * <pre>
+   * Common options for this request.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
+   *
+   * @return The requestOptions.
+   */
+  RequestOptions getRequestOptions();
+  /**
+   *
+   *
+   * <pre>
+   * Common options for this request.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
+   */
+  RequestOptionsOrBuilder getRequestOptionsOrBuilder();
+
+  public CommitRequest.TransactionCase getTransactionCase();
 }

@@ -25,6 +25,7 @@ import com.google.cloud.spanner.spi.v1.SpannerRpc;
 import com.google.spanner.v1.ExecuteSqlRequest;
 import com.google.spanner.v1.ExecuteSqlRequest.QueryMode;
 import com.google.spanner.v1.ExecuteSqlRequest.QueryOptions;
+import com.google.spanner.v1.RequestOptions;
 import com.google.spanner.v1.TransactionSelector;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -107,5 +108,18 @@ public class AbstractReadContextTest {
             .build();
     assertThat(request.getSql()).isEqualTo("SELECT FOO FROM BAR");
     assertThat(request.getQueryOptions().getOptimizerVersion()).isEqualTo("2.0");
+  }
+
+  @Test
+  public void executeSqlRequestBuilderWithRequestOptions() {
+    ExecuteSqlRequest request =
+        context
+            .getExecuteSqlRequestBuilder(
+                Statement.newBuilder("SELECT FOO FROM BAR").build(), QueryMode.NORMAL)
+            .setRequestOptions(RequestOptions.newBuilder().setRequestTag("tag-1").build())
+            .build();
+    assertThat(request.getSql()).isEqualTo("SELECT FOO FROM BAR");
+    assertThat(request.getRequestOptions().getRequestTag()).isEqualTo("tag-1");
+    assertThat(request.getRequestOptions().getTransactionTag()).isEmpty();
   }
 }

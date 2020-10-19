@@ -26,6 +26,8 @@ nosetests.xml
 # Built documentation
 docs/
 
+proto-google-cloud-spanner-v1/
+
 # Python utilities
 *.pyc
 

@@ -47,13 +47,13 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
     partitionToken_ = com.google.protobuf.ByteString.EMPTY;
   }
 
-  @java.lang.Override
+  @Override
   @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(UnusedPrivateParameter unused) {
+  protected Object newInstance(UnusedPrivateParameter unused) {
     return new ReadRequest();
   }
 
-  @java.lang.Override
+  @Override
   public final com.google.protobuf.UnknownFieldSet getUnknownFields() {
     return this.unknownFields;
   }
@@ -64,7 +64,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
+      throw new NullPointerException();
     }
     int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -79,20 +79,18 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
             break;
           case 10:
             {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               session_ = s;
               break;
             }
           case 18:
             {
-              com.google.spanner.v1.TransactionSelector.Builder subBuilder = null;
+              TransactionSelector.Builder subBuilder = null;
               if (transaction_ != null) {
                 subBuilder = transaction_.toBuilder();
               }
-              transaction_ =
-                  input.readMessage(
-                      com.google.spanner.v1.TransactionSelector.parser(), extensionRegistry);
+              transaction_ = input.readMessage(TransactionSelector.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(transaction_);
                 transaction_ = subBuilder.buildPartial();
@@ -102,21 +100,21 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
             }
           case 26:
             {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               table_ = s;
               break;
             }
           case 34:
             {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               index_ = s;
               break;
             }
           case 42:
             {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 columns_ = new com.google.protobuf.LazyStringArrayList();
                 mutable_bitField0_ |= 0x00000001;
@@ -126,11 +124,11 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
             }
           case 50:
             {
-              com.google.spanner.v1.KeySet.Builder subBuilder = null;
+              KeySet.Builder subBuilder = null;
               if (keySet_ != null) {
                 subBuilder = keySet_.toBuilder();
               }
-              keySet_ = input.readMessage(com.google.spanner.v1.KeySet.parser(), extensionRegistry);
+              keySet_ = input.readMessage(KeySet.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(keySet_);
                 keySet_ = subBuilder.buildPartial();
@@ -151,6 +149,20 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
           case 82:
             {
               partitionToken_ = input.readBytes();
+              break;
+            }
+          case 90:
+            {
+              RequestOptions.Builder subBuilder = null;
+              if (requestOptions_ != null) {
+                subBuilder = requestOptions_.toBuilder();
+              }
+              requestOptions_ = input.readMessage(RequestOptions.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(requestOptions_);
+                requestOptions_ = subBuilder.buildPartial();
+              }
+
               break;
             }
           default:
@@ -176,22 +188,17 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
-    return com.google.spanner.v1.SpannerProto
-        .internal_static_google_spanner_v1_ReadRequest_descriptor;
+    return SpannerProto.internal_static_google_spanner_v1_ReadRequest_descriptor;
   }
 
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-    return com.google.spanner.v1.SpannerProto
-        .internal_static_google_spanner_v1_ReadRequest_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            com.google.spanner.v1.ReadRequest.class,
-            com.google.spanner.v1.ReadRequest.Builder.class);
+  @Override
+  protected FieldAccessorTable internalGetFieldAccessorTable() {
+    return SpannerProto.internal_static_google_spanner_v1_ReadRequest_fieldAccessorTable
+        .ensureFieldAccessorsInitialized(ReadRequest.class, Builder.class);
   }
 
   public static final int SESSION_FIELD_NUMBER = 1;
-  private volatile java.lang.Object session_;
+  private volatile Object session_;
   /**
    *
    *
@@ -205,14 +212,14 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return The session.
    */
-  @java.lang.Override
-  public java.lang.String getSession() {
-    java.lang.Object ref = session_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
+  @Override
+  public String getSession() {
+    Object ref = session_;
+    if (ref instanceof String) {
+      return (String) ref;
     } else {
       com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
+      String s = bs.toStringUtf8();
       session_ = s;
       return s;
     }
@@ -230,12 +237,11 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return The bytes for session.
    */
-  @java.lang.Override
+  @Override
   public com.google.protobuf.ByteString getSessionBytes() {
-    java.lang.Object ref = session_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
+    Object ref = session_;
+    if (ref instanceof String) {
+      com.google.protobuf.ByteString b = com.google.protobuf.ByteString.copyFromUtf8((String) ref);
       session_ = b;
       return b;
     } else {
@@ -244,7 +250,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
   }
 
   public static final int TRANSACTION_FIELD_NUMBER = 2;
-  private com.google.spanner.v1.TransactionSelector transaction_;
+  private TransactionSelector transaction_;
   /**
    *
    *
@@ -257,7 +263,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return Whether the transaction field is set.
    */
-  @java.lang.Override
+  @Override
   public boolean hasTransaction() {
     return transaction_ != null;
   }
@@ -273,11 +279,9 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return The transaction.
    */
-  @java.lang.Override
-  public com.google.spanner.v1.TransactionSelector getTransaction() {
-    return transaction_ == null
-        ? com.google.spanner.v1.TransactionSelector.getDefaultInstance()
-        : transaction_;
+  @Override
+  public TransactionSelector getTransaction() {
+    return transaction_ == null ? TransactionSelector.getDefaultInstance() : transaction_;
   }
   /**
    *
@@ -289,13 +293,13 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
    */
-  @java.lang.Override
-  public com.google.spanner.v1.TransactionSelectorOrBuilder getTransactionOrBuilder() {
+  @Override
+  public TransactionSelectorOrBuilder getTransactionOrBuilder() {
     return getTransaction();
   }
 
   public static final int TABLE_FIELD_NUMBER = 3;
-  private volatile java.lang.Object table_;
+  private volatile Object table_;
   /**
    *
    *
@@ -307,14 +311,14 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return The table.
    */
-  @java.lang.Override
-  public java.lang.String getTable() {
-    java.lang.Object ref = table_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
+  @Override
+  public String getTable() {
+    Object ref = table_;
+    if (ref instanceof String) {
+      return (String) ref;
     } else {
       com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
+      String s = bs.toStringUtf8();
       table_ = s;
       return s;
     }
@@ -330,12 +334,11 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return The bytes for table.
    */
-  @java.lang.Override
+  @Override
   public com.google.protobuf.ByteString getTableBytes() {
-    java.lang.Object ref = table_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
+    Object ref = table_;
+    if (ref instanceof String) {
+      com.google.protobuf.ByteString b = com.google.protobuf.ByteString.copyFromUtf8((String) ref);
       table_ = b;
       return b;
     } else {
@@ -344,7 +347,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
   }
 
   public static final int INDEX_FIELD_NUMBER = 4;
-  private volatile java.lang.Object index_;
+  private volatile Object index_;
   /**
    *
    *
@@ -358,14 +361,14 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return The index.
    */
-  @java.lang.Override
-  public java.lang.String getIndex() {
-    java.lang.Object ref = index_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
+  @Override
+  public String getIndex() {
+    Object ref = index_;
+    if (ref instanceof String) {
+      return (String) ref;
     } else {
       com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
+      String s = bs.toStringUtf8();
       index_ = s;
       return s;
     }
@@ -383,12 +386,11 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return The bytes for index.
    */
-  @java.lang.Override
+  @Override
   public com.google.protobuf.ByteString getIndexBytes() {
-    java.lang.Object ref = index_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
+    Object ref = index_;
+    if (ref instanceof String) {
+      com.google.protobuf.ByteString b = com.google.protobuf.ByteString.copyFromUtf8((String) ref);
       index_ = b;
       return b;
     } else {
@@ -441,7 +443,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
    * @param index The index of the element to return.
    * @return The columns at the given index.
    */
-  public java.lang.String getColumns(int index) {
+  public String getColumns(int index) {
     return columns_.get(index);
   }
   /**
@@ -462,7 +464,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
   }
 
   public static final int KEY_SET_FIELD_NUMBER = 6;
-  private com.google.spanner.v1.KeySet keySet_;
+  private KeySet keySet_;
   /**
    *
    *
@@ -483,7 +485,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return Whether the keySet field is set.
    */
-  @java.lang.Override
+  @Override
   public boolean hasKeySet() {
     return keySet_ != null;
   }
@@ -507,9 +509,9 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return The keySet.
    */
-  @java.lang.Override
-  public com.google.spanner.v1.KeySet getKeySet() {
-    return keySet_ == null ? com.google.spanner.v1.KeySet.getDefaultInstance() : keySet_;
+  @Override
+  public KeySet getKeySet() {
+    return keySet_ == null ? KeySet.getDefaultInstance() : keySet_;
   }
   /**
    *
@@ -529,8 +531,8 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
    */
-  @java.lang.Override
-  public com.google.spanner.v1.KeySetOrBuilder getKeySetOrBuilder() {
+  @Override
+  public KeySetOrBuilder getKeySetOrBuilder() {
     return getKeySet();
   }
 
@@ -549,7 +551,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return The limit.
    */
-  @java.lang.Override
+  @Override
   public long getLimit() {
     return limit_;
   }
@@ -572,7 +574,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return The resumeToken.
    */
-  @java.lang.Override
+  @Override
   public com.google.protobuf.ByteString getResumeToken() {
     return resumeToken_;
   }
@@ -593,14 +595,60 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return The partitionToken.
    */
-  @java.lang.Override
+  @Override
   public com.google.protobuf.ByteString getPartitionToken() {
     return partitionToken_;
   }
 
+  public static final int REQUEST_OPTIONS_FIELD_NUMBER = 11;
+  private RequestOptions requestOptions_;
+  /**
+   *
+   *
+   * <pre>
+   * Common options for this request.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+   *
+   * @return Whether the requestOptions field is set.
+   */
+  @Override
+  public boolean hasRequestOptions() {
+    return requestOptions_ != null;
+  }
+  /**
+   *
+   *
+   * <pre>
+   * Common options for this request.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+   *
+   * @return The requestOptions.
+   */
+  @Override
+  public RequestOptions getRequestOptions() {
+    return requestOptions_ == null ? RequestOptions.getDefaultInstance() : requestOptions_;
+  }
+  /**
+   *
+   *
+   * <pre>
+   * Common options for this request.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+   */
+  @Override
+  public RequestOptionsOrBuilder getRequestOptionsOrBuilder() {
+    return getRequestOptions();
+  }
+
   private byte memoizedIsInitialized = -1;
 
-  @java.lang.Override
+  @Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
     if (isInitialized == 1) return true;
@@ -610,7 +658,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
     return true;
   }
 
-  @java.lang.Override
+  @Override
   public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
     if (!getSessionBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, session_);
@@ -639,10 +687,13 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
     if (!partitionToken_.isEmpty()) {
       output.writeBytes(10, partitionToken_);
     }
+    if (requestOptions_ != null) {
+      output.writeMessage(11, getRequestOptions());
+    }
     unknownFields.writeTo(output);
   }
 
-  @java.lang.Override
+  @Override
   public int getSerializedSize() {
     int size = memoizedSize;
     if (size != -1) return size;
@@ -680,20 +731,23 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
     if (!partitionToken_.isEmpty()) {
       size += com.google.protobuf.CodedOutputStream.computeBytesSize(10, partitionToken_);
     }
+    if (requestOptions_ != null) {
+      size += com.google.protobuf.CodedOutputStream.computeMessageSize(11, getRequestOptions());
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
+  @Override
+  public boolean equals(final Object obj) {
     if (obj == this) {
       return true;
     }
-    if (!(obj instanceof com.google.spanner.v1.ReadRequest)) {
+    if (!(obj instanceof ReadRequest)) {
       return super.equals(obj);
     }
-    com.google.spanner.v1.ReadRequest other = (com.google.spanner.v1.ReadRequest) obj;
+    ReadRequest other = (ReadRequest) obj;
 
     if (!getSession().equals(other.getSession())) return false;
     if (hasTransaction() != other.hasTransaction()) return false;
@@ -710,11 +764,15 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
     if (getLimit() != other.getLimit()) return false;
     if (!getResumeToken().equals(other.getResumeToken())) return false;
     if (!getPartitionToken().equals(other.getPartitionToken())) return false;
+    if (hasRequestOptions() != other.hasRequestOptions()) return false;
+    if (hasRequestOptions()) {
+      if (!getRequestOptions().equals(other.getRequestOptions())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
 
-  @java.lang.Override
+  @Override
   public int hashCode() {
     if (memoizedHashCode != 0) {
       return memoizedHashCode;
@@ -745,75 +803,78 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
     hash = (53 * hash) + getResumeToken().hashCode();
     hash = (37 * hash) + PARTITION_TOKEN_FIELD_NUMBER;
     hash = (53 * hash) + getPartitionToken().hashCode();
+    if (hasRequestOptions()) {
+      hash = (37 * hash) + REQUEST_OPTIONS_FIELD_NUMBER;
+      hash = (53 * hash) + getRequestOptions().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.google.spanner.v1.ReadRequest parseFrom(java.nio.ByteBuffer data)
+  public static ReadRequest parseFrom(java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
 
-  public static com.google.spanner.v1.ReadRequest parseFrom(
+  public static ReadRequest parseFrom(
       java.nio.ByteBuffer data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.ReadRequest parseFrom(com.google.protobuf.ByteString data)
+  public static ReadRequest parseFrom(com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
 
-  public static com.google.spanner.v1.ReadRequest parseFrom(
+  public static ReadRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.ReadRequest parseFrom(byte[] data)
+  public static ReadRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
 
-  public static com.google.spanner.v1.ReadRequest parseFrom(
+  public static ReadRequest parseFrom(
       byte[] data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.ReadRequest parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
+  public static ReadRequest parseFrom(java.io.InputStream input) throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseWithIOException(PARSER, input);
   }
 
-  public static com.google.spanner.v1.ReadRequest parseFrom(
+  public static ReadRequest parseFrom(
       java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseWithIOException(
         PARSER, input, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.ReadRequest parseDelimitedFrom(java.io.InputStream input)
+  public static ReadRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static com.google.spanner.v1.ReadRequest parseDelimitedFrom(
+  public static ReadRequest parseDelimitedFrom(
       java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseDelimitedWithIOException(
         PARSER, input, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.ReadRequest parseFrom(
-      com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+  public static ReadRequest parseFrom(com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseWithIOException(PARSER, input);
   }
 
-  public static com.google.spanner.v1.ReadRequest parseFrom(
+  public static ReadRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -821,7 +882,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
         PARSER, input, extensionRegistry);
   }
 
-  @java.lang.Override
+  @Override
   public Builder newBuilderForType() {
     return newBuilder();
   }
@@ -830,17 +891,17 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
     return DEFAULT_INSTANCE.toBuilder();
   }
 
-  public static Builder newBuilder(com.google.spanner.v1.ReadRequest prototype) {
+  public static Builder newBuilder(ReadRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
 
-  @java.lang.Override
+  @Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
   }
 
-  @java.lang.Override
-  protected Builder newBuilderForType(com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+  @Override
+  protected Builder newBuilderForType(BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
   }
@@ -857,20 +918,15 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
   public static final class Builder extends com.google.protobuf.GeneratedMessageV3.Builder<Builder>
       implements
       // @@protoc_insertion_point(builder_implements:google.spanner.v1.ReadRequest)
-      com.google.spanner.v1.ReadRequestOrBuilder {
+      ReadRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
-      return com.google.spanner.v1.SpannerProto
-          .internal_static_google_spanner_v1_ReadRequest_descriptor;
+      return SpannerProto.internal_static_google_spanner_v1_ReadRequest_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.google.spanner.v1.SpannerProto
-          .internal_static_google_spanner_v1_ReadRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.google.spanner.v1.ReadRequest.class,
-              com.google.spanner.v1.ReadRequest.Builder.class);
+    @Override
+    protected FieldAccessorTable internalGetFieldAccessorTable() {
+      return SpannerProto.internal_static_google_spanner_v1_ReadRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(ReadRequest.class, Builder.class);
     }
 
     // Construct using com.google.spanner.v1.ReadRequest.newBuilder()
@@ -878,7 +934,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
       maybeForceBuilderInitialization();
     }
 
-    private Builder(com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    private Builder(BuilderParent parent) {
       super(parent);
       maybeForceBuilderInitialization();
     }
@@ -887,7 +943,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
       if (com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders) {}
     }
 
-    @java.lang.Override
+    @Override
     public Builder clear() {
       super.clear();
       session_ = "";
@@ -916,32 +972,37 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
 
       partitionToken_ = com.google.protobuf.ByteString.EMPTY;
 
+      if (requestOptionsBuilder_ == null) {
+        requestOptions_ = null;
+      } else {
+        requestOptions_ = null;
+        requestOptionsBuilder_ = null;
+      }
       return this;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
-      return com.google.spanner.v1.SpannerProto
-          .internal_static_google_spanner_v1_ReadRequest_descriptor;
+      return SpannerProto.internal_static_google_spanner_v1_ReadRequest_descriptor;
     }
 
-    @java.lang.Override
-    public com.google.spanner.v1.ReadRequest getDefaultInstanceForType() {
-      return com.google.spanner.v1.ReadRequest.getDefaultInstance();
+    @Override
+    public ReadRequest getDefaultInstanceForType() {
+      return ReadRequest.getDefaultInstance();
     }
 
-    @java.lang.Override
-    public com.google.spanner.v1.ReadRequest build() {
-      com.google.spanner.v1.ReadRequest result = buildPartial();
+    @Override
+    public ReadRequest build() {
+      ReadRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    @java.lang.Override
-    public com.google.spanner.v1.ReadRequest buildPartial() {
-      com.google.spanner.v1.ReadRequest result = new com.google.spanner.v1.ReadRequest(this);
+    @Override
+    public ReadRequest buildPartial() {
+      ReadRequest result = new ReadRequest(this);
       int from_bitField0_ = bitField0_;
       result.session_ = session_;
       if (transactionBuilder_ == null) {
@@ -964,55 +1025,59 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
       result.limit_ = limit_;
       result.resumeToken_ = resumeToken_;
       result.partitionToken_ = partitionToken_;
+      if (requestOptionsBuilder_ == null) {
+        result.requestOptions_ = requestOptions_;
+      } else {
+        result.requestOptions_ = requestOptionsBuilder_.build();
+      }
       onBuilt();
       return result;
     }
 
-    @java.lang.Override
+    @Override
     public Builder clone() {
       return super.clone();
     }
 
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field, java.lang.Object value) {
+    @Override
+    public Builder setField(com.google.protobuf.Descriptors.FieldDescriptor field, Object value) {
       return super.setField(field, value);
     }
 
-    @java.lang.Override
+    @Override
     public Builder clearField(com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
 
-    @java.lang.Override
+    @Override
     public Builder clearOneof(com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
 
-    @java.lang.Override
+    @Override
     public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field, int index, java.lang.Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field, int index, Object value) {
       return super.setRepeatedField(field, index, value);
     }
 
-    @java.lang.Override
+    @Override
     public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field, java.lang.Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field, Object value) {
       return super.addRepeatedField(field, value);
     }
 
-    @java.lang.Override
+    @Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.google.spanner.v1.ReadRequest) {
-        return mergeFrom((com.google.spanner.v1.ReadRequest) other);
+      if (other instanceof ReadRequest) {
+        return mergeFrom((ReadRequest) other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.google.spanner.v1.ReadRequest other) {
-      if (other == com.google.spanner.v1.ReadRequest.getDefaultInstance()) return this;
+    public Builder mergeFrom(ReadRequest other) {
+      if (other == ReadRequest.getDefaultInstance()) return this;
       if (!other.getSession().isEmpty()) {
         session_ = other.session_;
         onChanged();
@@ -1050,26 +1115,29 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
       if (other.getPartitionToken() != com.google.protobuf.ByteString.EMPTY) {
         setPartitionToken(other.getPartitionToken());
       }
+      if (other.hasRequestOptions()) {
+        mergeRequestOptions(other.getRequestOptions());
+      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
 
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public Builder mergeFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.google.spanner.v1.ReadRequest parsedMessage = null;
+      ReadRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.google.spanner.v1.ReadRequest) e.getUnfinishedMessage();
+        parsedMessage = (ReadRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -1081,7 +1149,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
 
     private int bitField0_;
 
-    private java.lang.Object session_ = "";
+    private Object session_ = "";
     /**
      *
      *
@@ -1095,15 +1163,15 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * @return The session.
      */
-    public java.lang.String getSession() {
-      java.lang.Object ref = session_;
-      if (!(ref instanceof java.lang.String)) {
+    public String getSession() {
+      Object ref = session_;
+      if (!(ref instanceof String)) {
         com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         session_ = s;
         return s;
       } else {
-        return (java.lang.String) ref;
+        return (String) ref;
       }
     }
     /**
@@ -1120,10 +1188,10 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      * @return The bytes for session.
      */
     public com.google.protobuf.ByteString getSessionBytes() {
-      java.lang.Object ref = session_;
+      Object ref = session_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
         session_ = b;
         return b;
       } else {
@@ -1144,7 +1212,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      * @param value The session to set.
      * @return This builder for chaining.
      */
-    public Builder setSession(java.lang.String value) {
+    public Builder setSession(String value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1197,11 +1265,9 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
       return this;
     }
 
-    private com.google.spanner.v1.TransactionSelector transaction_;
+    private TransactionSelector transaction_;
     private com.google.protobuf.SingleFieldBuilderV3<
-            com.google.spanner.v1.TransactionSelector,
-            com.google.spanner.v1.TransactionSelector.Builder,
-            com.google.spanner.v1.TransactionSelectorOrBuilder>
+            TransactionSelector, TransactionSelector.Builder, TransactionSelectorOrBuilder>
         transactionBuilder_;
     /**
      *
@@ -1230,11 +1296,9 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * @return The transaction.
      */
-    public com.google.spanner.v1.TransactionSelector getTransaction() {
+    public TransactionSelector getTransaction() {
       if (transactionBuilder_ == null) {
-        return transaction_ == null
-            ? com.google.spanner.v1.TransactionSelector.getDefaultInstance()
-            : transaction_;
+        return transaction_ == null ? TransactionSelector.getDefaultInstance() : transaction_;
       } else {
         return transactionBuilder_.getMessage();
       }
@@ -1249,7 +1313,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
-    public Builder setTransaction(com.google.spanner.v1.TransactionSelector value) {
+    public Builder setTransaction(TransactionSelector value) {
       if (transactionBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -1272,8 +1336,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
-    public Builder setTransaction(
-        com.google.spanner.v1.TransactionSelector.Builder builderForValue) {
+    public Builder setTransaction(TransactionSelector.Builder builderForValue) {
       if (transactionBuilder_ == null) {
         transaction_ = builderForValue.build();
         onChanged();
@@ -1293,13 +1356,11 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
-    public Builder mergeTransaction(com.google.spanner.v1.TransactionSelector value) {
+    public Builder mergeTransaction(TransactionSelector value) {
       if (transactionBuilder_ == null) {
         if (transaction_ != null) {
           transaction_ =
-              com.google.spanner.v1.TransactionSelector.newBuilder(transaction_)
-                  .mergeFrom(value)
-                  .buildPartial();
+              TransactionSelector.newBuilder(transaction_).mergeFrom(value).buildPartial();
         } else {
           transaction_ = value;
         }
@@ -1341,7 +1402,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
-    public com.google.spanner.v1.TransactionSelector.Builder getTransactionBuilder() {
+    public TransactionSelector.Builder getTransactionBuilder() {
 
       onChanged();
       return getTransactionFieldBuilder().getBuilder();
@@ -1356,13 +1417,11 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
-    public com.google.spanner.v1.TransactionSelectorOrBuilder getTransactionOrBuilder() {
+    public TransactionSelectorOrBuilder getTransactionOrBuilder() {
       if (transactionBuilder_ != null) {
         return transactionBuilder_.getMessageOrBuilder();
       } else {
-        return transaction_ == null
-            ? com.google.spanner.v1.TransactionSelector.getDefaultInstance()
-            : transaction_;
+        return transaction_ == null ? TransactionSelector.getDefaultInstance() : transaction_;
       }
     }
     /**
@@ -1376,23 +1435,19 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-            com.google.spanner.v1.TransactionSelector,
-            com.google.spanner.v1.TransactionSelector.Builder,
-            com.google.spanner.v1.TransactionSelectorOrBuilder>
+            TransactionSelector, TransactionSelector.Builder, TransactionSelectorOrBuilder>
         getTransactionFieldBuilder() {
       if (transactionBuilder_ == null) {
         transactionBuilder_ =
             new com.google.protobuf.SingleFieldBuilderV3<
-                com.google.spanner.v1.TransactionSelector,
-                com.google.spanner.v1.TransactionSelector.Builder,
-                com.google.spanner.v1.TransactionSelectorOrBuilder>(
+                TransactionSelector, TransactionSelector.Builder, TransactionSelectorOrBuilder>(
                 getTransaction(), getParentForChildren(), isClean());
         transaction_ = null;
       }
       return transactionBuilder_;
     }
 
-    private java.lang.Object table_ = "";
+    private Object table_ = "";
     /**
      *
      *
@@ -1404,15 +1459,15 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * @return The table.
      */
-    public java.lang.String getTable() {
-      java.lang.Object ref = table_;
-      if (!(ref instanceof java.lang.String)) {
+    public String getTable() {
+      Object ref = table_;
+      if (!(ref instanceof String)) {
         com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         table_ = s;
         return s;
       } else {
-        return (java.lang.String) ref;
+        return (String) ref;
       }
     }
     /**
@@ -1427,10 +1482,10 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      * @return The bytes for table.
      */
     public com.google.protobuf.ByteString getTableBytes() {
-      java.lang.Object ref = table_;
+      Object ref = table_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
         table_ = b;
         return b;
       } else {
@@ -1449,7 +1504,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      * @param value The table to set.
      * @return This builder for chaining.
      */
-    public Builder setTable(java.lang.String value) {
+    public Builder setTable(String value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1498,7 +1553,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
       return this;
     }
 
-    private java.lang.Object index_ = "";
+    private Object index_ = "";
     /**
      *
      *
@@ -1512,15 +1567,15 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * @return The index.
      */
-    public java.lang.String getIndex() {
-      java.lang.Object ref = index_;
-      if (!(ref instanceof java.lang.String)) {
+    public String getIndex() {
+      Object ref = index_;
+      if (!(ref instanceof String)) {
         com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         index_ = s;
         return s;
       } else {
-        return (java.lang.String) ref;
+        return (String) ref;
       }
     }
     /**
@@ -1537,10 +1592,10 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      * @return The bytes for index.
      */
     public com.google.protobuf.ByteString getIndexBytes() {
-      java.lang.Object ref = index_;
+      Object ref = index_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
         index_ = b;
         return b;
       } else {
@@ -1561,7 +1616,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      * @param value The index to set.
      * @return This builder for chaining.
      */
-    public Builder setIndex(java.lang.String value) {
+    public Builder setIndex(String value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1666,7 +1721,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      * @param index The index of the element to return.
      * @return The columns at the given index.
      */
-    public java.lang.String getColumns(int index) {
+    public String getColumns(int index) {
       return columns_.get(index);
     }
     /**
@@ -1699,7 +1754,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      * @param value The columns to set.
      * @return This builder for chaining.
      */
-    public Builder setColumns(int index, java.lang.String value) {
+    public Builder setColumns(int index, String value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1721,7 +1776,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      * @param value The columns to add.
      * @return This builder for chaining.
      */
-    public Builder addColumns(java.lang.String value) {
+    public Builder addColumns(String value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1743,7 +1798,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      * @param values The columns to add.
      * @return This builder for chaining.
      */
-    public Builder addAllColumns(java.lang.Iterable<java.lang.String> values) {
+    public Builder addAllColumns(Iterable<String> values) {
       ensureColumnsIsMutable();
       com.google.protobuf.AbstractMessageLite.Builder.addAll(values, columns_);
       onChanged();
@@ -1791,11 +1846,8 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
       return this;
     }
 
-    private com.google.spanner.v1.KeySet keySet_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-            com.google.spanner.v1.KeySet,
-            com.google.spanner.v1.KeySet.Builder,
-            com.google.spanner.v1.KeySetOrBuilder>
+    private KeySet keySet_;
+    private com.google.protobuf.SingleFieldBuilderV3<KeySet, KeySet.Builder, KeySetOrBuilder>
         keySetBuilder_;
     /**
      *
@@ -1840,9 +1892,9 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * @return The keySet.
      */
-    public com.google.spanner.v1.KeySet getKeySet() {
+    public KeySet getKeySet() {
       if (keySetBuilder_ == null) {
-        return keySet_ == null ? com.google.spanner.v1.KeySet.getDefaultInstance() : keySet_;
+        return keySet_ == null ? KeySet.getDefaultInstance() : keySet_;
       } else {
         return keySetBuilder_.getMessage();
       }
@@ -1865,7 +1917,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    public Builder setKeySet(com.google.spanner.v1.KeySet value) {
+    public Builder setKeySet(KeySet value) {
       if (keySetBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -1896,7 +1948,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    public Builder setKeySet(com.google.spanner.v1.KeySet.Builder builderForValue) {
+    public Builder setKeySet(KeySet.Builder builderForValue) {
       if (keySetBuilder_ == null) {
         keySet_ = builderForValue.build();
         onChanged();
@@ -1924,11 +1976,10 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    public Builder mergeKeySet(com.google.spanner.v1.KeySet value) {
+    public Builder mergeKeySet(KeySet value) {
       if (keySetBuilder_ == null) {
         if (keySet_ != null) {
-          keySet_ =
-              com.google.spanner.v1.KeySet.newBuilder(keySet_).mergeFrom(value).buildPartial();
+          keySet_ = KeySet.newBuilder(keySet_).mergeFrom(value).buildPartial();
         } else {
           keySet_ = value;
         }
@@ -1986,7 +2037,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    public com.google.spanner.v1.KeySet.Builder getKeySetBuilder() {
+    public KeySet.Builder getKeySetBuilder() {
 
       onChanged();
       return getKeySetFieldBuilder().getBuilder();
@@ -2009,11 +2060,11 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    public com.google.spanner.v1.KeySetOrBuilder getKeySetOrBuilder() {
+    public KeySetOrBuilder getKeySetOrBuilder() {
       if (keySetBuilder_ != null) {
         return keySetBuilder_.getMessageOrBuilder();
       } else {
-        return keySet_ == null ? com.google.spanner.v1.KeySet.getDefaultInstance() : keySet_;
+        return keySet_ == null ? KeySet.getDefaultInstance() : keySet_;
       }
     }
     /**
@@ -2034,17 +2085,11 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private com.google.protobuf.SingleFieldBuilderV3<
-            com.google.spanner.v1.KeySet,
-            com.google.spanner.v1.KeySet.Builder,
-            com.google.spanner.v1.KeySetOrBuilder>
+    private com.google.protobuf.SingleFieldBuilderV3<KeySet, KeySet.Builder, KeySetOrBuilder>
         getKeySetFieldBuilder() {
       if (keySetBuilder_ == null) {
         keySetBuilder_ =
-            new com.google.protobuf.SingleFieldBuilderV3<
-                com.google.spanner.v1.KeySet,
-                com.google.spanner.v1.KeySet.Builder,
-                com.google.spanner.v1.KeySetOrBuilder>(
+            new com.google.protobuf.SingleFieldBuilderV3<KeySet, KeySet.Builder, KeySetOrBuilder>(
                 getKeySet(), getParentForChildren(), isClean());
         keySet_ = null;
       }
@@ -2065,7 +2110,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * @return The limit.
      */
-    @java.lang.Override
+    @Override
     public long getLimit() {
       return limit_;
     }
@@ -2126,7 +2171,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * @return The resumeToken.
      */
-    @java.lang.Override
+    @Override
     public com.google.protobuf.ByteString getResumeToken() {
       return resumeToken_;
     }
@@ -2194,7 +2239,7 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * @return The partitionToken.
      */
-    @java.lang.Override
+    @Override
     public com.google.protobuf.ByteString getPartitionToken() {
       return partitionToken_;
     }
@@ -2243,12 +2288,185 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
       return this;
     }
 
-    @java.lang.Override
+    private RequestOptions requestOptions_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+            RequestOptions, RequestOptions.Builder, RequestOptionsOrBuilder>
+        requestOptionsBuilder_;
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     *
+     * @return Whether the requestOptions field is set.
+     */
+    public boolean hasRequestOptions() {
+      return requestOptionsBuilder_ != null || requestOptions_ != null;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     *
+     * @return The requestOptions.
+     */
+    public RequestOptions getRequestOptions() {
+      if (requestOptionsBuilder_ == null) {
+        return requestOptions_ == null ? RequestOptions.getDefaultInstance() : requestOptions_;
+      } else {
+        return requestOptionsBuilder_.getMessage();
+      }
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     */
+    public Builder setRequestOptions(RequestOptions value) {
+      if (requestOptionsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        requestOptions_ = value;
+        onChanged();
+      } else {
+        requestOptionsBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     */
+    public Builder setRequestOptions(RequestOptions.Builder builderForValue) {
+      if (requestOptionsBuilder_ == null) {
+        requestOptions_ = builderForValue.build();
+        onChanged();
+      } else {
+        requestOptionsBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     */
+    public Builder mergeRequestOptions(RequestOptions value) {
+      if (requestOptionsBuilder_ == null) {
+        if (requestOptions_ != null) {
+          requestOptions_ =
+              RequestOptions.newBuilder(requestOptions_).mergeFrom(value).buildPartial();
+        } else {
+          requestOptions_ = value;
+        }
+        onChanged();
+      } else {
+        requestOptionsBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     */
+    public Builder clearRequestOptions() {
+      if (requestOptionsBuilder_ == null) {
+        requestOptions_ = null;
+        onChanged();
+      } else {
+        requestOptions_ = null;
+        requestOptionsBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     */
+    public RequestOptions.Builder getRequestOptionsBuilder() {
+
+      onChanged();
+      return getRequestOptionsFieldBuilder().getBuilder();
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     */
+    public RequestOptionsOrBuilder getRequestOptionsOrBuilder() {
+      if (requestOptionsBuilder_ != null) {
+        return requestOptionsBuilder_.getMessageOrBuilder();
+      } else {
+        return requestOptions_ == null ? RequestOptions.getDefaultInstance() : requestOptions_;
+      }
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+            RequestOptions, RequestOptions.Builder, RequestOptionsOrBuilder>
+        getRequestOptionsFieldBuilder() {
+      if (requestOptionsBuilder_ == null) {
+        requestOptionsBuilder_ =
+            new com.google.protobuf.SingleFieldBuilderV3<
+                RequestOptions, RequestOptions.Builder, RequestOptionsOrBuilder>(
+                getRequestOptions(), getParentForChildren(), isClean());
+        requestOptions_ = null;
+      }
+      return requestOptionsBuilder_;
+    }
+
+    @Override
     public final Builder setUnknownFields(final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.setUnknownFields(unknownFields);
     }
 
-    @java.lang.Override
+    @Override
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.mergeUnknownFields(unknownFields);
@@ -2258,19 +2476,19 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
   }
 
   // @@protoc_insertion_point(class_scope:google.spanner.v1.ReadRequest)
-  private static final com.google.spanner.v1.ReadRequest DEFAULT_INSTANCE;
+  private static final ReadRequest DEFAULT_INSTANCE;
 
   static {
-    DEFAULT_INSTANCE = new com.google.spanner.v1.ReadRequest();
+    DEFAULT_INSTANCE = new ReadRequest();
   }
 
-  public static com.google.spanner.v1.ReadRequest getDefaultInstance() {
+  public static ReadRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
   private static final com.google.protobuf.Parser<ReadRequest> PARSER =
       new com.google.protobuf.AbstractParser<ReadRequest>() {
-        @java.lang.Override
+        @Override
         public ReadRequest parsePartialFrom(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2283,13 +2501,13 @@ public final class ReadRequest extends com.google.protobuf.GeneratedMessageV3
     return PARSER;
   }
 
-  @java.lang.Override
+  @Override
   public com.google.protobuf.Parser<ReadRequest> getParserForType() {
     return PARSER;
   }
 
-  @java.lang.Override
-  public com.google.spanner.v1.ReadRequest getDefaultInstanceForType() {
+  @Override
+  public ReadRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 }

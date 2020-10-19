@@ -42,13 +42,13 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
     mutations_ = java.util.Collections.emptyList();
   }
 
-  @java.lang.Override
+  @Override
   @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(UnusedPrivateParameter unused) {
+  protected Object newInstance(UnusedPrivateParameter unused) {
     return new CommitRequest();
   }
 
-  @java.lang.Override
+  @Override
   public final com.google.protobuf.UnknownFieldSet getUnknownFields() {
     return this.unknownFields;
   }
@@ -59,7 +59,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
+      throw new NullPointerException();
     }
     int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -74,7 +74,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
             break;
           case 10:
             {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               session_ = s;
               break;
@@ -87,15 +87,13 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
             }
           case 26:
             {
-              com.google.spanner.v1.TransactionOptions.Builder subBuilder = null;
+              TransactionOptions.Builder subBuilder = null;
               if (transactionCase_ == 3) {
-                subBuilder = ((com.google.spanner.v1.TransactionOptions) transaction_).toBuilder();
+                subBuilder = ((TransactionOptions) transaction_).toBuilder();
               }
-              transaction_ =
-                  input.readMessage(
-                      com.google.spanner.v1.TransactionOptions.parser(), extensionRegistry);
+              transaction_ = input.readMessage(TransactionOptions.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom((com.google.spanner.v1.TransactionOptions) transaction_);
+                subBuilder.mergeFrom((TransactionOptions) transaction_);
                 transaction_ = subBuilder.buildPartial();
               }
               transactionCase_ = 3;
@@ -104,11 +102,24 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
           case 34:
             {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                mutations_ = new java.util.ArrayList<com.google.spanner.v1.Mutation>();
+                mutations_ = new java.util.ArrayList<Mutation>();
                 mutable_bitField0_ |= 0x00000001;
               }
-              mutations_.add(
-                  input.readMessage(com.google.spanner.v1.Mutation.parser(), extensionRegistry));
+              mutations_.add(input.readMessage(Mutation.parser(), extensionRegistry));
+              break;
+            }
+          case 50:
+            {
+              RequestOptions.Builder subBuilder = null;
+              if (requestOptions_ != null) {
+                subBuilder = requestOptions_.toBuilder();
+              }
+              requestOptions_ = input.readMessage(RequestOptions.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(requestOptions_);
+                requestOptions_ = subBuilder.buildPartial();
+              }
+
               break;
             }
           default:
@@ -134,27 +145,19 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
-    return com.google.spanner.v1.SpannerProto
-        .internal_static_google_spanner_v1_CommitRequest_descriptor;
+    return SpannerProto.internal_static_google_spanner_v1_CommitRequest_descriptor;
   }
 
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-    return com.google.spanner.v1.SpannerProto
-        .internal_static_google_spanner_v1_CommitRequest_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            com.google.spanner.v1.CommitRequest.class,
-            com.google.spanner.v1.CommitRequest.Builder.class);
+  @Override
+  protected FieldAccessorTable internalGetFieldAccessorTable() {
+    return SpannerProto.internal_static_google_spanner_v1_CommitRequest_fieldAccessorTable
+        .ensureFieldAccessorsInitialized(CommitRequest.class, Builder.class);
   }
 
   private int transactionCase_ = 0;
-  private java.lang.Object transaction_;
+  private Object transaction_;
 
-  public enum TransactionCase
-      implements
-          com.google.protobuf.Internal.EnumLite,
-          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+  public enum TransactionCase implements com.google.protobuf.Internal.EnumLite, InternalOneOfEnum {
     TRANSACTION_ID(2),
     SINGLE_USE_TRANSACTION(3),
     TRANSACTION_NOT_SET(0);
@@ -168,7 +171,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      * @return The enum associated with the given number.
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static TransactionCase valueOf(int value) {
       return forNumber(value);
     }
@@ -196,7 +199,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
   }
 
   public static final int SESSION_FIELD_NUMBER = 1;
-  private volatile java.lang.Object session_;
+  private volatile Object session_;
   /**
    *
    *
@@ -210,14 +213,14 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return The session.
    */
-  @java.lang.Override
-  public java.lang.String getSession() {
-    java.lang.Object ref = session_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
+  @Override
+  public String getSession() {
+    Object ref = session_;
+    if (ref instanceof String) {
+      return (String) ref;
     } else {
       com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
+      String s = bs.toStringUtf8();
       session_ = s;
       return s;
     }
@@ -235,12 +238,11 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return The bytes for session.
    */
-  @java.lang.Override
+  @Override
   public com.google.protobuf.ByteString getSessionBytes() {
-    java.lang.Object ref = session_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
+    Object ref = session_;
+    if (ref instanceof String) {
+      com.google.protobuf.ByteString b = com.google.protobuf.ByteString.copyFromUtf8((String) ref);
       session_ = b;
       return b;
     } else {
@@ -260,7 +262,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return The transactionId.
    */
-  @java.lang.Override
+  @Override
   public com.google.protobuf.ByteString getTransactionId() {
     if (transactionCase_ == 2) {
       return (com.google.protobuf.ByteString) transaction_;
@@ -288,7 +290,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return Whether the singleUseTransaction field is set.
    */
-  @java.lang.Override
+  @Override
   public boolean hasSingleUseTransaction() {
     return transactionCase_ == 3;
   }
@@ -311,12 +313,12 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * @return The singleUseTransaction.
    */
-  @java.lang.Override
-  public com.google.spanner.v1.TransactionOptions getSingleUseTransaction() {
+  @Override
+  public TransactionOptions getSingleUseTransaction() {
     if (transactionCase_ == 3) {
-      return (com.google.spanner.v1.TransactionOptions) transaction_;
+      return (TransactionOptions) transaction_;
     }
-    return com.google.spanner.v1.TransactionOptions.getDefaultInstance();
+    return TransactionOptions.getDefaultInstance();
   }
   /**
    *
@@ -335,16 +337,16 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
    */
-  @java.lang.Override
-  public com.google.spanner.v1.TransactionOptionsOrBuilder getSingleUseTransactionOrBuilder() {
+  @Override
+  public TransactionOptionsOrBuilder getSingleUseTransactionOrBuilder() {
     if (transactionCase_ == 3) {
-      return (com.google.spanner.v1.TransactionOptions) transaction_;
+      return (TransactionOptions) transaction_;
     }
-    return com.google.spanner.v1.TransactionOptions.getDefaultInstance();
+    return TransactionOptions.getDefaultInstance();
   }
 
   public static final int MUTATIONS_FIELD_NUMBER = 4;
-  private java.util.List<com.google.spanner.v1.Mutation> mutations_;
+  private java.util.List<Mutation> mutations_;
   /**
    *
    *
@@ -356,8 +358,8 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
    */
-  @java.lang.Override
-  public java.util.List<com.google.spanner.v1.Mutation> getMutationsList() {
+  @Override
+  public java.util.List<Mutation> getMutationsList() {
     return mutations_;
   }
   /**
@@ -371,9 +373,8 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
    */
-  @java.lang.Override
-  public java.util.List<? extends com.google.spanner.v1.MutationOrBuilder>
-      getMutationsOrBuilderList() {
+  @Override
+  public java.util.List<? extends MutationOrBuilder> getMutationsOrBuilderList() {
     return mutations_;
   }
   /**
@@ -387,7 +388,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
    */
-  @java.lang.Override
+  @Override
   public int getMutationsCount() {
     return mutations_.size();
   }
@@ -402,8 +403,8 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
    */
-  @java.lang.Override
-  public com.google.spanner.v1.Mutation getMutations(int index) {
+  @Override
+  public Mutation getMutations(int index) {
     return mutations_.get(index);
   }
   /**
@@ -417,14 +418,60 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
    *
    * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
    */
-  @java.lang.Override
-  public com.google.spanner.v1.MutationOrBuilder getMutationsOrBuilder(int index) {
+  @Override
+  public MutationOrBuilder getMutationsOrBuilder(int index) {
     return mutations_.get(index);
+  }
+
+  public static final int REQUEST_OPTIONS_FIELD_NUMBER = 6;
+  private RequestOptions requestOptions_;
+  /**
+   *
+   *
+   * <pre>
+   * Common options for this request.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
+   *
+   * @return Whether the requestOptions field is set.
+   */
+  @Override
+  public boolean hasRequestOptions() {
+    return requestOptions_ != null;
+  }
+  /**
+   *
+   *
+   * <pre>
+   * Common options for this request.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
+   *
+   * @return The requestOptions.
+   */
+  @Override
+  public RequestOptions getRequestOptions() {
+    return requestOptions_ == null ? RequestOptions.getDefaultInstance() : requestOptions_;
+  }
+  /**
+   *
+   *
+   * <pre>
+   * Common options for this request.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
+   */
+  @Override
+  public RequestOptionsOrBuilder getRequestOptionsOrBuilder() {
+    return getRequestOptions();
   }
 
   private byte memoizedIsInitialized = -1;
 
-  @java.lang.Override
+  @Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
     if (isInitialized == 1) return true;
@@ -434,7 +481,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
     return true;
   }
 
-  @java.lang.Override
+  @Override
   public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
     if (!getSessionBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, session_);
@@ -443,15 +490,18 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
       output.writeBytes(2, (com.google.protobuf.ByteString) transaction_);
     }
     if (transactionCase_ == 3) {
-      output.writeMessage(3, (com.google.spanner.v1.TransactionOptions) transaction_);
+      output.writeMessage(3, (TransactionOptions) transaction_);
     }
     for (int i = 0; i < mutations_.size(); i++) {
       output.writeMessage(4, mutations_.get(i));
     }
+    if (requestOptions_ != null) {
+      output.writeMessage(6, getRequestOptions());
+    }
     unknownFields.writeTo(output);
   }
 
-  @java.lang.Override
+  @Override
   public int getSerializedSize() {
     int size = memoizedSize;
     if (size != -1) return size;
@@ -468,28 +518,35 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
     if (transactionCase_ == 3) {
       size +=
           com.google.protobuf.CodedOutputStream.computeMessageSize(
-              3, (com.google.spanner.v1.TransactionOptions) transaction_);
+              3, (TransactionOptions) transaction_);
     }
     for (int i = 0; i < mutations_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream.computeMessageSize(4, mutations_.get(i));
+    }
+    if (requestOptions_ != null) {
+      size += com.google.protobuf.CodedOutputStream.computeMessageSize(6, getRequestOptions());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
+  @Override
+  public boolean equals(final Object obj) {
     if (obj == this) {
       return true;
     }
-    if (!(obj instanceof com.google.spanner.v1.CommitRequest)) {
+    if (!(obj instanceof CommitRequest)) {
       return super.equals(obj);
     }
-    com.google.spanner.v1.CommitRequest other = (com.google.spanner.v1.CommitRequest) obj;
+    CommitRequest other = (CommitRequest) obj;
 
     if (!getSession().equals(other.getSession())) return false;
     if (!getMutationsList().equals(other.getMutationsList())) return false;
+    if (hasRequestOptions() != other.hasRequestOptions()) return false;
+    if (hasRequestOptions()) {
+      if (!getRequestOptions().equals(other.getRequestOptions())) return false;
+    }
     if (!getTransactionCase().equals(other.getTransactionCase())) return false;
     switch (transactionCase_) {
       case 2:
@@ -505,7 +562,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
     return true;
   }
 
-  @java.lang.Override
+  @Override
   public int hashCode() {
     if (memoizedHashCode != 0) {
       return memoizedHashCode;
@@ -517,6 +574,10 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
     if (getMutationsCount() > 0) {
       hash = (37 * hash) + MUTATIONS_FIELD_NUMBER;
       hash = (53 * hash) + getMutationsList().hashCode();
+    }
+    if (hasRequestOptions()) {
+      hash = (37 * hash) + REQUEST_OPTIONS_FIELD_NUMBER;
+      hash = (53 * hash) + getRequestOptions().hashCode();
     }
     switch (transactionCase_) {
       case 2:
@@ -535,70 +596,69 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
     return hash;
   }
 
-  public static com.google.spanner.v1.CommitRequest parseFrom(java.nio.ByteBuffer data)
+  public static CommitRequest parseFrom(java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
 
-  public static com.google.spanner.v1.CommitRequest parseFrom(
+  public static CommitRequest parseFrom(
       java.nio.ByteBuffer data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.CommitRequest parseFrom(com.google.protobuf.ByteString data)
+  public static CommitRequest parseFrom(com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
 
-  public static com.google.spanner.v1.CommitRequest parseFrom(
+  public static CommitRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.CommitRequest parseFrom(byte[] data)
+  public static CommitRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
 
-  public static com.google.spanner.v1.CommitRequest parseFrom(
+  public static CommitRequest parseFrom(
       byte[] data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.CommitRequest parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
+  public static CommitRequest parseFrom(java.io.InputStream input) throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseWithIOException(PARSER, input);
   }
 
-  public static com.google.spanner.v1.CommitRequest parseFrom(
+  public static CommitRequest parseFrom(
       java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseWithIOException(
         PARSER, input, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.CommitRequest parseDelimitedFrom(java.io.InputStream input)
+  public static CommitRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static com.google.spanner.v1.CommitRequest parseDelimitedFrom(
+  public static CommitRequest parseDelimitedFrom(
       java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseDelimitedWithIOException(
         PARSER, input, extensionRegistry);
   }
 
-  public static com.google.spanner.v1.CommitRequest parseFrom(
-      com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+  public static CommitRequest parseFrom(com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3.parseWithIOException(PARSER, input);
   }
 
-  public static com.google.spanner.v1.CommitRequest parseFrom(
+  public static CommitRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -606,7 +666,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
         PARSER, input, extensionRegistry);
   }
 
-  @java.lang.Override
+  @Override
   public Builder newBuilderForType() {
     return newBuilder();
   }
@@ -615,17 +675,17 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
     return DEFAULT_INSTANCE.toBuilder();
   }
 
-  public static Builder newBuilder(com.google.spanner.v1.CommitRequest prototype) {
+  public static Builder newBuilder(CommitRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
 
-  @java.lang.Override
+  @Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
   }
 
-  @java.lang.Override
-  protected Builder newBuilderForType(com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+  @Override
+  protected Builder newBuilderForType(BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
   }
@@ -641,20 +701,15 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
   public static final class Builder extends com.google.protobuf.GeneratedMessageV3.Builder<Builder>
       implements
       // @@protoc_insertion_point(builder_implements:google.spanner.v1.CommitRequest)
-      com.google.spanner.v1.CommitRequestOrBuilder {
+      CommitRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
-      return com.google.spanner.v1.SpannerProto
-          .internal_static_google_spanner_v1_CommitRequest_descriptor;
+      return SpannerProto.internal_static_google_spanner_v1_CommitRequest_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.google.spanner.v1.SpannerProto
-          .internal_static_google_spanner_v1_CommitRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.google.spanner.v1.CommitRequest.class,
-              com.google.spanner.v1.CommitRequest.Builder.class);
+    @Override
+    protected FieldAccessorTable internalGetFieldAccessorTable() {
+      return SpannerProto.internal_static_google_spanner_v1_CommitRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(CommitRequest.class, Builder.class);
     }
 
     // Construct using com.google.spanner.v1.CommitRequest.newBuilder()
@@ -662,7 +717,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
       maybeForceBuilderInitialization();
     }
 
-    private Builder(com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    private Builder(BuilderParent parent) {
       super(parent);
       maybeForceBuilderInitialization();
     }
@@ -673,7 +728,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
       }
     }
 
-    @java.lang.Override
+    @Override
     public Builder clear() {
       super.clear();
       session_ = "";
@@ -684,34 +739,39 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
       } else {
         mutationsBuilder_.clear();
       }
+      if (requestOptionsBuilder_ == null) {
+        requestOptions_ = null;
+      } else {
+        requestOptions_ = null;
+        requestOptionsBuilder_ = null;
+      }
       transactionCase_ = 0;
       transaction_ = null;
       return this;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
-      return com.google.spanner.v1.SpannerProto
-          .internal_static_google_spanner_v1_CommitRequest_descriptor;
+      return SpannerProto.internal_static_google_spanner_v1_CommitRequest_descriptor;
     }
 
-    @java.lang.Override
-    public com.google.spanner.v1.CommitRequest getDefaultInstanceForType() {
-      return com.google.spanner.v1.CommitRequest.getDefaultInstance();
+    @Override
+    public CommitRequest getDefaultInstanceForType() {
+      return CommitRequest.getDefaultInstance();
     }
 
-    @java.lang.Override
-    public com.google.spanner.v1.CommitRequest build() {
-      com.google.spanner.v1.CommitRequest result = buildPartial();
+    @Override
+    public CommitRequest build() {
+      CommitRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    @java.lang.Override
-    public com.google.spanner.v1.CommitRequest buildPartial() {
-      com.google.spanner.v1.CommitRequest result = new com.google.spanner.v1.CommitRequest(this);
+    @Override
+    public CommitRequest buildPartial() {
+      CommitRequest result = new CommitRequest(this);
       int from_bitField0_ = bitField0_;
       result.session_ = session_;
       if (transactionCase_ == 2) {
@@ -733,56 +793,60 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
       } else {
         result.mutations_ = mutationsBuilder_.build();
       }
+      if (requestOptionsBuilder_ == null) {
+        result.requestOptions_ = requestOptions_;
+      } else {
+        result.requestOptions_ = requestOptionsBuilder_.build();
+      }
       result.transactionCase_ = transactionCase_;
       onBuilt();
       return result;
     }
 
-    @java.lang.Override
+    @Override
     public Builder clone() {
       return super.clone();
     }
 
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field, java.lang.Object value) {
+    @Override
+    public Builder setField(com.google.protobuf.Descriptors.FieldDescriptor field, Object value) {
       return super.setField(field, value);
     }
 
-    @java.lang.Override
+    @Override
     public Builder clearField(com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
 
-    @java.lang.Override
+    @Override
     public Builder clearOneof(com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
 
-    @java.lang.Override
+    @Override
     public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field, int index, java.lang.Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field, int index, Object value) {
       return super.setRepeatedField(field, index, value);
     }
 
-    @java.lang.Override
+    @Override
     public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field, java.lang.Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field, Object value) {
       return super.addRepeatedField(field, value);
     }
 
-    @java.lang.Override
+    @Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.google.spanner.v1.CommitRequest) {
-        return mergeFrom((com.google.spanner.v1.CommitRequest) other);
+      if (other instanceof CommitRequest) {
+        return mergeFrom((CommitRequest) other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.google.spanner.v1.CommitRequest other) {
-      if (other == com.google.spanner.v1.CommitRequest.getDefaultInstance()) return this;
+    public Builder mergeFrom(CommitRequest other) {
+      if (other == CommitRequest.getDefaultInstance()) return this;
       if (!other.getSession().isEmpty()) {
         session_ = other.session_;
         onChanged();
@@ -814,6 +878,9 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
           }
         }
       }
+      if (other.hasRequestOptions()) {
+        mergeRequestOptions(other.getRequestOptions());
+      }
       switch (other.getTransactionCase()) {
         case TRANSACTION_ID:
           {
@@ -835,21 +902,21 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
       return this;
     }
 
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public Builder mergeFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.google.spanner.v1.CommitRequest parsedMessage = null;
+      CommitRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.google.spanner.v1.CommitRequest) e.getUnfinishedMessage();
+        parsedMessage = (CommitRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -860,7 +927,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
     }
 
     private int transactionCase_ = 0;
-    private java.lang.Object transaction_;
+    private Object transaction_;
 
     public TransactionCase getTransactionCase() {
       return TransactionCase.forNumber(transactionCase_);
@@ -875,7 +942,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
 
     private int bitField0_;
 
-    private java.lang.Object session_ = "";
+    private Object session_ = "";
     /**
      *
      *
@@ -889,15 +956,15 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * @return The session.
      */
-    public java.lang.String getSession() {
-      java.lang.Object ref = session_;
-      if (!(ref instanceof java.lang.String)) {
+    public String getSession() {
+      Object ref = session_;
+      if (!(ref instanceof String)) {
         com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         session_ = s;
         return s;
       } else {
-        return (java.lang.String) ref;
+        return (String) ref;
       }
     }
     /**
@@ -914,10 +981,10 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      * @return The bytes for session.
      */
     public com.google.protobuf.ByteString getSessionBytes() {
-      java.lang.Object ref = session_;
+      Object ref = session_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
         session_ = b;
         return b;
       } else {
@@ -938,7 +1005,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      * @param value The session to set.
      * @return This builder for chaining.
      */
-    public Builder setSession(java.lang.String value) {
+    public Builder setSession(String value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1050,9 +1117,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
     }
 
     private com.google.protobuf.SingleFieldBuilderV3<
-            com.google.spanner.v1.TransactionOptions,
-            com.google.spanner.v1.TransactionOptions.Builder,
-            com.google.spanner.v1.TransactionOptionsOrBuilder>
+            TransactionOptions, TransactionOptions.Builder, TransactionOptionsOrBuilder>
         singleUseTransactionBuilder_;
     /**
      *
@@ -1073,7 +1138,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * @return Whether the singleUseTransaction field is set.
      */
-    @java.lang.Override
+    @Override
     public boolean hasSingleUseTransaction() {
       return transactionCase_ == 3;
     }
@@ -1096,18 +1161,18 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * @return The singleUseTransaction.
      */
-    @java.lang.Override
-    public com.google.spanner.v1.TransactionOptions getSingleUseTransaction() {
+    @Override
+    public TransactionOptions getSingleUseTransaction() {
       if (singleUseTransactionBuilder_ == null) {
         if (transactionCase_ == 3) {
-          return (com.google.spanner.v1.TransactionOptions) transaction_;
+          return (TransactionOptions) transaction_;
         }
-        return com.google.spanner.v1.TransactionOptions.getDefaultInstance();
+        return TransactionOptions.getDefaultInstance();
       } else {
         if (transactionCase_ == 3) {
           return singleUseTransactionBuilder_.getMessage();
         }
-        return com.google.spanner.v1.TransactionOptions.getDefaultInstance();
+        return TransactionOptions.getDefaultInstance();
       }
     }
     /**
@@ -1127,7 +1192,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
      */
-    public Builder setSingleUseTransaction(com.google.spanner.v1.TransactionOptions value) {
+    public Builder setSingleUseTransaction(TransactionOptions value) {
       if (singleUseTransactionBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -1157,8 +1222,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
      */
-    public Builder setSingleUseTransaction(
-        com.google.spanner.v1.TransactionOptions.Builder builderForValue) {
+    public Builder setSingleUseTransaction(TransactionOptions.Builder builderForValue) {
       if (singleUseTransactionBuilder_ == null) {
         transaction_ = builderForValue.build();
         onChanged();
@@ -1185,13 +1249,11 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
      */
-    public Builder mergeSingleUseTransaction(com.google.spanner.v1.TransactionOptions value) {
+    public Builder mergeSingleUseTransaction(TransactionOptions value) {
       if (singleUseTransactionBuilder_ == null) {
-        if (transactionCase_ == 3
-            && transaction_ != com.google.spanner.v1.TransactionOptions.getDefaultInstance()) {
+        if (transactionCase_ == 3 && transaction_ != TransactionOptions.getDefaultInstance()) {
           transaction_ =
-              com.google.spanner.v1.TransactionOptions.newBuilder(
-                      (com.google.spanner.v1.TransactionOptions) transaction_)
+              TransactionOptions.newBuilder((TransactionOptions) transaction_)
                   .mergeFrom(value)
                   .buildPartial();
         } else {
@@ -1257,7 +1319,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
      */
-    public com.google.spanner.v1.TransactionOptions.Builder getSingleUseTransactionBuilder() {
+    public TransactionOptions.Builder getSingleUseTransactionBuilder() {
       return getSingleUseTransactionFieldBuilder().getBuilder();
     }
     /**
@@ -1277,15 +1339,15 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
      */
-    @java.lang.Override
-    public com.google.spanner.v1.TransactionOptionsOrBuilder getSingleUseTransactionOrBuilder() {
+    @Override
+    public TransactionOptionsOrBuilder getSingleUseTransactionOrBuilder() {
       if ((transactionCase_ == 3) && (singleUseTransactionBuilder_ != null)) {
         return singleUseTransactionBuilder_.getMessageOrBuilder();
       } else {
         if (transactionCase_ == 3) {
-          return (com.google.spanner.v1.TransactionOptions) transaction_;
+          return (TransactionOptions) transaction_;
         }
-        return com.google.spanner.v1.TransactionOptions.getDefaultInstance();
+        return TransactionOptions.getDefaultInstance();
       }
     }
     /**
@@ -1306,22 +1368,16 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-            com.google.spanner.v1.TransactionOptions,
-            com.google.spanner.v1.TransactionOptions.Builder,
-            com.google.spanner.v1.TransactionOptionsOrBuilder>
+            TransactionOptions, TransactionOptions.Builder, TransactionOptionsOrBuilder>
         getSingleUseTransactionFieldBuilder() {
       if (singleUseTransactionBuilder_ == null) {
         if (!(transactionCase_ == 3)) {
-          transaction_ = com.google.spanner.v1.TransactionOptions.getDefaultInstance();
+          transaction_ = TransactionOptions.getDefaultInstance();
         }
         singleUseTransactionBuilder_ =
             new com.google.protobuf.SingleFieldBuilderV3<
-                com.google.spanner.v1.TransactionOptions,
-                com.google.spanner.v1.TransactionOptions.Builder,
-                com.google.spanner.v1.TransactionOptionsOrBuilder>(
-                (com.google.spanner.v1.TransactionOptions) transaction_,
-                getParentForChildren(),
-                isClean());
+                TransactionOptions, TransactionOptions.Builder, TransactionOptionsOrBuilder>(
+                (TransactionOptions) transaction_, getParentForChildren(), isClean());
         transaction_ = null;
       }
       transactionCase_ = 3;
@@ -1330,20 +1386,17 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
       return singleUseTransactionBuilder_;
     }
 
-    private java.util.List<com.google.spanner.v1.Mutation> mutations_ =
-        java.util.Collections.emptyList();
+    private java.util.List<Mutation> mutations_ = java.util.Collections.emptyList();
 
     private void ensureMutationsIsMutable() {
       if (!((bitField0_ & 0x00000001) != 0)) {
-        mutations_ = new java.util.ArrayList<com.google.spanner.v1.Mutation>(mutations_);
+        mutations_ = new java.util.ArrayList<Mutation>(mutations_);
         bitField0_ |= 0x00000001;
       }
     }
 
     private com.google.protobuf.RepeatedFieldBuilderV3<
-            com.google.spanner.v1.Mutation,
-            com.google.spanner.v1.Mutation.Builder,
-            com.google.spanner.v1.MutationOrBuilder>
+            Mutation, Mutation.Builder, MutationOrBuilder>
         mutationsBuilder_;
 
     /**
@@ -1357,7 +1410,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      */
-    public java.util.List<com.google.spanner.v1.Mutation> getMutationsList() {
+    public java.util.List<Mutation> getMutationsList() {
       if (mutationsBuilder_ == null) {
         return java.util.Collections.unmodifiableList(mutations_);
       } else {
@@ -1393,7 +1446,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      */
-    public com.google.spanner.v1.Mutation getMutations(int index) {
+    public Mutation getMutations(int index) {
       if (mutationsBuilder_ == null) {
         return mutations_.get(index);
       } else {
@@ -1411,7 +1464,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      */
-    public Builder setMutations(int index, com.google.spanner.v1.Mutation value) {
+    public Builder setMutations(int index, Mutation value) {
       if (mutationsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -1435,7 +1488,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      */
-    public Builder setMutations(int index, com.google.spanner.v1.Mutation.Builder builderForValue) {
+    public Builder setMutations(int index, Mutation.Builder builderForValue) {
       if (mutationsBuilder_ == null) {
         ensureMutationsIsMutable();
         mutations_.set(index, builderForValue.build());
@@ -1456,7 +1509,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      */
-    public Builder addMutations(com.google.spanner.v1.Mutation value) {
+    public Builder addMutations(Mutation value) {
       if (mutationsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -1480,7 +1533,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      */
-    public Builder addMutations(int index, com.google.spanner.v1.Mutation value) {
+    public Builder addMutations(int index, Mutation value) {
       if (mutationsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -1504,7 +1557,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      */
-    public Builder addMutations(com.google.spanner.v1.Mutation.Builder builderForValue) {
+    public Builder addMutations(Mutation.Builder builderForValue) {
       if (mutationsBuilder_ == null) {
         ensureMutationsIsMutable();
         mutations_.add(builderForValue.build());
@@ -1525,7 +1578,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      */
-    public Builder addMutations(int index, com.google.spanner.v1.Mutation.Builder builderForValue) {
+    public Builder addMutations(int index, Mutation.Builder builderForValue) {
       if (mutationsBuilder_ == null) {
         ensureMutationsIsMutable();
         mutations_.add(index, builderForValue.build());
@@ -1546,8 +1599,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      */
-    public Builder addAllMutations(
-        java.lang.Iterable<? extends com.google.spanner.v1.Mutation> values) {
+    public Builder addAllMutations(Iterable<? extends Mutation> values) {
       if (mutationsBuilder_ == null) {
         ensureMutationsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(values, mutations_);
@@ -1610,7 +1662,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      */
-    public com.google.spanner.v1.Mutation.Builder getMutationsBuilder(int index) {
+    public Mutation.Builder getMutationsBuilder(int index) {
       return getMutationsFieldBuilder().getBuilder(index);
     }
     /**
@@ -1624,7 +1676,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      */
-    public com.google.spanner.v1.MutationOrBuilder getMutationsOrBuilder(int index) {
+    public MutationOrBuilder getMutationsOrBuilder(int index) {
       if (mutationsBuilder_ == null) {
         return mutations_.get(index);
       } else {
@@ -1642,8 +1694,7 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      */
-    public java.util.List<? extends com.google.spanner.v1.MutationOrBuilder>
-        getMutationsOrBuilderList() {
+    public java.util.List<? extends MutationOrBuilder> getMutationsOrBuilderList() {
       if (mutationsBuilder_ != null) {
         return mutationsBuilder_.getMessageOrBuilderList();
       } else {
@@ -1661,9 +1712,8 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      */
-    public com.google.spanner.v1.Mutation.Builder addMutationsBuilder() {
-      return getMutationsFieldBuilder()
-          .addBuilder(com.google.spanner.v1.Mutation.getDefaultInstance());
+    public Mutation.Builder addMutationsBuilder() {
+      return getMutationsFieldBuilder().addBuilder(Mutation.getDefaultInstance());
     }
     /**
      *
@@ -1676,9 +1726,8 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      */
-    public com.google.spanner.v1.Mutation.Builder addMutationsBuilder(int index) {
-      return getMutationsFieldBuilder()
-          .addBuilder(index, com.google.spanner.v1.Mutation.getDefaultInstance());
+    public Mutation.Builder addMutationsBuilder(int index) {
+      return getMutationsFieldBuilder().addBuilder(index, Mutation.getDefaultInstance());
     }
     /**
      *
@@ -1691,33 +1740,202 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
      *
      * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      */
-    public java.util.List<com.google.spanner.v1.Mutation.Builder> getMutationsBuilderList() {
+    public java.util.List<Mutation.Builder> getMutationsBuilderList() {
       return getMutationsFieldBuilder().getBuilderList();
     }
 
     private com.google.protobuf.RepeatedFieldBuilderV3<
-            com.google.spanner.v1.Mutation,
-            com.google.spanner.v1.Mutation.Builder,
-            com.google.spanner.v1.MutationOrBuilder>
+            Mutation, Mutation.Builder, MutationOrBuilder>
         getMutationsFieldBuilder() {
       if (mutationsBuilder_ == null) {
         mutationsBuilder_ =
             new com.google.protobuf.RepeatedFieldBuilderV3<
-                com.google.spanner.v1.Mutation,
-                com.google.spanner.v1.Mutation.Builder,
-                com.google.spanner.v1.MutationOrBuilder>(
+                Mutation, Mutation.Builder, MutationOrBuilder>(
                 mutations_, ((bitField0_ & 0x00000001) != 0), getParentForChildren(), isClean());
         mutations_ = null;
       }
       return mutationsBuilder_;
     }
 
-    @java.lang.Override
+    private RequestOptions requestOptions_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+            RequestOptions, RequestOptions.Builder, RequestOptionsOrBuilder>
+        requestOptionsBuilder_;
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
+     *
+     * @return Whether the requestOptions field is set.
+     */
+    public boolean hasRequestOptions() {
+      return requestOptionsBuilder_ != null || requestOptions_ != null;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
+     *
+     * @return The requestOptions.
+     */
+    public RequestOptions getRequestOptions() {
+      if (requestOptionsBuilder_ == null) {
+        return requestOptions_ == null ? RequestOptions.getDefaultInstance() : requestOptions_;
+      } else {
+        return requestOptionsBuilder_.getMessage();
+      }
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
+     */
+    public Builder setRequestOptions(RequestOptions value) {
+      if (requestOptionsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        requestOptions_ = value;
+        onChanged();
+      } else {
+        requestOptionsBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
+     */
+    public Builder setRequestOptions(RequestOptions.Builder builderForValue) {
+      if (requestOptionsBuilder_ == null) {
+        requestOptions_ = builderForValue.build();
+        onChanged();
+      } else {
+        requestOptionsBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
+     */
+    public Builder mergeRequestOptions(RequestOptions value) {
+      if (requestOptionsBuilder_ == null) {
+        if (requestOptions_ != null) {
+          requestOptions_ =
+              RequestOptions.newBuilder(requestOptions_).mergeFrom(value).buildPartial();
+        } else {
+          requestOptions_ = value;
+        }
+        onChanged();
+      } else {
+        requestOptionsBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
+     */
+    public Builder clearRequestOptions() {
+      if (requestOptionsBuilder_ == null) {
+        requestOptions_ = null;
+        onChanged();
+      } else {
+        requestOptions_ = null;
+        requestOptionsBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
+     */
+    public RequestOptions.Builder getRequestOptionsBuilder() {
+
+      onChanged();
+      return getRequestOptionsFieldBuilder().getBuilder();
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
+     */
+    public RequestOptionsOrBuilder getRequestOptionsOrBuilder() {
+      if (requestOptionsBuilder_ != null) {
+        return requestOptionsBuilder_.getMessageOrBuilder();
+      } else {
+        return requestOptions_ == null ? RequestOptions.getDefaultInstance() : requestOptions_;
+      }
+    }
+    /**
+     *
+     *
+     * <pre>
+     * Common options for this request.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+            RequestOptions, RequestOptions.Builder, RequestOptionsOrBuilder>
+        getRequestOptionsFieldBuilder() {
+      if (requestOptionsBuilder_ == null) {
+        requestOptionsBuilder_ =
+            new com.google.protobuf.SingleFieldBuilderV3<
+                RequestOptions, RequestOptions.Builder, RequestOptionsOrBuilder>(
+                getRequestOptions(), getParentForChildren(), isClean());
+        requestOptions_ = null;
+      }
+      return requestOptionsBuilder_;
+    }
+
+    @Override
     public final Builder setUnknownFields(final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.setUnknownFields(unknownFields);
     }
 
-    @java.lang.Override
+    @Override
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.mergeUnknownFields(unknownFields);
@@ -1727,19 +1945,19 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
   }
 
   // @@protoc_insertion_point(class_scope:google.spanner.v1.CommitRequest)
-  private static final com.google.spanner.v1.CommitRequest DEFAULT_INSTANCE;
+  private static final CommitRequest DEFAULT_INSTANCE;
 
   static {
-    DEFAULT_INSTANCE = new com.google.spanner.v1.CommitRequest();
+    DEFAULT_INSTANCE = new CommitRequest();
   }
 
-  public static com.google.spanner.v1.CommitRequest getDefaultInstance() {
+  public static CommitRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
   private static final com.google.protobuf.Parser<CommitRequest> PARSER =
       new com.google.protobuf.AbstractParser<CommitRequest>() {
-        @java.lang.Override
+        @Override
         public CommitRequest parsePartialFrom(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1752,13 +1970,13 @@ public final class CommitRequest extends com.google.protobuf.GeneratedMessageV3
     return PARSER;
   }
 
-  @java.lang.Override
+  @Override
   public com.google.protobuf.Parser<CommitRequest> getParserForType() {
     return PARSER;
   }
 
-  @java.lang.Override
-  public com.google.spanner.v1.CommitRequest getDefaultInstanceForType() {
+  @Override
+  public CommitRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 }
