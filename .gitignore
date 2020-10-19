@@ -4,7 +4,7 @@ bin
 var
 sdist
 target
-proto-google-cloud-spanner-v1
+proto-google-cloud-spanner-v1/*
 
 # Unit test / coverage reports
 .coverage
