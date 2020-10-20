@@ -144,4 +144,7 @@ public interface TransactionContext extends ReadContext {
    * result of that statement is known and has been returned to the client.
    */
   ApiFuture<long[]> batchUpdateAsync(Iterable<Statement> statements, UpdateOption... options);
+
+  /** Sets the tag for the currently active transaction. */
+  void withTransactionTag(String tag);
 }

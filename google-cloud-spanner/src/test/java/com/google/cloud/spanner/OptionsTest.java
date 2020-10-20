@@ -262,7 +262,7 @@ public class OptionsTest {
   @Test
   public void writeOptTest() {
     String tag = "tag-1";
-    Options opts = Options.fromWriteOptions(Options.tag(tag));
+    Options opts = Options.fromWriteOptions(Options.txnTag(tag));
 
     assertThat(opts.toString()).isEqualTo("tag: " + tag + " ");
     assertThat(opts.hasTag()).isTrue();
@@ -280,14 +280,14 @@ public class OptionsTest {
     o2 = Options.fromWriteOptions();
     assertThat(o1.equals(o2)).isTrue();
 
-    o2 = Options.fromWriteOptions(Options.tag("tag-1"));
+    o2 = Options.fromWriteOptions(Options.txnTag("tag-1"));
     assertThat(o1.equals(o2)).isFalse();
     assertThat(o2.equals(o1)).isFalse();
 
-    o3 = Options.fromWriteOptions(Options.tag("tag-1"));
+    o3 = Options.fromWriteOptions(Options.txnTag("tag-1"));
     assertThat(o2.equals(o3)).isTrue();
 
-    o3 = Options.fromWriteOptions(Options.tag("tag-2"));
+    o3 = Options.fromWriteOptions(Options.txnTag("tag-2"));
     assertThat(o2.equals(o3)).isFalse();
   }
 }

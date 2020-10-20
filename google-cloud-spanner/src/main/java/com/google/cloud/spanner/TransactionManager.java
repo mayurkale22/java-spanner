@@ -90,6 +90,7 @@ public interface TransactionManager extends AutoCloseable {
   /** Returns the state of the transaction. */
   TransactionState getState();
 
+  /** Sets the tag for the currently active transaction. */
   TransactionContext withTransactionTag(String tag);
 
   /**

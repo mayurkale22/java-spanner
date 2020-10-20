@@ -148,6 +148,9 @@ class TransactionRunnerImpl implements SessionTransaction, TransactionRunner {
     @GuardedBy("lock")
     private boolean aborted;
 
+    @GuardedBy("lock")
+    private String txnTag;
+
     /** Default to -1 to indicate not available. */
     @GuardedBy("lock")
     private long retryDelayInMillis = -1L;
@@ -433,10 +436,13 @@ class TransactionRunnerImpl implements SessionTransaction, TransactionRunner {
       final ExecuteSqlRequest.Builder builder =
           getExecuteSqlRequestBuilder(statement, QueryMode.NORMAL);
       Options updateOption = Options.fromUpdateOptions(options);
-      if (updateOption.hasTag()) {
-        builder.setRequestOptions(
-            RequestOptions.newBuilder().setRequestTag(updateOption.tag()).build());
+      if (txnTag != null || updateOption.hasTag()) {
+        RequestOptions.Builder requestOptionsBuilder = RequestOptions.newBuilder();
+        if (updateOption.hasTag()) requestOptionsBuilder.setRequestTag(updateOption.tag());
+        if (txnTag != null) requestOptionsBuilder.setTransactionTag(txnTag);
+        builder.setRequestOptions(requestOptionsBuilder.build());
       }
+
       try {
         com.google.spanner.v1.ResultSet resultSet =
             rpc.executeQuery(builder.build(), session.getOptions());
@@ -458,10 +464,13 @@ class TransactionRunnerImpl implements SessionTransaction, TransactionRunner {
       final ExecuteSqlRequest.Builder builder =
           getExecuteSqlRequestBuilder(statement, QueryMode.NORMAL);
       Options updateOption = Options.fromUpdateOptions(options);
-      if (updateOption.hasTag()) {
-        builder.setRequestOptions(
-            RequestOptions.newBuilder().setRequestTag(updateOption.tag()).build());
+      if (txnTag != null || updateOption.hasTag()) {
+        RequestOptions.Builder requestOptionsBuilder = RequestOptions.newBuilder();
+        if (updateOption.hasTag()) requestOptionsBuilder.setRequestTag(updateOption.tag());
+        if (txnTag != null) requestOptionsBuilder.setTransactionTag(txnTag);
+        builder.setRequestOptions(requestOptionsBuilder.build());
       }
+
       ApiFuture<com.google.spanner.v1.ResultSet> resultSet;
       try {
         // Register the update as an async operation that must finish before the transaction may
@@ -604,6 +613,13 @@ class TransactionRunnerImpl implements SessionTransaction, TransactionRunner {
           },
           MoreExecutors.directExecutor());
       return updateCounts;
+    }
+
+    @Override
+    public void withTransactionTag(String tag) {
+      synchronized (lock) {
+        this.txnTag = tag;
+      }
     }
 
     private ListenableAsyncResultSet wrap(ListenableAsyncResultSet delegate) {

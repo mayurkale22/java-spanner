@@ -696,6 +696,11 @@ final class SessionPool {
       }
 
       @Override
+      public void withTransactionTag(String tag) {
+        delegate.withTransactionTag(tag);
+      }
+
+      @Override
       public ResultSet executeQuery(Statement statement, QueryOption... options) {
         return new SessionPoolResultSet(delegate.executeQuery(statement, options));
       }

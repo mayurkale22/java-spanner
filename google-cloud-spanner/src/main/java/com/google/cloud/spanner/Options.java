@@ -27,9 +27,8 @@ public final class Options implements Serializable {
   /** Marker interface to mark options applicable to both Read and Query operations */
   public interface ReadAndQueryOption extends ReadOption, QueryOption {}
 
-  /** Marker interface to mark options applicable to Read, Query, Update and Write operations */
-  public interface ReadQueryUpdateWriteOption
-      extends ReadAndQueryOption, UpdateOption, WriteOption {}
+  /** Marker interface to mark options applicable to Read, Query and Write operations */
+  public interface ReadQueryUpdateOption extends ReadOption, QueryOption, UpdateOption {}
 
   /** Marker interface to mark options applicable to read operation */
   public interface ReadOption {}
@@ -78,7 +77,12 @@ public final class Options implements Serializable {
    * Specifying this will cause the reads, queries, updates and writes operations statistics
    * collection grouped by tag.
    */
-  public static ReadQueryUpdateWriteOption tag(String name) {
+  public static ReadQueryUpdateOption tag(String name) {
+    return new TagOption(name);
+  }
+
+  /** Specifying this will cause the writes operations statistics collection grouped by tag. */
+  public static WriteOption txnTag(String name) {
     return new TagOption(name);
   }
 
@@ -151,7 +155,8 @@ public final class Options implements Serializable {
     }
   }
 
-  static final class TagOption extends InternalOption implements ReadQueryUpdateWriteOption {
+  static final class TagOption extends InternalOption
+      implements ReadQueryUpdateOption, WriteOption {
     private final String tag;
 
     TagOption(String tag) {
