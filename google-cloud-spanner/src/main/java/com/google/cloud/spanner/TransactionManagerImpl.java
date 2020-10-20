@@ -33,7 +33,6 @@ final class TransactionManagerImpl implements TransactionManager, SessionTransac
 
   private TransactionRunnerImpl.TransactionContextImpl txn;
   private TransactionState txnState;
-  private String tag;
 
   TransactionManagerImpl(SessionImpl session, Span span) {
     this.session = session;
@@ -132,13 +131,6 @@ final class TransactionManagerImpl implements TransactionManager, SessionTransac
   @Override
   public TransactionState getState() {
     return txnState;
-  }
-
-  @Override
-  public TransactionContext withTransactionTag(String tag) {
-    this.tag = tag;
-    Preconditions.checkState(txn == null, "withTransactionTag can only be " + "called after begin");
-    return txn;
   }
 
   @Override

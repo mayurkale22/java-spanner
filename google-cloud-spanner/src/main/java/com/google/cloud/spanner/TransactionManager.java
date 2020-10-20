@@ -90,9 +90,6 @@ public interface TransactionManager extends AutoCloseable {
   /** Returns the state of the transaction. */
   TransactionState getState();
 
-  /** Sets the tag for the currently active transaction. */
-  TransactionContext withTransactionTag(String tag);
-
   /**
    * Closes the manager. If there is an active transaction, it will be rolled back. Underlying
    * session will be released back to the session pool.

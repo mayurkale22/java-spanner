@@ -152,11 +152,6 @@ public class SingleUseTransactionTest {
     }
 
     @Override
-    public TransactionContext withTransactionTag(String tag) {
-      return txContext;
-    }
-
-    @Override
     public void close() {
       if (state != TransactionState.COMMITTED) {
         state = TransactionState.ROLLED_BACK;
