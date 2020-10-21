@@ -25,8 +25,8 @@ import com.google.cloud.Timestamp;
 import com.google.cloud.spanner.AbstractReadContext.MultiUseReadOnlyTransaction;
 import com.google.cloud.spanner.AbstractReadContext.SingleReadContext;
 import com.google.cloud.spanner.AbstractReadContext.SingleUseReadOnlyTransaction;
+import com.google.cloud.spanner.Options.TransactionOption;
 import com.google.cloud.spanner.Options.UpdateOption;
-import com.google.cloud.spanner.Options.WriteOption;
 import com.google.cloud.spanner.SessionClient.SessionId;
 import com.google.cloud.spanner.TransactionRunnerImpl.TransactionContextImpl;
 import com.google.cloud.spanner.spi.v1.SpannerRpc;
@@ -125,7 +125,7 @@ class SessionImpl implements Session {
   }
 
   @Override
-  public Timestamp write(Iterable<Mutation> mutations, WriteOption... writeOptions)
+  public Timestamp write(Iterable<Mutation> mutations, TransactionOption... transactionOptions)
       throws SpannerException {
     TransactionRunner runner = readWriteTransaction();
     final Collection<Mutation> finalMutations =
@@ -144,7 +144,8 @@ class SessionImpl implements Session {
   }
 
   @Override
-  public Timestamp writeAtLeastOnce(Iterable<Mutation> mutations, WriteOption... writeOptions)
+  public Timestamp writeAtLeastOnce(
+      Iterable<Mutation> mutations, TransactionOption... transactionOptions)
       throws SpannerException {
     setActive(null);
     List<com.google.spanner.v1.Mutation> mutationsProto = new ArrayList<>();
@@ -157,7 +158,7 @@ class SessionImpl implements Session {
                 TransactionOptions.newBuilder()
                     .setReadWrite(TransactionOptions.ReadWrite.getDefaultInstance()));
 
-    Options opts = Options.fromWriteOptions(writeOptions);
+    Options opts = Options.fromTransactionOptions(transactionOptions);
     if (opts.hasTag()) {
       builder.setRequestOptions(RequestOptions.newBuilder().setTransactionTag(opts.tag()).build());
     }

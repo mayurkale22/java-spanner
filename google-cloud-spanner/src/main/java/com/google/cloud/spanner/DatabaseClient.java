@@ -17,8 +17,8 @@
 package com.google.cloud.spanner;
 
 import com.google.cloud.Timestamp;
+import com.google.cloud.spanner.Options.TransactionOption;
 import com.google.cloud.spanner.Options.UpdateOption;
-import com.google.cloud.spanner.Options.WriteOption;
 
 /**
  * Interface for all the APIs that are used to read/write data into a Cloud Spanner database. An
@@ -52,7 +52,8 @@ public interface DatabaseClient {
    *
    * @return the timestamp at which the write was committed
    */
-  Timestamp write(Iterable<Mutation> mutations, WriteOption... options) throws SpannerException;
+  Timestamp write(Iterable<Mutation> mutations, TransactionOption... options)
+      throws SpannerException;
 
   /**
    * Writes the given mutations atomically to the database without replay protection.
@@ -62,7 +63,7 @@ public interface DatabaseClient {
    * being reported when the mutation was applied once. For example, an insert may fail with {@link
    * ErrorCode#ALREADY_EXISTS} even though the row did not exist before this method was called. For
    * this reason, most users of the library will prefer to use {@link #write(Iterable,
-   * WriteOption...)} instead. However, {@code writeAtLeastOnce()} requires only a single RPC,
+   * TransactionOption...)} instead. However, {@code writeAtLeastOnce()} requires only a single RPC,
    * whereas {@code write()} requires two RPCs (one of which may be performed in advance), and so
    * this method may be appropriate for latency sensitive and/or high throughput blind writing.
    *
@@ -83,7 +84,7 @@ public interface DatabaseClient {
    *
    * @return the timestamp at which the write was committed
    */
-  Timestamp writeAtLeastOnce(Iterable<Mutation> mutations, WriteOption... options)
+  Timestamp writeAtLeastOnce(Iterable<Mutation> mutations, TransactionOption... options)
       throws SpannerException;
 
   /**

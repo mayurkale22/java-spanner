@@ -17,16 +17,17 @@
 package com.google.cloud.spanner;
 
 import com.google.api.core.ApiFuture;
+import com.google.cloud.spanner.Options.TransactionOption;
 import com.google.cloud.spanner.Options.UpdateOption;
-import com.google.cloud.spanner.Options.WriteOption;
 
 /**
  * Context for a single attempt of a locking read-write transaction. This type of transaction is the
- * only way to write data into Cloud Spanner; {@link Session#write(Iterable, WriteOption...)} and
- * {@link Session#writeAtLeastOnce(Iterable, WriteOption...)} use transactions internally. These
- * transactions rely on pessimistic locking and, if necessary, two-phase commit. Locking read-write
- * transactions may abort, requiring the application to retry. However, the interface exposed by
- * {@link TransactionRunner} eliminates the need for applications to write retry loops explicitly.
+ * only way to write data into Cloud Spanner; {@link Session#write(Iterable, TransactionOption...)}
+ * and {@link Session#writeAtLeastOnce(Iterable, TransactionOption...)} use transactions internally.
+ * These transactions rely on pessimistic locking and, if necessary, two-phase commit. Locking
+ * read-write transactions may abort, requiring the application to retry. However, the interface
+ * exposed by {@link TransactionRunner} eliminates the need for applications to write retry loops
+ * explicitly.
  *
  * <p>Locking transactions may be used to atomically read-modify-write data anywhere in a database.
  * This type of transaction is externally consistent.

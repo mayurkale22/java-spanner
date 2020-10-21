@@ -27,8 +27,9 @@ public final class Options implements Serializable {
   /** Marker interface to mark options applicable to both Read and Query operations */
   public interface ReadAndQueryOption extends ReadOption, QueryOption {}
 
-  /** Marker interface to mark options applicable to Read, Query and Write operations */
-  public interface ReadQueryUpdateOption extends ReadOption, QueryOption, UpdateOption {}
+  /** Marker interface to mark options applicable to Read, Query, Update and Write operations */
+  public interface ReadQueryUpdateTransactionOption
+      extends ReadOption, QueryOption, UpdateOption, TransactionOption {}
 
   /** Marker interface to mark options applicable to read operation */
   public interface ReadOption {}
@@ -40,7 +41,7 @@ public final class Options implements Serializable {
   public interface UpdateOption {}
 
   /** Marker interface to mark options applicable to write operation. */
-  public interface WriteOption {}
+  public interface TransactionOption {}
 
   /** Marker interface to mark options applicable to list operations in admin API. */
   public interface ListOption {}
@@ -77,12 +78,7 @@ public final class Options implements Serializable {
    * Specifying this will cause the reads, queries, updates and writes operations statistics
    * collection grouped by tag.
    */
-  public static ReadQueryUpdateOption tag(String name) {
-    return new TagOption(name);
-  }
-
-  /** Specifying this will cause the writes operations statistics collection grouped by tag. */
-  public static WriteOption txnTag(String name) {
+  public static ReadQueryUpdateTransactionOption tag(String name) {
     return new TagOption(name);
   }
 
@@ -155,8 +151,7 @@ public final class Options implements Serializable {
     }
   }
 
-  static final class TagOption extends InternalOption
-      implements ReadQueryUpdateOption, WriteOption {
+  static final class TagOption extends InternalOption implements ReadQueryUpdateTransactionOption {
     private final String tag;
 
     TagOption(String tag) {
@@ -356,14 +351,14 @@ public final class Options implements Serializable {
     return updateOptions;
   }
 
-  static Options fromWriteOptions(WriteOption... options) {
-    Options writeOptions = new Options();
-    for (WriteOption option : options) {
+  static Options fromTransactionOptions(TransactionOption... options) {
+    Options transactionOptions = new Options();
+    for (TransactionOption option : options) {
       if (option instanceof InternalOption) {
-        ((InternalOption) option).appendToOptions(writeOptions);
+        ((InternalOption) option).appendToOptions(transactionOptions);
       }
     }
-    return writeOptions;
+    return transactionOptions;
   }
 
   private abstract static class InternalOption {

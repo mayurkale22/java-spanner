@@ -47,12 +47,11 @@ import com.google.cloud.grpc.GrpcTransportOptions;
 import com.google.cloud.grpc.GrpcTransportOptions.ExecutorFactory;
 import com.google.cloud.spanner.Options.QueryOption;
 import com.google.cloud.spanner.Options.ReadOption;
+import com.google.cloud.spanner.Options.TransactionOption;
 import com.google.cloud.spanner.Options.UpdateOption;
-import com.google.cloud.spanner.Options.WriteOption;
 import com.google.cloud.spanner.SessionClient.SessionConsumer;
 import com.google.cloud.spanner.SpannerException.ResourceNotFoundException;
 import com.google.cloud.spanner.SpannerImpl.ClosedException;
-import com.google.cloud.spanner.TransactionManager.TransactionState;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Function;
 import com.google.common.base.MoreObjects;
@@ -1103,7 +1102,7 @@ final class SessionPool {
     }
 
     @Override
-    public Timestamp write(Iterable<Mutation> mutations, WriteOption... writeOptions)
+    public Timestamp write(Iterable<Mutation> mutations, TransactionOption... transactionOptions)
         throws SpannerException {
       try {
         return get().write(mutations);
@@ -1113,7 +1112,8 @@ final class SessionPool {
     }
 
     @Override
-    public Timestamp writeAtLeastOnce(Iterable<Mutation> mutations, WriteOption... writeOptions)
+    public Timestamp writeAtLeastOnce(
+        Iterable<Mutation> mutations, TransactionOption... transactionOptions)
         throws SpannerException {
       try {
         return get().writeAtLeastOnce(mutations);
@@ -1348,7 +1348,7 @@ final class SessionPool {
     }
 
     @Override
-    public Timestamp write(Iterable<Mutation> mutations, WriteOption... writeOptions)
+    public Timestamp write(Iterable<Mutation> mutations, TransactionOption... transactionOptions)
         throws SpannerException {
       try {
         markUsed();
@@ -1359,7 +1359,8 @@ final class SessionPool {
     }
 
     // @Override
-    public Timestamp writeAtLeastOnce(Iterable<Mutation> mutations, WriteOption... writeOptions)
+    public Timestamp writeAtLeastOnce(
+        Iterable<Mutation> mutations, TransactionOption... transactionOptions)
         throws SpannerException {
       try {
         markUsed();
